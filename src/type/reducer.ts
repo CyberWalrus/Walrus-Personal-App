@@ -1,10 +1,10 @@
 import {
+  ThunkAction as ReduxThunkAction,
   ThunkDispatch as ReduxThunkDispatch,
-  ThunkAction as ReduxThunkAction
 } from "redux-thunk";
 import {
+  Action as ActionCondition,
   State as StateCondition,
-  Action as ActionCondition
 } from "../store/condition/condition";
 import NameSpace from "../store/name-spaces";
 

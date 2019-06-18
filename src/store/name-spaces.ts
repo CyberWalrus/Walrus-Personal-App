@@ -1,5 +1,5 @@
 enum NameSpace {
-  CONDITION = "CONDITION"
+  CONDITION = "CONDITION",
 }
 
 export default NameSpace;

@@ -1,6 +1,6 @@
 enum RoutePath {
   INDEX = "/",
-  TEST = "/test"
+  TEST = "/test",
 }
 
 export default RoutePath;
