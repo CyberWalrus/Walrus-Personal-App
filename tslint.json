@@ -4,6 +4,17 @@
     "no-implicit-dependencies": false,
     "no-duplicate-imports": false,
     "jsx-wrap-multiline": false,
+    "typedef": [
+      true,
+      "arrow-call-signature",
+      "arrow-parameter",
+      "property-declaration",
+      "member-variable-declaration",
+      "object-destructuring",
+      "array-destructuring",
+      "parameter",
+      "call-signature"
+    ],
     "interface-name": [true, "never-prefix"],
     "class-name": true,
     "comment-format": [true, "check-space"],
