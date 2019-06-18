@@ -1,0 +1,22 @@
+{
+  "name": "walrus-personal-app",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CyberWalrus/Walrus-Personal-App.git"
+  },
+  "author": "Cyber Walrus (Andrey Pakhomov)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CyberWalrus/Walrus-Personal-App/issues"
+  },
+  "homepage": "https://github.com/CyberWalrus/Walrus-Personal-App#readme",
+  "devDependencies": {
+    "tslint": "5.17.0"
+  }
+}
