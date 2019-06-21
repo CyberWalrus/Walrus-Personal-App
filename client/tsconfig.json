@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "../dist",
+    "sourceMap": true,
+    "module": "commonjs",
+    "target": "es2016",
+    "jsx": "react",
+    "allowSyntheticDefaultImports": false,
+    "types": ["jest", "node"],
+    "baseUrl": ".",
+    "paths": {
+      "*": ["*"],
+      "server/*": ["../server/*"],
+      "dist/*": ["../dist/*"],
+      "client/*": ["../client/*"],
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+}

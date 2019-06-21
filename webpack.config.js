@@ -1,7 +1,7 @@
 const path = require(`path`);
 
 module.exports = {
-  entry: `./src/index.tsx`,
+  entry: `./client/index.tsx`,
   output: {
     filename: `bundle.js`,
     path: path.join(__dirname, `dist`)
@@ -22,7 +22,12 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: [`.ts`, `.tsx`, `.js`, `json`]
+    extensions: [`.ts`, `.tsx`, `.js`, `json`],
+    alias: {
+      client: path.resolve(__dirname, "client/"),
+      server: path.resolve(__dirname, "server/"),
+      dist: path.resolve(__dirname, "dist/")
+    }
   },
   devtool: `source-map`
 };
