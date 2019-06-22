@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CyberWalrus/Walrus-Personal-App.git"
+    "url": "git+https://github.com/CyberWalrus/walrus-personal-app.git"
   },
   "author": "Cyber Walrus (Andrey Pakhomov)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/CyberWalrus/Walrus-Personal-App/issues"
+    "url": "https://github.com/CyberWalrus/walrus-personal-app/issues"
   },
-  "homepage": "https://github.com/CyberWalrus/Walrus-Personal-App#readme",
+  "homepage": "https://github.com/CyberWalrus/walrus-personal-app#readme",
   "devDependencies": {
     "@babel/core": "7.4.5",
     "@babel/preset-env": "7.4.5",
@@ -40,13 +40,22 @@
     "@types/webpack-dev-server": "3.1.6",
     "@types/webpack-hot-middleware": "2.16.5",
     "@types/webpack-merge": "4.1.5",
+    "autoprefixer": "9.6.0",
     "awesome-typescript-loader": "5.2.1",
     "babel-loader": "8.0.6",
+    "compass-mixins": "0.12.10",
     "connect-history-api-fallback": "1.6.0",
+    "css-loader": "3.0.0",
     "enzyme": "3.10.0",
     "enzyme-adapter-react-16": "1.14.0",
     "enzyme-to-json": "3.3.5",
+    "extract-loader": "3.1.0",
+    "file-loader": "4.0.0",
     "jest": "24.8.0",
+    "node-sass": "4.12.0",
+    "normalize-scss": "7.0.1",
+    "postcss-loader": "3.0.0",
+    "sass-loader": "7.1.0",
     "ts-jest": "24.0.2",
     "ts-loader": "6.0.3",
     "ts-node": "8.3.0",

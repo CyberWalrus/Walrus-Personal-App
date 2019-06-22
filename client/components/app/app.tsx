@@ -10,7 +10,7 @@ const App: FunctionComponent = (): ReactElement => {
     <BrowserRouter>
       <Switch>
         <Route path={RoutePath.INDEX} exact={true} component={PageMain} />
-        <Route path={RoutePath.TEST} exact={true} component={PageLogin} />
+        <Route path={RoutePath.LOGIN} exact={true} component={PageLogin} />
         <Redirect to={RoutePath.INDEX} />
       </Switch>
     </BrowserRouter>

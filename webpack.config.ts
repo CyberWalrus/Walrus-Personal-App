@@ -9,7 +9,7 @@ const root = (args: string): string => {
 
 const webpackConfig: webpack.Configuration = {
   entry: {
-    bundle: [root(`client/index.tsx`)],
+    bundle: [root(`client/index.tsx`), root(`client/scss/style.scss`), root(`client/scss/normalize.scss`)],
   },
   output: {
     filename: `bundle.js`,
@@ -29,6 +29,34 @@ const webpackConfig: webpack.Configuration = {
         exclude: /node_modules/,
         loader: [`babel-loader`, `ts-loader`],
       },
+      {
+        test: /\.scss$/,
+        use: [
+          {
+            loader: `file-loader`,
+            options: {
+              name: `css/[name].css`,
+            },
+          },
+          {
+            loader: `extract-loader`,
+          },
+          {
+            loader: `css-loader?-url`,
+          },
+          {
+            loader: `postcss-loader`,
+          },
+          {
+            loader: `sass-loader`,
+            options: {
+              includePaths: [
+                path.resolve(__dirname, `./node_modules/compass-mixins/lib`),
+              ],
+            },
+          },
+        ],
+      },
     ],
   },
   resolve: {
@@ -41,7 +69,7 @@ const webpackConfig: webpack.Configuration = {
     },
   },
   plugins: [new webpack.HotModuleReplacementPlugin()],
-  devtool: `eval-source-map`,
+  devtool: `source-map`,
 };
 
 export default webpackConfig;
