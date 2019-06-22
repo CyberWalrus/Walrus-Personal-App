@@ -20,6 +20,7 @@ const webpackConfig: webpack.Configuration = {
     port: 1337,
     historyApiFallback: true,
   },
+  mode: `development`,
   module: {
     rules: [
       {

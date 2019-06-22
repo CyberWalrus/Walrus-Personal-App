@@ -10,10 +10,7 @@
     "types": ["jest", "node"],
     "baseUrl": ".",
     "paths": {
-      "*": ["*"],
-      "server/*": ["../server/*"],
-      "dist/*": ["../dist/*"],
-      "client/*": ["../client/*"],
+      "*": ["*"]
     }
   },
   "exclude": ["node_modules", "dist"]
