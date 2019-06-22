@@ -7,13 +7,32 @@ const PageMain: FunctionComponent = (): ReactElement => {
   return (
     <div>
       <header>
-        <div />
+        <div className="logo-header">
+          <Link to={RoutePath.INDEX}>
+            <img src="img/walrus-icon-white.png" />
+          </Link>
+        </div>
+        <nav className="menu-header">
+          <ul>
+            <li>
+              <Link to={RoutePath.INDEX}>Main</Link>
+            </li>
+            <li>
+              <Link to={RoutePath.LOGIN}>Login</Link>
+            </li>
+          </ul>
+        </nav>
+        <div className="user-header">
+          <div className="user-header__avatar">
+            Sign In
+          </div>
+        </div>
       </header>
       <main>
         <div />
       </main>
       <footer>
-        <div/>
+        <div />
       </footer>
     </div>
   );
