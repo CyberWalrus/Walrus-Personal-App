@@ -7,7 +7,7 @@
     "start": "webpack-dev-server",
     "tslint": "tslint -c tslint.json 'src/**/*.{ts,tsx}",
     "test": "npm run tslint && jest",
-    "dev": "ts-node-dev --respawn --transpileOnly ./server/server.ts"
+    "dev": "ts-node-dev --respawn --transpileOnly -r tsconfig-paths/register ./server/server.ts"
   },
   "repository": {
     "type": "git",
@@ -39,6 +39,7 @@
     "@types/webpack-dev-middleware": "2.0.2",
     "@types/webpack-dev-server": "3.1.6",
     "@types/webpack-hot-middleware": "2.16.5",
+    "@types/webpack-merge": "4.1.5",
     "awesome-typescript-loader": "5.2.1",
     "babel-loader": "8.0.6",
     "connect-history-api-fallback": "1.6.0",
@@ -50,6 +51,7 @@
     "ts-loader": "6.0.3",
     "ts-node": "8.3.0",
     "ts-node-dev": "1.0.0-pre.40",
+    "tsconfig-paths": "3.8.0",
     "tslint": "5.17.0",
     "tslint-react": "4.0.0",
     "typescript": "3.5.2",
@@ -57,7 +59,8 @@
     "webpack-cli": "3.3.4",
     "webpack-dev-middleware": "3.7.0",
     "webpack-dev-server": "3.7.2",
-    "webpack-hot-middleware": "2.25.0"
+    "webpack-hot-middleware": "2.25.0",
+    "webpack-merge": "4.2.1"
   },
   "dependencies": {
     "react": "16.8.6",

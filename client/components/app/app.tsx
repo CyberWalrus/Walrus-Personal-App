@@ -1,7 +1,7 @@
+import RoutePath from "@client/routes";
 import * as React from "react";
 import { FunctionComponent, ReactElement } from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
-import RoutePath from "../../routes";
 import PageLogin from "../page-login/page-login";
 import PageMain from "../page-main/page-main";
 

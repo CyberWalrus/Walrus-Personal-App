@@ -1,17 +1,24 @@
 {
   "compilerOptions": {
     "rootDir": ".",
-    "outDir": "../dist",
+    "outDir": "dist",
     "sourceMap": true,
     "module": "commonjs",
-    "target": "es2016",
+    "target": "es2017",
     "jsx": "react",
     "allowSyntheticDefaultImports": false,
+    "alwaysStrict": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "types": ["jest", "node"],
     "baseUrl": ".",
     "paths": {
-      "*": ["*"]
+      "@config/*": ["config/*"],
+      "@client/*": ["client/*"],
+      "@server/*": ["server/*"],
+      "@dist/*": ["dist/*"]
     }
   },
+  "include": ["./**/*.ts", "./**/*.tsx"],
   "exclude": ["node_modules", "dist"]
 }
