@@ -1,7 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PageLogin correctly render 1`] = `
-<div>
-  Test
+<div
+  className="page"
+>
+  <Header />
+  <main
+    className="page-content"
+  >
+    <section>
+      <h2>
+        Login
+      </h2>
+      <article>
+        input
+      </article>
+    </section>
+  </main>
+  <Footer />
 </div>
 `;
