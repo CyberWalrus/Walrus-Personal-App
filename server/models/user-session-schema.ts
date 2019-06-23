@@ -1,4 +1,4 @@
-import { createSchema, ExtractDoc, Type, typedModel } from "ts-mongoose";
+import { createSchema, ExtractProps, Type, typedModel } from "ts-mongoose";
 import { UserRoleSchema } from "./user-role-schema";
 import { UserSchema } from "./user-schema";
 
@@ -11,5 +11,5 @@ export const UserSessionSchema = createSchema({
   timestamp: Type.date({ default: Date.now as any }),
   isActive: Type.boolean({ default: true as boolean }),
 });
-export const UserSession = typedModel("UserSession", UserRoleSchema);
-export type UserSessionDoc = ExtractDoc<typeof UserSessionSchema>;
+export const UserSession = typedModel("UserSession", UserSessionSchema);
+export type UserSessionProps = ExtractProps<typeof UserSessionSchema>;
