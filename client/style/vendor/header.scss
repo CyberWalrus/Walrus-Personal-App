@@ -3,8 +3,10 @@
   color: $text-color-dop;
   display: grid;
   grid-template-columns: minmax(64px, 192px) minmax(200px, 1fr) minmax(64px, 192px);
+  grid-template-areas: "logo menu user";
 }
 .logo {
+  grid-area: logo;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -37,6 +39,7 @@
 }
 
 .menu {
+  grid-area: menu;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -64,6 +67,7 @@
 }
 
 .user{
+  grid-area: user;
   display: flex;
   align-items: center;
   justify-content: flex-end;

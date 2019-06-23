@@ -11,7 +11,12 @@ exports[`App correctly render 1`] = `
     <Route
       component={[Function]}
       exact={true}
-      path="/test"
+      path="/info"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/login"
     />
     <Redirect
       to="/"

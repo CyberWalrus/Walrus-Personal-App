@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PageLogin correctly render 1`] = `
+exports[`PageInfo correctly render 1`] = `
 <div>
-  Hello Walrus!! 
+  Info
   <br />
   <Link
     to="/"

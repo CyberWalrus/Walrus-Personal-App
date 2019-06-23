@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer correctly render 1`] = `
+<footer
+  className="page-footer"
+>
+  <div
+    className="logo logo_footer"
+  >
+    <Link
+      className="logo__link"
+      to="/"
+    >
+      <img
+        className="logo__img"
+        src="img/walrus-icon-white.png"
+      />
+    </Link>
+  </div>
+  <div
+    className="copyright"
+  >
+    <p>
+      © 2019 Walrus Personal App
+    </p>
+  </div>
+</footer>
+`;
