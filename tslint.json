@@ -1,10 +1,13 @@
 {
   "extends": ["tslint:latest", "tslint-react"],
   "rules": {
+    "variable-name": false,
+    "object-literal-sort-keys": false,
     "no-submodule-imports": false,
     "no-implicit-dependencies": false,
     "no-duplicate-imports": false,
     "jsx-wrap-multiline": false,
+    "jsx-no-multiline-js": false,
     "typedef": [
       true,
       "arrow-call-signature",
