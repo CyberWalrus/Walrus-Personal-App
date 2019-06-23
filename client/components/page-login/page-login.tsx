@@ -11,7 +11,7 @@ const PageMain: FunctionComponent = (): ReactElement => {
     <div className={`page`}>
       <Header />
       <main className={`page-content`}>
-        <section>
+        <section className={`sign-in-box`}>
           <SignInState />
         </section>
       </main>

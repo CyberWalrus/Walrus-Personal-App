@@ -18,8 +18,11 @@ const SignIn: FunctionComponent<Props> = ({
   onClickSubmit,
 }: Props): ReactElement => {
   return (
-    <form onSubmit={onClickSubmit} className="sign-in__form">
-      <div className="sign-in__message">
+    <form onSubmit={onClickSubmit} className={`sign-in`}>
+      <div className={`sign-in__titel`}>
+        <h2>Sign In</h2>
+      </div>
+      <div className={`sign-in__message`}>
         {formErrors &&
           Object.keys(formErrors).map(
             (fieldName: string, i: number): ReactElement => {
@@ -31,45 +34,43 @@ const SignIn: FunctionComponent<Props> = ({
             },
           )}
       </div>
-      <div className="sign-in__fields">
-        <div className="sign-in__field">
-          <input
-            className="sign-in__input"
-            type="email"
-            placeholder="Email address"
-            name="email"
-            id="user-email"
-            value={email}
-            onChange={onChangeUserInput}
-          />
-          <label
-            className="sign-in__label visually-hidden"
-            htmlFor="user-email"
-          >
-            Email address
-          </label>
-        </div>
-        <div className="sign-in__field">
-          <input
-            className="sign-in__input"
-            type="password"
-            placeholder="Password"
-            name="password"
-            id="user-password"
-            value={password}
-            onChange={onChangeUserInput}
-          />
-          <label
-            className="sign-in__label visually-hidden"
-            htmlFor="user-password"
-          >
-            Password
-          </label>
-        </div>
+      <div className={`sign-in__field`}>
+        <input
+          className={`sign-in__input`}
+          type="email"
+          placeholder="Email address"
+          name="email"
+          id="user-email"
+          value={email}
+          onChange={onChangeUserInput}
+        />
+        <label
+          className={`sign-in__label visually-hidden`}
+          htmlFor="user-email"
+        >
+          Email address
+        </label>
       </div>
-      <div className="sign-in__submit">
+      <div className={`sign-in__field`}>
+        <input
+          className={`sign-in__input`}
+          type="password"
+          placeholder="Password"
+          name="password"
+          id="user-password"
+          value={password}
+          onChange={onChangeUserInput}
+        />
+        <label
+          className={`sign-in__label visually-hidden`}
+          htmlFor="user-password"
+        >
+          Password
+        </label>
+      </div>
+      <div className={`sign-in__submit`}>
         <button
-          className="sign-in__btn sign-in__btn--disavled"
+          className={`sign-in__btn sign-in__btn--disavled`}
           type="submit"
           disabled={!formValid}
         >
