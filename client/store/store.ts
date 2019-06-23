@@ -1,9 +1,15 @@
 import { combineReducers } from "redux";
 import { StateApp } from "../type/reducer";
-import { reducer as condition } from "./condition/condition";
+import {
+  initialState as initialStateCondition,
+  reducer as condition,
+} from "./condition/condition";
 import NameSpace from "./name-spaces";
-import { reducer as user } from "./user/user";
-
+import { initialState as initialStateUser, reducer as user } from "./user/user";
+export const initialState = {
+  [NameSpace.CONDITION]: initialStateCondition,
+  [NameSpace.USER]: initialStateUser,
+};
 export default combineReducers<StateApp>({
   [NameSpace.CONDITION]: condition,
   [NameSpace.USER]: user,

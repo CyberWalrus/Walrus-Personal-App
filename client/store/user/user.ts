@@ -1,7 +1,9 @@
+import { userAdapter } from "@client/api/data-adapter";
+import { StateApp, ThunkAction, ThunkDispatch } from "@client/type/reducer";
+import { AxiosError, AxiosInstance, AxiosResponse } from "axios";
 import { Action as ReduxAction } from "redux";
 import { User } from "../../type/data";
 import { UserResponse } from "../../type/dataResponse";
-import { StateApp, ThunkAction, ThunkDispatch } from "../../type/reducer";
 
 enum ActionType {
   REQUIRED_AUTHORIZATION = "REQUIRED_AUTHORIZATION",
@@ -43,7 +45,7 @@ const ActionCreator = {
   signIn: (user: UserResponse): SignIn => {
     return {
       type: ActionType.SIGN_IN,
-      payload: user,
+      payload: userAdapter(user),
     };
   },
   setError: (error: string): SetError => {
@@ -62,10 +64,24 @@ const ActionCreator = {
 
 const Operation = {
   signIn: (email: string, password: string): ThunkAction => {
-    return (dispatch: ThunkDispatch, _getState: () => StateApp): any => {
-      const data: UserResponse = {email, password};
-      dispatch(ActionCreator.signIn(data));
-      dispatch(ActionCreator.requireAuthorization(true));
+    return (
+      dispatch: ThunkDispatch,
+      _getState: () => StateApp,
+      api: AxiosInstance,
+    ): Promise<void> => {
+      return api
+        .post(`account/signin`, {
+          email,
+          password,
+        })
+        .then((response: AxiosResponse<Record<string, any>>): void => {
+          dispatch(ActionCreator.requireAuthorization(true));
+          dispatch(ActionCreator.setError(`ok`));
+        })
+        .catch((error: AxiosError): void => {
+          dispatch(ActionCreator.setError(error.toString()));
+          dispatch(ActionCreator.requireAuthorization(false));
+        });
     };
   },
 };

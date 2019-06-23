@@ -1,4 +1,12 @@
 export interface User {
+  id: string;
   email: string;
-  password: string;
+  isActive: boolean;
+  nickName: string;
+  login: string;
+  firstName: string;
+  lastName: string;
+  userRoleId: string;
+  signUpDate: Date;
+  created: Date;
 }

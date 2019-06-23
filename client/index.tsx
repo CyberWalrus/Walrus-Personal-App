@@ -1,16 +1,27 @@
+import { createBrowserHistory } from "history";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { applyMiddleware, createStore, Store } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension/developmentOnly";
+import thunk from "redux-thunk";
+import configureAPI from "./api/api";
 import App from "./components/app/app";
-import reducer from "./store/store";
+import RoutePath from "./routes";
+import reducer, { initialState } from "./store/store";
 
-declare const __REDUX_DEVTOOLS_EXTENSION__: () => any;
+const history = createBrowserHistory();
 
-const init: () => void = (): void => {
-  const store: Store = createStore(
+const onServerError = (): void => {
+  history.push(RoutePath.ERROR);
+};
+
+const init = (): void => {
+  const api = configureAPI(onServerError);
+  const store = createStore(
     reducer,
-    __REDUX_DEVTOOLS_EXTENSION__ && __REDUX_DEVTOOLS_EXTENSION__(),
+    initialState,
+    composeWithDevTools(applyMiddleware(thunk.withExtraArgument(api))),
   );
   ReactDOM.render(
     <Provider store={store}>

@@ -1,3 +1,4 @@
+/* tslint:disable:no-console */
 import webpackConfig from "@config/webpack.dev";
 import * as historyApiFallback from "connect-history-api-fallback";
 import * as express from "express";
@@ -14,11 +15,10 @@ const port: number = 1337;
 
 mongoose.connect(
   `mongodb+srv://walrus:ZCVL6pZjdw7q1Rbr@walrus-api-f849m.mongodb.net/test?retryWrites=true`,
-  function(err) {
-    if (err) {
-      throw err;
+  (error: mongoose.Error) => {
+    if (error) {
+      throw error;
     }
-
     console.log(`Successfully connected`);
   },
 );
@@ -26,7 +26,7 @@ mongoose.connect(
 
 const app = express();
 
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 userApi(app);
@@ -58,11 +58,8 @@ if (isDev) {
 
 app.listen(port, `localhost`, (err: Errback) => {
   if (err) {
-    // tslint:disable-next-line:no-console
     console.log(err);
   }
-
-  // tslint:disable-next-line:no-console
   console.info(`>>> 🌎 Open http://localhost:%s/ in your browser.`, port);
 });
 
