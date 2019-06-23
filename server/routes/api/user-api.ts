@@ -1,7 +1,7 @@
 import { User } from "@server/models/user-schema";
 import { Errback, Express, NextFunction, Request, Response } from "express";
 
-export const userApi = (app: Express): void => {
+export const userApi = async (app: Express): Promise<void> => {
   app.get(`/api/users`, (req: Request, res: Response, next: NextFunction) => {
     User.find()
       .exec()
