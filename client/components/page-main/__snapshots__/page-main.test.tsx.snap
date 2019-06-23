@@ -4,94 +4,19 @@ exports[`PageMain correctly render 1`] = `
 <div
   className="page"
 >
-  <header
-    className="page-header"
-  >
-    <div
-      className="logo"
-    >
-      <Link
-        className="logo__link"
-        to="/"
-      >
-        <img
-          className="logo__img"
-          src="img/walrus-icon-white.png"
-        />
-      </Link>
-    </div>
-    <nav
-      className="menu"
-    >
-      <ul>
-        <li
-          className="menu__item"
-        >
-          <Link
-            className="menu__link"
-            to="/"
-          >
-            Main
-          </Link>
-        </li>
-        <li
-          className="menu__item"
-        >
-          <Link
-            className="menu__link"
-            to="/info"
-          >
-            Info
-          </Link>
-        </li>
-      </ul>
-    </nav>
-    <div
-      className="user"
-    >
-      <Link
-        className="user__link"
-        to="/login"
-      >
-        Sign In
-      </Link>
-    </div>
-  </header>
+  <Header />
   <main
     className="page-content"
   >
     <section>
       <h2>
-        Hello Walrus
+        Main
       </h2>
       <article>
         input
       </article>
     </section>
   </main>
-  <footer
-    className="page-footer"
-  >
-    <div
-      className="logo logo_footer"
-    >
-      <Link
-        className="logo__link"
-        to="/"
-      >
-        <img
-          className="logo__img"
-          src="img/walrus-icon-white.png"
-        />
-      </Link>
-    </div>
-    <div
-      className="copyright"
-    >
-      <p>
-        © 2019 Walrus Personal App
-      </p>
-    </div>
-  </footer>
+  <Footer />
 </div>
 `;
