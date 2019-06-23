@@ -5,34 +5,48 @@ import { Link } from "react-router-dom";
 
 const PageMain: FunctionComponent = (): ReactElement => {
   return (
-    <div>
-      <header>
-        <div className="logo-header">
-          <Link to={RoutePath.INDEX}>
-            <img src="img/walrus-icon-white.png" />
+    <div className={`page`}>
+      <header className={`page-header`}>
+        <div className={`logo`}>
+          <Link to={RoutePath.INDEX} className={`logo__link`}>
+            <img className={`logo__img`} src={`img/walrus-icon-white.png`} />
           </Link>
         </div>
-        <nav className="menu-header">
+        <nav className={`menu`}>
           <ul>
-            <li>
-              <Link to={RoutePath.INDEX}>Main</Link>
+            <li className={`menu__item`}>
+              <Link to={RoutePath.INDEX} className={`menu__link`}>
+                Main
+              </Link>
             </li>
-            <li>
-              <Link to={RoutePath.LOGIN}>Login</Link>
+            <li className={`menu__item`}>
+              <Link to={RoutePath.INFO} className={`menu__link`}>
+                Info
+              </Link>
             </li>
           </ul>
         </nav>
-        <div className="user-header">
-          <div className="user-header__avatar">
+        <div className={`user`}>
+          <Link to={RoutePath.LOGIN} className={`user__link`}>
             Sign In
-          </div>
+          </Link>
         </div>
       </header>
-      <main>
-        <div />
+      <main className={`page-content`}>
+        <section>
+          <h2>Hello Walrus</h2>
+          <article>input</article>
+        </section>
       </main>
-      <footer>
-        <div />
+      <footer className={`page-footer`}>
+        <div className={`logo logo_footer`}>
+          <Link to={RoutePath.INDEX} className={`logo__link`}>
+            <img className={`logo__img`} src={`img/walrus-icon-white.png`} />
+          </Link>
+        </div>
+        <div className={`copyright`}>
+          <p>© 2019 Walrus Personal App</p>
+        </div>
       </footer>
     </div>
   );

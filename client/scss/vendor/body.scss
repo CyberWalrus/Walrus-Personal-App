@@ -1,9 +1,20 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:500&display=swap");
+*:focus {
+  outline: 0;
+  @include box-shadow(0 0 10px 2px $shadow-color, 0 0 60px 2px $shadow-color inset);
+  border-radius: 10px;
+}
 body {
   margin: 0;
   padding: 0;
   background: $body-color;
-  min-width: 100vw;
-  min-height: 100vh;
-  color: $body-text-color;
+  color: $text-color;
   font-size: $body-font-size;
+  font-family: "Roboto", sans-serif;
+}
+
+.page {
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: minmax(30px, max-content) minmax(max-content, 1fr) minmax(60px, max-content);
 }
