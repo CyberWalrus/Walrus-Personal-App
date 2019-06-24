@@ -31,14 +31,14 @@ const ActionCreator = {
 };
 
 const Operation = {
-  getUsers: (email: string, password: string): ThunkAction => {
+  getUsers: (): ThunkAction => {
     return (
       dispatch: ThunkDispatch,
       _getState: () => StateApp,
       api: AxiosInstance,
     ): Promise<void> => {
       return api
-        .get(`account/signin`)
+        .get(`/users`)
         .then((response: AxiosResponse<Array<Record<string, any>>>): void => {
           const data: UserResponse[] = response.data;
           dispatch(ActionCreator.setUsers(data));
@@ -50,7 +50,7 @@ const Operation = {
 const reducer = (state: State = initialState, action: Action): State => {
   switch (action.type) {
     case ActionType.SET_USERS:
-      return {...state, users: action.payload};
+      return { ...state, users: action.payload };
 
     default:
       return state;

@@ -28,19 +28,13 @@ export interface TokenBody {
   token: number;
 }
 
-export const userApi = async (app: Express): Promise<void> => {
-  app.get(`/api/users`, (req: Request, res: Response, next: NextFunction) => {
-    User.find()
-      .exec()
-      .then((user: any): any => res.json(user))
-      .catch((error: Errback) => next(error));
-  });
+export const userApi = (app: Express): void => {
   app.get(
     `/api/users`,
     (req: Request, res: Response, next: NextFunction): void => {
       User.find()
         .exec()
-        .then((user: UserProps) => res.json(user))
+        .then((users: UserProps) => res.json(users))
         .catch((error: Errback) => next(error));
     },
   );
@@ -62,18 +56,6 @@ export const userApi = async (app: Express): Promise<void> => {
         return res.send({
           success: false,
           message: `Error: Login cannot be blank.`,
-        });
-      }
-      if (!firstName) {
-        return res.send({
-          success: false,
-          message: `Error: First Name cannot be blank.`,
-        });
-      }
-      if (!lastName) {
-        return res.send({
-          success: false,
-          message: `Error: Last Name cannot be blank.`,
         });
       }
       if (!password) {
