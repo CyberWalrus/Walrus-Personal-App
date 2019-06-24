@@ -3,17 +3,21 @@ import { StateApp, ThunkAction, ThunkDispatch } from "@client/type/reducer";
 import { AxiosError, AxiosInstance, AxiosResponse } from "axios";
 import { Action as ReduxAction } from "redux";
 import { User } from "../../type/data";
-import { UserResponse } from "../../type/dataResponse";
+import { ReturnResponse, UserResponse } from "../../type/dataResponse";
 
 enum ActionType {
   REQUIRED_AUTHORIZATION = "REQUIRED_AUTHORIZATION",
   SIGN_IN = "SIGN_IN",
   SET_ERROR = "SET_ERROR",
+  SET_SUCCESS = "SET_SUCCESS",
+  SET_TOKEN = "SET_TOKEN",
 }
 export interface State {
   isAuthorizationRequired: boolean;
   user: User;
-  errorMessage: string;
+  success: boolean;
+  message: string;
+  token: string;
 }
 interface RequireAuthorization extends ReduxAction {
   type: typeof ActionType.REQUIRED_AUTHORIZATION;
@@ -27,12 +31,27 @@ interface SetError extends ReduxAction {
   type: typeof ActionType.SET_ERROR;
   payload: string;
 }
-export type Action = RequireAuthorization | SignIn | SetError;
+interface SetSuccess extends ReduxAction {
+  type: typeof ActionType.SET_SUCCESS;
+  payload: boolean;
+}
+interface SetToken extends ReduxAction {
+  type: typeof ActionType.SET_TOKEN;
+  payload: string;
+}
+export type Action =
+  | RequireAuthorization
+  | SignIn
+  | SetError
+  | SetSuccess
+  | SetToken;
 
 const initialState: State = {
   isAuthorizationRequired: false,
   user: undefined,
-  errorMessage: ``,
+  message: ``,
+  success: false,
+  token: ``,
 };
 
 const ActionCreator = {
@@ -57,7 +76,31 @@ const ActionCreator = {
   resetError: (): SetError => {
     return {
       type: ActionType.SET_ERROR,
-      payload: initialState.errorMessage,
+      payload: initialState.message,
+    };
+  },
+  setSuccess: (success: boolean): SetSuccess => {
+    return {
+      type: ActionType.SET_SUCCESS,
+      payload: success,
+    };
+  },
+  resetSuccess: (): SetSuccess => {
+    return {
+      type: ActionType.SET_SUCCESS,
+      payload: initialState.success,
+    };
+  },
+  setToken: (token: string): SetToken => {
+    return {
+      type: ActionType.SET_TOKEN,
+      payload: token,
+    };
+  },
+  resetToken: (): SetToken => {
+    return {
+      type: ActionType.SET_TOKEN,
+      payload: initialState.token,
     };
   },
 };
@@ -84,6 +127,33 @@ const Operation = {
         });
     };
   },
+  signUp: (email: string, password: string, login: string): ThunkAction => {
+    return (
+      dispatch: ThunkDispatch,
+      _getState: () => StateApp,
+      api: AxiosInstance,
+    ): Promise<void> => {
+      const firstName = ``;
+      const lastName = ``;
+      return api
+        .post(`account/signup`, {
+          email,
+          password,
+          login,
+          firstName,
+          lastName,
+        })
+        .then((response: AxiosResponse<Record<string, ReturnResponse>>): void => {
+          const data: ReturnResponse = response.data;
+          dispatch(ActionCreator.setSuccess(data.success));
+          dispatch(ActionCreator.setError(data.message));
+        })
+        .catch((error: AxiosError): void => {
+          dispatch(ActionCreator.setError(error.toString()));
+          dispatch(ActionCreator.requireAuthorization(false));
+        });
+    };
+  },
 };
 
 const reducer = (state: State = initialState, action: Action): State => {
@@ -95,7 +165,13 @@ const reducer = (state: State = initialState, action: Action): State => {
       return {...state, user: action.payload};
 
     case ActionType.SET_ERROR:
-      return {...state, errorMessage: action.payload};
+      return {...state, message: action.payload};
+
+    case ActionType.SET_SUCCESS:
+      return {...state, success: action.payload};
+
+    case ActionType.SET_TOKEN:
+      return {...state, token: action.payload};
 
     default:
       return state;

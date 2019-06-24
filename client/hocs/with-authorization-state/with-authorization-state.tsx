@@ -2,49 +2,69 @@ import * as React from "react";
 import { ComponentClass, PureComponent, ReactElement } from "react";
 import { connect } from "react-redux";
 import { compose } from "recompose";
-import { getError } from "../../store/user/selectors";
+import { getError, getSuccess } from "../../store/user/selectors";
 import { ActionCreator, Operation } from "../../store/user/user";
 import { StateApp, ThunkDispatch } from "../../type/reducer";
 
 interface PropsState {
   errorMessage: string;
+  success: boolean;
 }
 interface PropsDispatch {
   onSignIn: (email: string, password: string) => void;
+  onSignUp: (email: string, password: string, login: string) => void;
   onResetError: () => void;
 }
 type Props = PropsState & PropsDispatch;
 interface State {
+  login: string;
   email: string;
   password: string;
+  passwordConfirm: string;
   formErrors: FormErrors;
   emailValid: boolean;
   passwordValid: boolean;
+  loginValid: boolean;
+  passwordConfirmValid: boolean;
   formValid: boolean;
 }
 interface FormErrors {
   email: string;
   password: string;
   signIn: string;
+  login: string;
+  passwordConfirm: string;
 }
 
 const withAuthorizationState = (
   Component: any,
+  isSignUp: boolean = false,
 ): ComponentClass<Props, State> => {
   class WithAuthorizationState extends PureComponent<Props, State> {
     public constructor(props: Props) {
       super(props);
       this.state = {
+        login: ``,
         email: ``,
         password: ``,
-        formErrors: {email: ``, password: ``, signIn: ``},
+        passwordConfirm: ``,
+        formErrors: {
+          email: ``,
+          password: ``,
+          signIn: ``,
+          login: ``,
+          passwordConfirm: ``,
+        },
         emailValid: false,
-        passwordValid: true,
+        passwordValid: false,
+        loginValid: !isSignUp,
+        passwordConfirmValid: !isSignUp,
         formValid: false,
       };
 
       this.handleUserInput = this.handleUserInput.bind(this);
       this.handleSendSubmit = this.handleSendSubmit.bind(this);
+      this.handleSignUp = this.handleSignUp.bind(this);
       this._handleValidateField = this._handleValidateField.bind(this);
       this._handleValidateForm = this._handleValidateForm.bind(this);
     }
@@ -69,8 +89,26 @@ const withAuthorizationState = (
       event.preventDefault();
       this.props.onSignIn(this.state.email, this.state.password);
     }
+    public handleSignUp(event: React.ChangeEvent<HTMLInputElement>): void {
+      event.preventDefault();
+      this.props.onSignIn(this.state.email, this.state.password);
+    }
 
     public render(): ReactElement {
+      if (isSignUp) {
+        return (
+          <Component
+            login={this.state.login}
+            email={this.state.email}
+            password={this.state.password}
+            passwordConfirm={this.state.passwordConfirm}
+            formErrors={this.state.formErrors}
+            formValid={this.state.formValid}
+            onChangeUserInput={this.handleUserInput}
+            onClickSubmit={this.handleSignUp}
+          />
+        );
+      }
       return (
         <Component
           email={this.state.email}
@@ -84,8 +122,17 @@ const withAuthorizationState = (
     }
     private _handleValidateField(fieldName: keyof State, value: string): void {
       const fieldValidationErrors = this.state.formErrors;
+      let loginValid = this.state.loginValid;
       let emailValid = this.state.emailValid;
+      let passwordValid = this.state.passwordValid;
+      let passwordConfirmValid = this.state.passwordConfirmValid;
+      const password = this.state.password;
+      const passwordConfirm = this.state.passwordConfirm;
       switch (fieldName) {
+        case "login":
+          loginValid = value.length >= 4;
+          fieldValidationErrors.login = loginValid ? "" : "Login is too short";
+          break;
         case `email`:
           emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)
             ? true
@@ -94,6 +141,18 @@ const withAuthorizationState = (
             ? ``
             : `Please enter a valid email address`;
           break;
+        case "password":
+          passwordValid = value.length >= 6;
+          fieldValidationErrors.password = passwordValid
+            ? ""
+            : "Password is too short";
+          break;
+        case "passwordConfirm":
+          passwordConfirmValid = password === passwordConfirm;
+          fieldValidationErrors.passwordConfirm = passwordConfirmValid
+            ? ""
+            : " Passwords do not match ";
+          break;
         default:
           break;
       }
@@ -101,13 +160,20 @@ const withAuthorizationState = (
         {
           formErrors: fieldValidationErrors,
           emailValid,
+          loginValid,
+          passwordValid,
+          passwordConfirmValid,
         },
         this._handleValidateForm,
       );
     }
     private _handleValidateForm(): void {
       this.setState({
-        formValid: this.state.emailValid && this.state.passwordValid,
+        formValid:
+          this.state.emailValid &&
+          this.state.passwordValid &&
+          this.state.loginValid &&
+          this.state.passwordConfirmValid,
       });
     }
   }
@@ -118,11 +184,15 @@ const withAuthorizationState = (
 const mapStateToProps = (state: StateApp, ownProps: Props): Props => ({
   ...ownProps,
   errorMessage: getError(state),
+  success: getSuccess(state),
 });
 
 const mapDispatchToProps = (dispatch: ThunkDispatch): PropsDispatch => ({
   onSignIn: (email: string, password: string): void => {
     dispatch(Operation.signIn(email, password));
+  },
+  onSignUp: (email: string, password: string, login: string): void => {
+    dispatch(Operation.signUp(email, password, login));
   },
   onResetError: (): void => {
     dispatch(ActionCreator.resetError());
