@@ -3,16 +3,16 @@ import * as React from "react";
 import { FunctionComponent, ReactElement } from "react";
 import Footer from "../footer/footer";
 import Header from "../header/header";
-import SignIn from "../sign-in/sign-in";
-const SignInState = withAuthorizationState(SignIn, false);
+import SignUp from "../sign-up/sign-up";
+const SignUpState = withAuthorizationState(SignUp, true);
 
-const PageLogin: FunctionComponent = (): ReactElement => {
+const PageSignUp: FunctionComponent = (): ReactElement => {
   return (
     <div className={`page`}>
       <Header />
       <main className={`page-content`}>
-        <section className={`sign-in-box`}>
-          <SignInState />
+        <section className={`sign-up-box`}>
+          <SignUpState />
         </section>
       </main>
       <Footer />
@@ -20,4 +20,4 @@ const PageLogin: FunctionComponent = (): ReactElement => {
   );
 };
 
-export default PageLogin;
+export default PageSignUp;

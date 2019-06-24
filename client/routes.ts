@@ -1,6 +1,7 @@
 enum RoutePath {
   INDEX = "/",
   LOGIN = "/login",
+  SIGNUP = "/signup",
   INFO = "/info",
   ERROR = "/error",
 }

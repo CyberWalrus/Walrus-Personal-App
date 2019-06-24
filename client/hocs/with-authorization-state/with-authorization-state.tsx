@@ -35,7 +35,10 @@ interface FormErrors {
   login: string;
   passwordConfirm: string;
 }
-
+export type WithState = (
+  Component: any,
+  isSignUp: boolean,
+) => ComponentClass<Props, State>;
 const withAuthorizationState = (
   Component: any,
   isSignUp: boolean = false,
@@ -91,7 +94,7 @@ const withAuthorizationState = (
     }
     public handleSignUp(event: React.ChangeEvent<HTMLInputElement>): void {
       event.preventDefault();
-      this.props.onSignIn(this.state.email, this.state.password);
+      this.props.onSignUp(this.state.email, this.state.password, this.state.login);
     }
 
     public render(): ReactElement {
@@ -201,10 +204,11 @@ const mapDispatchToProps = (dispatch: ThunkDispatch): PropsDispatch => ({
 
 export { withAuthorizationState };
 
-export default compose(
+// tslint:disable-next-line:typedef
+const returnfunct = (Component: any, isSignUp: boolean) =>
   connect<Props, PropsDispatch, {}, StateApp>(
     mapStateToProps,
     mapDispatchToProps,
-  ),
-  withAuthorizationState,
-);
+  )(withAuthorizationState(Component, isSignUp));
+
+export default returnfunct;

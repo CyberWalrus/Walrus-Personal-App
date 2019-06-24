@@ -24,7 +24,7 @@ const SignUp: FunctionComponent<Props> = ({
   return (
     <form onSubmit={onClickSubmit} className={`sign-up`}>
       <div className={`sign-up__titel`}>
-        <h2>Sign In</h2>
+        <h2>Sign Up</h2>
       </div>
       <div className={`sign-up__message`}>
         {formErrors &&

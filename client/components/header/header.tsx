@@ -29,6 +29,9 @@ const Header: FunctionComponent = (): ReactElement => {
         <Link to={RoutePath.LOGIN} className={`user__link`}>
           Sign In
         </Link>
+        <Link to={RoutePath.SIGNUP} className={`user__link`}>
+          Sign Up
+        </Link>
       </div>
     </header>
   );
