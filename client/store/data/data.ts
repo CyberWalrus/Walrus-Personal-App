@@ -1,24 +1,36 @@
-import { userAdapter } from "@client/api/data-adapter";
+import { userAdapter, userRoleAdapter } from "@client/api/data-adapter";
 import { StateApp, ThunkAction, ThunkDispatch } from "@client/type/reducer";
 import { AxiosError, AxiosInstance, AxiosResponse } from "axios";
 import { Action as ReduxAction } from "redux";
-import { User } from "../../type/data";
-import { ReturnResponse, UserResponse } from "../../type/dataResponse";
+import { User, UserRole } from "../../type/data";
+import {
+  ReturnResponse,
+  UserResponse,
+  UserRoleResponse,
+} from "../../type/dataResponse";
+import NameSpace from "../name-spaces";
 
 enum ActionType {
   SET_USERS = "SET_USERS",
+  SET_USERS_ROLE = "SET_USERS_ROLE",
 }
 export interface State {
   users: User[];
+  userRoles: UserRole[];
 }
 interface SetUsers extends ReduxAction {
   type: typeof ActionType.SET_USERS;
   payload: User[];
 }
-export type Action = SetUsers;
+interface SetUserRoles extends ReduxAction {
+  type: typeof ActionType.SET_USERS_ROLE;
+  payload: UserRole[];
+}
+export type Action = SetUsers | SetUserRoles;
 
 const initialState: State = {
   users: [],
+  userRoles: [],
 };
 
 const ActionCreator = {
@@ -26,6 +38,18 @@ const ActionCreator = {
     return {
       type: ActionType.SET_USERS,
       payload: users.map(userAdapter),
+    };
+  },
+  setUserRoles: (userRoles: UserRoleResponse[]): SetUserRoles => {
+    return {
+      type: ActionType.SET_USERS_ROLE,
+      payload: userRoles.map(userRoleAdapter),
+    };
+  },
+  updateUserRoles: (userRoles: UserRole[]): SetUserRoles => {
+    return {
+      type: ActionType.SET_USERS_ROLE,
+      payload: userRoles,
     };
   },
 };
@@ -39,10 +63,47 @@ const Operation = {
     ): Promise<void> => {
       return api
         .get(`/users`)
-        .then((response: AxiosResponse<Array<Record<string, any>>>): void => {
-          const data: UserResponse[] = response.data;
-          dispatch(ActionCreator.setUsers(data));
-        });
+        .then(
+          (
+            response: AxiosResponse<Array<Record<string, UserResponse>>>,
+          ): void => {
+            const data: UserResponse[] = response.data;
+            dispatch(ActionCreator.setUsers(data));
+          },
+        );
+    };
+  },
+  getUserRoles: (): ThunkAction => {
+    return (
+      dispatch: ThunkDispatch,
+      _getState: () => StateApp,
+      api: AxiosInstance,
+    ): Promise<void> => {
+      return api
+        .get(`/userroles`)
+        .then(
+          (
+            response: AxiosResponse<Array<Record<string, UserRoleResponse>>>,
+          ): void => {
+            const data: UserRoleResponse[] = response.data;
+            dispatch(ActionCreator.setUserRoles(data));
+          },
+        );
+    };
+  },
+  addUserRole: (name: string): ThunkAction => {
+    return (
+      dispatch: ThunkDispatch,
+      _getState: () => StateApp,
+      api: AxiosInstance,
+    ): Promise<void> => {
+      return api
+        .post(`/userroles/add`, { name })
+        .then(
+          (): void => {
+            dispatch(Operation.getUserRoles());
+          },
+        );
     };
   },
 };
@@ -51,6 +112,8 @@ const reducer = (state: State = initialState, action: Action): State => {
   switch (action.type) {
     case ActionType.SET_USERS:
       return { ...state, users: action.payload };
+    case ActionType.SET_USERS_ROLE:
+      return { ...state, userRoles: action.payload };
 
     default:
       return state;

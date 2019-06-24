@@ -14,7 +14,7 @@ const isDev = true;
 const port: number = 1337;
 
 mongoose.connect(
-  `mongodb+srv://walrus:ZCVL6pZjdw7q1Rbr@walrus-api-f849m.mongodb.net/test?retryWrites=true`,
+  `mongodb+srv://walrus:ZCVL6pZjdw7q1Rbr@walrus-api-f849m.mongodb.net/walrus-app?retryWrites=true`,
   (error: mongoose.Error) => {
     if (error) {
       throw error;

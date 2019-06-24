@@ -48,7 +48,7 @@
   user-select: none;
   ul {
     display: grid;
-    grid-template-columns: repeat(2, minmax(100px, max-content));
+    grid-template-columns: repeat(3, minmax(100px, max-content));
   }
   &__item {
     display: flex;

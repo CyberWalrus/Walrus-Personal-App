@@ -10,3 +10,8 @@ export interface User {
   signUpDate: Date;
   created: Date;
 }
+export interface UserRole {
+  id: string;
+  name: string;
+  isActive: boolean;
+}

@@ -11,18 +11,8 @@ const configureAPI = (onServerError: () => void): AxiosInstance => {
   });
 
   const onSuccess = (response: AxiosResponse): AxiosResponse => response;
-  const onFail = (error: AxiosError): AxiosInstance | Promise<never> => {
-    if (
-      error.response === void 0 ||
-      ERROR_STATUSES.includes(error.response.status)
-    ) {
-      onServerError();
-    }
 
-    return Promise.reject(error);
-  };
-
-  instance.interceptors.response.use(onSuccess, onFail);
+  instance.interceptors.response.use(onSuccess);
 
   return instance;
 };

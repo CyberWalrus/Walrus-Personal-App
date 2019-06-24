@@ -88,11 +88,11 @@ const withAuthorizationState = (
         this._handleValidateField(key, value);
       });
     }
-    public handleSendSubmit(event: React.ChangeEvent<HTMLInputElement>): void {
+    public handleSendSubmit(event: React.ChangeEvent<HTMLFormElement>): void {
       event.preventDefault();
       this.props.onSignIn(this.state.email, this.state.password);
     }
-    public handleSignUp(event: React.ChangeEvent<HTMLInputElement>): void {
+    public handleSignUp(event: React.ChangeEvent<HTMLFormElement>): void {
       event.preventDefault();
       this.props.onSignUp(this.state.email, this.state.password, this.state.login);
     }

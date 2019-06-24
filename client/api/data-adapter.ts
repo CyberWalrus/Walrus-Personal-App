@@ -1,5 +1,5 @@
-import { User } from "@client/type/data";
-import { UserResponse } from "@client/type/dataResponse";
+import { User, UserRole } from "@client/type/data";
+import { UserResponse, UserRoleResponse } from "@client/type/dataResponse";
 import { string } from "prop-types";
 
 const userAdapter = (data: UserResponse): User => {
@@ -16,5 +16,12 @@ const userAdapter = (data: UserResponse): User => {
     created: data.created,
   };
 };
+const userRoleAdapter = (data: UserRoleResponse): UserRole => {
+  return {
+    id: data._id,
+    name: data.name,
+    isActive: data.isActive,
+  };
+};
 
-export { userAdapter };
+export { userAdapter, userRoleAdapter };

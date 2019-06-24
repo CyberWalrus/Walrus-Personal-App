@@ -1,3 +1,4 @@
+import { UserRole, UserRoleProps } from "@server/models/user-role-schema";
 import { User, UserProps } from "@server/models/user-schema";
 import {
   UserSession,
@@ -24,6 +25,9 @@ export interface UserSignInBody {
   password: string;
   email: string;
 }
+export interface UserRoleBody {
+  name: string;
+}
 export interface TokenBody {
   token: number;
 }
@@ -35,6 +39,33 @@ export const userApi = (app: Express): void => {
       User.find()
         .exec()
         .then((users: UserProps) => res.json(users))
+        .catch((error: Errback) => next(error));
+    },
+  );
+  app.get(
+    `/api/userroles`,
+    (req: Request, res: Response, next: NextFunction): void => {
+      UserRole.find()
+        .exec()
+        .then((userRoles: UserRoleProps) => res.json(userRoles))
+        .catch((error: Errback) => next(error));
+    },
+  );
+  app.post(
+    `/api/userroles/add`,
+    (req: Request, res: Response, next: NextFunction): void => {
+      const userRole = new UserRole();
+      const body: UserRoleBody = req.body;
+      const { name }: UserRoleBody = body;
+      userRole.name = name;
+      userRole
+        .save()
+        .then((userRoleNew: UserRoleProps) =>
+          res.send({
+            success: true,
+            message: `Good`,
+          }),
+        )
         .catch((error: Errback) => next(error));
     },
   );
