@@ -3,17 +3,13 @@ import * as React from "react";
 import { FunctionComponent, ReactElement } from "react";
 import Footer from "../footer/footer";
 import Header from "../header/header";
-import SignUp from "../sign-up/sign-up";
-const SignUpState = withAuthorizationState(SignUp, true);
 
 const PageSignUp: FunctionComponent = (): ReactElement => {
   return (
     <div className={`page`}>
       <Header />
       <main className={`page-content`}>
-        <section className={`sign-up-box`}>
-          <SignUpState />
-        </section>
+        <section className={`form-custom-box`} />
       </main>
       <Footer />
     </div>

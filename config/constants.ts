@@ -7,12 +7,14 @@ export enum FormType {
 
 export const InputCustomOptions = {
   email: {
+    key: 1,
     type: `email`,
     name: `email`,
     placeHolder: `Email address`,
     hidenValue: `Email address`,
   },
   password: {
+    key: 2,
     type: `password`,
     name: `password`,
     placeHolder: `Password`,

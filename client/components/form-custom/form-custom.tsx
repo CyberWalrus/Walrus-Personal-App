@@ -1,12 +1,18 @@
-import { InputCustomOptions as options } from "@config/constants";
+import withFormState from "@client/hocs/with-authorization-state/with-authorization-state";
+import { FormType, InputCustomOptions as options } from "@config/constants";
 import * as React from "react";
-import { Fragment, FunctionComponent, ReactElement } from "react";
+import { ComponentClass, Fragment, FunctionComponent, ReactElement } from "react";
+import { compose } from "redux";
 import InputCustom from "../input-custom/input-custom";
 
 interface PropsInsert {
   titel: string;
+  formType: FormType;
 }
 interface PropsHoc {
+  option: Option;
+}
+interface Option {
   email: string;
   password: string;
   formErrors: object;
@@ -16,14 +22,34 @@ interface PropsHoc {
 }
 type Props = PropsHoc & PropsInsert;
 const FormCustom: FunctionComponent<Props> = ({
-  email,
-  password,
-  formErrors,
-  formValid,
-  onChangeUserInput,
-  onClickSubmit,
   titel,
+  option,
 }: Props): ReactElement => {
+  const {
+    email,
+    password,
+    formErrors,
+    formValid,
+    onChangeUserInput,
+    onClickSubmit,
+  }: Option = option;
+  const inputs: ReactElement[] = [];
+  inputs.push(
+    <InputCustom
+      key={options.email.key}
+      option={options.email}
+      value={email}
+      onChangeInput={onChangeUserInput}
+    />,
+  );
+  inputs.push(
+    <InputCustom
+      key={options.password.key}
+      option={options.password}
+      value={password}
+      onChangeInput={onChangeUserInput}
+    />,
+  );
   return (
     <form onSubmit={onClickSubmit} className={`form-custom`}>
       <div className={`form-custom__titel`}>
@@ -41,16 +67,7 @@ const FormCustom: FunctionComponent<Props> = ({
             },
           )}
       </div>
-      <InputCustom
-        option={options.email}
-        value={email}
-        onChangeInput={onChangeUserInput}
-      />
-      <InputCustom
-        option={options.password}
-        value={password}
-        onChangeInput={onChangeUserInput}
-      />
+      {inputs.map((item: ReactElement): ReactElement => item)}
       <div className={`form-custom__submit`}>
         <button
           className={`form-custom__btn`}
@@ -64,4 +81,8 @@ const FormCustom: FunctionComponent<Props> = ({
   );
 };
 
-export default FormCustom;
+export { FormCustom };
+
+const wrapper = compose(withFormState);
+
+export default wrapper(FormCustom) as ComponentClass<PropsInsert>;

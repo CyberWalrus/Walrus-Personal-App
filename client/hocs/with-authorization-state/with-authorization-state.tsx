@@ -1,3 +1,4 @@
+import { FormType } from "@config/constants";
 import * as React from "react";
 import { ComponentClass, PureComponent, ReactElement } from "react";
 import { connect } from "react-redux";
@@ -6,6 +7,9 @@ import { getError, getSuccess } from "../../store/user/selectors";
 import { ActionCreator, Operation } from "../../store/user/user";
 import { StateApp, ThunkDispatch } from "../../type/reducer";
 
+interface PropsInsert {
+  formType: FormType;
+}
 interface PropsState {
   errorMessage: string;
   success: boolean;
@@ -15,7 +19,7 @@ interface PropsDispatch {
   onSignUp: (email: string, password: string, login: string) => void;
   onResetError: () => void;
 }
-type Props = PropsState & PropsDispatch;
+type Props = PropsState & PropsDispatch & PropsInsert;
 interface State {
   login: string;
   email: string;
@@ -39,11 +43,16 @@ export type WithState = (
   Component: any,
   isSignUp: boolean,
 ) => ComponentClass<Props, State>;
+
 const withAuthorizationState = (
   Component: any,
-  isSignUp: boolean = false,
 ): ComponentClass<Props, State> => {
-  class WithAuthorizationState extends PureComponent<Props, State> {
+  type P = ReturnType<typeof Component>;
+  type PropsAuthorization = Props & P;
+  class WithAuthorizationState extends PureComponent<
+    PropsAuthorization,
+    State
+  > {
     public constructor(props: Props) {
       super(props);
       this.state = {
@@ -60,8 +69,8 @@ const withAuthorizationState = (
         },
         emailValid: false,
         passwordValid: false,
-        loginValid: !isSignUp,
-        passwordConfirmValid: !isSignUp,
+        loginValid: true,
+        passwordConfirmValid: true,
         formValid: false,
       };
 
@@ -94,34 +103,33 @@ const withAuthorizationState = (
     }
     public handleSignUp(event: React.ChangeEvent<HTMLFormElement>): void {
       event.preventDefault();
-      this.props.onSignUp(this.state.email, this.state.password, this.state.login);
+      this.props.onSignUp(
+        this.state.email,
+        this.state.password,
+        this.state.login,
+      );
     }
 
     public render(): ReactElement {
-      if (isSignUp) {
-        return (
-          <Component
-            login={this.state.login}
-            email={this.state.email}
-            password={this.state.password}
-            passwordConfirm={this.state.passwordConfirm}
-            formErrors={this.state.formErrors}
-            formValid={this.state.formValid}
-            onChangeUserInput={this.handleUserInput}
-            onClickSubmit={this.handleSignUp}
-          />
-        );
-      }
-      return (
-        <Component
-          email={this.state.email}
-          password={this.state.password}
-          formErrors={this.state.formErrors}
-          formValid={this.state.formValid}
-          onChangeUserInput={this.handleUserInput}
-          onClickSubmit={this.handleSendSubmit}
-        />
-      );
+      const optionSignIn = {
+        email: this.state.email,
+        password: this.state.password,
+        formErrors: this.state.formErrors,
+        formValid: this.state.formValid,
+        onChangeUserInput: this.handleUserInput,
+        onClickSubmit: this.handleSendSubmit,
+      };
+      const optionSignUp = {
+        login: this.state.login,
+        email: this.state.email,
+        password: this.state.password,
+        passwordConfirm: this.state.passwordConfirm,
+        formErrors: this.state.formErrors,
+        formValid: this.state.formValid,
+        onChangeUserInput: this.handleUserInput,
+        onClickSubmit: this.handleSendSubmit,
+      };
+      return <Component {...this.props} option={optionSignIn} />;
     }
     private _handleValidateField(fieldName: keyof State, value: string): void {
       const fieldValidationErrors = this.state.formErrors;
@@ -204,11 +212,10 @@ const mapDispatchToProps = (dispatch: ThunkDispatch): PropsDispatch => ({
 
 export { withAuthorizationState };
 
-// tslint:disable-next-line:typedef
-const returnfunct = (Component: any, isSignUp: boolean) =>
+export default compose(
   connect<Props, PropsDispatch, {}, StateApp>(
     mapStateToProps,
     mapDispatchToProps,
-  )(withAuthorizationState(Component, isSignUp));
-
-export default returnfunct;
+  ),
+  withAuthorizationState,
+);

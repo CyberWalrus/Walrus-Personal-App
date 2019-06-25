@@ -1,18 +1,18 @@
 import withAuthorizationState from "@client/hocs/with-authorization-state/with-authorization-state";
+import { FormType } from "@config/constants";
 import * as React from "react";
 import { FunctionComponent, ReactElement } from "react";
 import Footer from "../footer/footer";
+import FormCustom from "../form-custom/form-custom";
 import Header from "../header/header";
-import SignIn from "../sign-in/sign-in";
-const SignInState = withAuthorizationState(SignIn, false);
 
 const PageLogin: FunctionComponent = (): ReactElement => {
   return (
     <div className={`page`}>
       <Header />
       <main className={`page-content`}>
-        <section className={`sign-in-box`}>
-          <SignInState />
+        <section className={`form-custom-box`}>
+          <FormCustom formType={FormType.SIGN_IN} titel={`Sign In`} />
         </section>
       </main>
       <Footer />
