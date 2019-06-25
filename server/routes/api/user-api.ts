@@ -1,3 +1,8 @@
+import {
+  ReturnResponse,
+  UserResponse,
+  UserSessionResponse,
+} from "@client/type/dataResponse";
 import { UserRole, UserRoleProps } from "@server/models/user-role-schema";
 import { User, UserProps } from "@server/models/user-schema";
 import {
@@ -11,15 +16,13 @@ const generateHash = (password: string): string => {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(8));
 };
 
-const validPassword = (password: string): boolean => {
-  return bcrypt.compareSync(password, this.password);
+const validPassword = (password: string, passwordUser: string): boolean => {
+  return bcrypt.compareSync(password, passwordUser);
 };
 export interface UserAddBody {
   login: string;
   password: string;
   email: string;
-  firstName: string;
-  lastName: string;
 }
 export interface UserSignInBody {
   password: string;
@@ -56,7 +59,7 @@ export const userApi = (app: Express): void => {
     (req: Request, res: Response, next: NextFunction): void => {
       const userRole = new UserRole();
       const body: UserRoleBody = req.body;
-      const { name }: UserRoleBody = body;
+      const {name}: UserRoleBody = body;
       userRole.name = name;
       userRole
         .save()
@@ -71,11 +74,32 @@ export const userApi = (app: Express): void => {
   );
 
   app.post(
+    `/api/account/add`,
+    (req: Request, res: Response, next: NextFunction): void | Response => {
+      const body: UserAddBody = req.body;
+      const {password, login}: UserAddBody = body;
+      const {email}: UserAddBody = body;
+      const user = new User();
+      user.password = generateHash(password);
+      user.email = email;
+      user.login = login;
+      user
+        .save()
+        .then((userRoleNew: UserRoleProps) =>
+          res.send({
+            success: true,
+            message: `Good`,
+          }),
+        )
+        .catch((error: Errback) => next(error));
+    },
+  );
+  app.post(
     `/api/account/signup`,
     (req: Request, res: Response, next: NextFunction): void | Response => {
       const body: UserAddBody = req.body;
-      const { login, password, firstName, lastName }: UserAddBody = body;
-      let { email }: UserAddBody = body;
+      const {login, password}: UserAddBody = body;
+      let {email}: UserAddBody = body;
 
       if (!email) {
         return res.send({
@@ -119,8 +143,6 @@ export const userApi = (app: Express): void => {
           newUser.login = login;
           newUser.email = email;
           newUser.password = generateHash(password);
-          newUser.firstName = firstName;
-          newUser.lastName = lastName;
           newUser.save(
             (errorSave: Errback, user: UserProps): Response => {
               if (errorSave) {
@@ -142,10 +164,10 @@ export const userApi = (app: Express): void => {
 
   app.post(
     `/api/account/signin`,
-    (req: Request, res: Response, next: NextFunction): void | Response => {
+    async (req: Request, res: Response, next: NextFunction): Promise<any> => {
       const body: UserSignInBody = req.body;
-      const { password }: UserSignInBody = body;
-      let { email }: UserSignInBody = body;
+      const {password}: UserSignInBody = body;
+      let {email}: UserSignInBody = body;
       if (!email) {
         return res.send({
           success: false,
@@ -164,7 +186,7 @@ export const userApi = (app: Express): void => {
         {
           email,
         },
-        (error: Errback, users: UserProps[]) => {
+        (error: Errback, users: UserResponse[]) => {
           if (error) {
             return res.send({
               success: false,
@@ -178,32 +200,29 @@ export const userApi = (app: Express): void => {
             });
           }
           const user = users[0];
-          if (!validPassword(password)) {
+          if (validPassword(password, user.password)) {
             return res.send({
               success: false,
               message: `Error: Invalid`,
             });
           }
-          // Otherwise correct user
           const userSession = new UserSession();
-          userSession.userId = user;
+          userSession.userId = user._id;
           userSession.userRole = user.userRole;
-          userSession.userLogin = user.email;
-          userSession.save(
-            (errorSave: Errback, userSessionSave: UserSessionProps) => {
-              if (errorSave) {
-                return res.send({
-                  success: false,
-                  message: `Error: server error`,
-                });
-              }
+          userSession.userLogin = user.login;
+          userSession.save((errorSave: Errback, doc: UserSessionResponse) => {
+            if (errorSave) {
               return res.send({
-                success: true,
-                message: `Valid sign in`,
-                token: userSessionSave,
+                success: false,
+                message: `Error: server error`,
               });
-            },
-          );
+            }
+            return res.send({
+              success: true,
+              message: `Valid sign in`,
+              token: doc._id,
+            });
+          });
         },
       );
     },
@@ -213,7 +232,7 @@ export const userApi = (app: Express): void => {
     `/api/account/logout`,
     (req: Request, res: Response, next: NextFunction): void => {
       const body: TokenBody = req.body;
-      const { token }: TokenBody = body;
+      const {token}: TokenBody = body;
       UserSession.findOneAndUpdate(
         {
           _id: token,
@@ -245,7 +264,7 @@ export const userApi = (app: Express): void => {
     `/api/account/verify`,
     (req: Request, res: Response, next: NextFunction) => {
       const body: TokenBody = req.body;
-      const { token }: TokenBody = body;
+      const {token}: TokenBody = body;
       UserSession.find(
         {
           _id: token,

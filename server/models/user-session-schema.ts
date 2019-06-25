@@ -4,12 +4,12 @@ import { UserSchema } from "./user-schema";
 
 export const UserSessionSchema = createSchema({
   userId: Type.ref(Type.objectId()).to("User", UserSchema),
-  userLogin: Type.string({ default: `` as string }),
-  userRole: Type.array().of(
+  userLogin: Type.optionalString({ default: `` as string }),
+  userRole: Type.optionalArray().of(
     Type.ref(Type.objectId()).to("UserRole", UserRoleSchema),
   ),
-  timestamp: Type.date({ default: Date.now as any }),
-  isActive: Type.boolean({ default: true as boolean }),
+  timestamp: Type.optionalNumber({ default: new Date(Date.now()).getTime() as number }),
+  isActive: Type.optionalBoolean({ default: true as boolean }),
 });
 export const UserSession = typedModel("UserSession", UserSessionSchema);
 export type UserSessionProps = ExtractProps<typeof UserSessionSchema>;

@@ -7,8 +7,8 @@ export interface User {
   firstName: string;
   lastName: string;
   userRoleId: string;
-  signUpDate: Date;
-  created: Date;
+  signUpDate: number;
+  created: number;
 }
 export interface UserRole {
   id: string;

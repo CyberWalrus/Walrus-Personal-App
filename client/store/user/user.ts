@@ -1,9 +1,9 @@
 import { userAdapter } from "@client/api/data-adapter";
+import { ReturnResponse, UserResponse } from "@client/type/dataResponse";
 import { StateApp, ThunkAction, ThunkDispatch } from "@client/type/reducer";
 import { AxiosError, AxiosInstance, AxiosResponse } from "axios";
 import { Action as ReduxAction } from "redux";
 import { User } from "../../type/data";
-import { ReturnResponse, UserResponse } from "../../type/dataResponse";
 
 enum ActionType {
   REQUIRED_AUTHORIZATION = "REQUIRED_AUTHORIZATION",
@@ -113,13 +113,14 @@ const Operation = {
       api: AxiosInstance,
     ): Promise<void> => {
       return api
-        .post(`account/signin`, {
+        .post(`/account/signin`, {
           email,
           password,
         })
-        .then((response: AxiosResponse<Record<string, any>>): void => {
+        .then((response: AxiosResponse<Record<string, ReturnResponse>>): void => {
+          const data: ReturnResponse = response.data;
           dispatch(ActionCreator.requireAuthorization(true));
-          dispatch(ActionCreator.setError(`ok`));
+          dispatch(ActionCreator.setError(data.message));
         })
         .catch((error: AxiosError): void => {
           dispatch(ActionCreator.setError(error.toString()));
@@ -133,21 +134,19 @@ const Operation = {
       _getState: () => StateApp,
       api: AxiosInstance,
     ): Promise<void> => {
-      const firstName = ``;
-      const lastName = ``;
       return api
-        .post(`account/signup`, {
+        .post(`/account/add`, {
           email,
           password,
           login,
-          firstName,
-          lastName,
         })
-        .then((response: AxiosResponse<Record<string, ReturnResponse>>): void => {
-          const data: ReturnResponse = response.data;
-          dispatch(ActionCreator.setSuccess(data.success));
-          dispatch(ActionCreator.setError(data.message));
-        })
+        .then(
+          (response: AxiosResponse<Record<string, ReturnResponse>>): void => {
+            const data: ReturnResponse = response.data;
+            dispatch(ActionCreator.setSuccess(data.success));
+            dispatch(ActionCreator.setError(data.message));
+          },
+        )
         .catch((error: AxiosError): void => {
           dispatch(ActionCreator.setError(error.toString()));
           dispatch(ActionCreator.requireAuthorization(false));
