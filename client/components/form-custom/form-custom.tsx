@@ -1,5 +1,8 @@
-import withFormState from "@client/hocs/with-authorization-state/with-authorization-state";
-import { FormType, InputCustomOptions as options } from "@config/constants";
+import withFormState, {
+  Option,
+} from "@client/hocs/with-authorization-state/with-authorization-state";
+import { InputCustomInterface } from "@client/type/component";
+import { FormType, inputCustomOptions } from "@config/constants";
 import * as React from "react";
 import { ComponentClass, Fragment, FunctionComponent, ReactElement } from "react";
 import { compose } from "redux";
@@ -10,46 +13,36 @@ interface PropsInsert {
   formType: FormType;
 }
 interface PropsHoc {
-  option: Option;
+  options: Option;
 }
-interface Option {
-  email: string;
-  password: string;
-  formErrors: object;
-  formValid: boolean;
-  onChangeUserInput: () => void;
-  onClickSubmit: () => void;
-}
+
 type Props = PropsHoc & PropsInsert;
 const FormCustom: FunctionComponent<Props> = ({
   titel,
-  option,
+  options,
+  formType,
 }: Props): ReactElement => {
   const {
-    email,
-    password,
+    values,
     formErrors,
     formValid,
     onChangeUserInput,
     onClickSubmit,
-  }: Option = option;
+  }: Option = options;
   const inputs: ReactElement[] = [];
-  inputs.push(
-    <InputCustom
-      key={options.email.key}
-      option={options.email}
-      value={email}
-      onChangeInput={onChangeUserInput}
-    />,
-  );
-  inputs.push(
-    <InputCustom
-      key={options.password.key}
-      option={options.password}
-      value={password}
-      onChangeInput={onChangeUserInput}
-    />,
-  );
+  inputCustomOptions.map((item: InputCustomInterface, index: number): void => {
+    if (item.formTypes.includes(formType)) {
+      const indexValue = Object.keys(values).indexOf(item.name);
+      inputs.push(
+        <InputCustom
+          key={index}
+          option={item}
+          value={values[indexValue]}
+          onChangeInput={onChangeUserInput}
+        />,
+      );
+    }
+  });
   return (
     <form onSubmit={onClickSubmit} className={`form-custom`}>
       <div className={`form-custom__titel`}>

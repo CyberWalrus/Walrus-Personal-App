@@ -1,23 +1,39 @@
+import { InputCustomInterface } from "@client/type/component";
+
 export enum FormType {
   SIGN_IN = "SIGN_IN",
-  SIGN_OUT = "SIGN_OUT",
+  SIGN_UP = "SIGN_UP",
   USER_ROLE = "USER_ROLE",
   USER = "USER",
 }
 
-export const InputCustomOptions = {
-  email: {
-    key: 1,
+export const inputCustomOptions: InputCustomInterface[] = [
+  {
+    formTypes: [FormType.SIGN_UP],
+    type: `text`,
+    name: `login`,
+    placeHolder: `Login`,
+    hidenValue: `Login`,
+  },
+  {
+    formTypes: [FormType.SIGN_UP, FormType.SIGN_IN],
     type: `email`,
     name: `email`,
     placeHolder: `Email address`,
     hidenValue: `Email address`,
   },
-  password: {
-    key: 2,
+  {
+    formTypes: [FormType.SIGN_UP, FormType.SIGN_IN],
     type: `password`,
     name: `password`,
     placeHolder: `Password`,
     hidenValue: `Password`,
   },
-};
+  {
+    formTypes: [FormType.SIGN_UP],
+    type: `password`,
+    name: `passwordConfirm`,
+    placeHolder: `Confirm Password`,
+    hidenValue: `Confirm Password`,
+  },
+];

@@ -44,6 +44,13 @@ export type WithState = (
   isSignUp: boolean,
 ) => ComponentClass<Props, State>;
 
+export interface Option {
+  values: object;
+  formErrors: object;
+  formValid: boolean;
+  onChangeUserInput: () => void;
+  onClickSubmit: () => void;
+}
 const withAuthorizationState = (
   Component: any,
 ): ComponentClass<Props, State> => {
@@ -111,9 +118,10 @@ const withAuthorizationState = (
     }
 
     public render(): ReactElement {
+      const email = this.state.email;
+      const password = this.state.password;
       const optionSignIn = {
-        email: this.state.email,
-        password: this.state.password,
+        values: {email, password},
         formErrors: this.state.formErrors,
         formValid: this.state.formValid,
         onChangeUserInput: this.handleUserInput,
@@ -129,7 +137,7 @@ const withAuthorizationState = (
         onChangeUserInput: this.handleUserInput,
         onClickSubmit: this.handleSendSubmit,
       };
-      return <Component {...this.props} option={optionSignIn} />;
+      return <Component {...this.props} options={optionSignIn} />;
     }
     private _handleValidateField(fieldName: keyof State, value: string): void {
       const fieldValidationErrors = this.state.formErrors;
