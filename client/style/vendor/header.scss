@@ -4,6 +4,13 @@
   display: grid;
   grid-template-columns: minmax(64px, 192px) minmax(200px, 1fr) minmax(64px, 192px);
   grid-template-areas: "logo menu user";
+  @media only screen and (max-width: 640px){
+    grid-template-columns: minmax(64px, 192px) minmax(64px, 192px);
+    grid-template-areas: "logo user";
+    .menu {
+      display: none;
+    }
+  }
 }
 .logo {
   grid-area: logo;
@@ -25,7 +32,7 @@
     width: 100%;
     height: 100%;
   }
-  &_footer{
+  &_footer {
     min-width: 50px;
     min-height: 50px;
     justify-content: center;
@@ -34,7 +41,6 @@
       width: 40px;
       height: 40px;
     }
-
   }
 }
 
@@ -57,16 +63,17 @@
     width: 100%;
     height: 100%;
   }
-  &__link{
+  &__link {
     text-decoration: none;
     color: $text-color-dop;
-    &:hover, &:focus{
+    &:hover,
+    &:focus {
       color: $text-color;
     }
   }
 }
 
-.user{
+.user {
   grid-area: user;
   display: flex;
   align-items: center;
@@ -74,11 +81,12 @@
   width: 100%;
   height: 100%;
   user-select: none;
-  &__link{
+  &__link {
     margin-right: 20px;
     text-decoration: none;
     color: $text-color-dop;
-    &:hover, &:focus{
+    &:hover,
+    &:focus {
       color: $text-color;
     }
   }

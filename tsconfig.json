@@ -19,7 +19,7 @@
       "@dist/*": ["dist/*"]
     }
   },
-  "include": ["./**/*.ts", "./**/*.tsx"],
+  "include": ["./**/*.ts", "./**/*.tsx", "client/hocs/with-data-state"],
   "exclude": [
     "node_modules",
     "dist",

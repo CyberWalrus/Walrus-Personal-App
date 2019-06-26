@@ -3,6 +3,7 @@ import * as React from "react";
 import { ComponentClass, PureComponent, ReactElement } from "react";
 import { connect } from "react-redux";
 import { compose } from "recompose";
+import { Operation as OperationData } from "../../store/data/data";
 import { getError, getSuccess } from "../../store/user/selectors";
 import { ActionCreator, Operation } from "../../store/user/user";
 import { StateApp, ThunkDispatch } from "../../type/reducer";
@@ -17,10 +18,12 @@ interface PropsState {
 interface PropsDispatch {
   onSignIn: (email: string, password: string) => void;
   onSignUp: (email: string, password: string, login: string) => void;
+  onAddUserRole: (name: string) => void;
   onResetError: () => void;
 }
 type Props = PropsState & PropsDispatch & PropsInsert;
 interface State {
+  name: string;
   login: string;
   email: string;
   password: string;
@@ -63,6 +66,7 @@ const withAuthorizationState = (
     public constructor(props: Props) {
       super(props);
       this.state = {
+        name: ``,
         login: ``,
         email: ``,
         password: ``,
@@ -74,8 +78,8 @@ const withAuthorizationState = (
           login: ``,
           passwordConfirm: ``,
         },
-        emailValid: false,
-        passwordValid: false,
+        emailValid: true,
+        passwordValid: true,
         loginValid: true,
         passwordConfirmValid: true,
         formValid: false,
@@ -84,6 +88,7 @@ const withAuthorizationState = (
       this.handleUserInput = this.handleUserInput.bind(this);
       this.handleSendSubmit = this.handleSendSubmit.bind(this);
       this.handleSignUp = this.handleSignUp.bind(this);
+      this.handleAddUserRole = this.handleAddUserRole.bind(this);
       this._handleValidateField = this._handleValidateField.bind(this);
       this._handleValidateForm = this._handleValidateForm.bind(this);
     }
@@ -116,6 +121,10 @@ const withAuthorizationState = (
         this.state.login,
       );
     }
+    public handleAddUserRole(event: React.ChangeEvent<HTMLFormElement>): void {
+      event.preventDefault();
+      this.props.onAddUserRole(this.state.name);
+    }
 
     public render(): ReactElement {
       const login = this.state.login;
@@ -136,6 +145,13 @@ const withAuthorizationState = (
         onChangeUserInput: this.handleUserInput,
         onClickSubmit: this.handleSignUp,
       };
+      const optionUserRole = {
+        values: {email, password, login, passwordConfirm},
+        formErrors: this.state.formErrors,
+        formValid: this.state.formValid,
+        onChangeUserInput: this.handleUserInput,
+        onClickSubmit: this.handleAddUserRole,
+      };
       let options = {};
       switch (this.props.formType) {
         case FormType.SIGN_IN:
@@ -143,6 +159,9 @@ const withAuthorizationState = (
           break;
         case FormType.SIGN_UP:
           options = optionSignUp;
+          break;
+        case FormType.USER_ROLE:
+          options = optionUserRole;
           break;
         default:
           break;
@@ -222,6 +241,9 @@ const mapDispatchToProps = (dispatch: ThunkDispatch): PropsDispatch => ({
   },
   onSignUp: (email: string, password: string, login: string): void => {
     dispatch(Operation.signUp(email, password, login));
+  },
+  onAddUserRole: (name: string): void => {
+    dispatch(OperationData.addUserRole(name));
   },
   onResetError: (): void => {
     dispatch(ActionCreator.resetError());

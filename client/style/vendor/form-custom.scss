@@ -7,12 +7,10 @@
 }
 
 .form-custom {
-  padding: 10px;
-  width: 30vw;
-  height: 30vh;
+  padding: 10px 10px 30px 10px;
   background: $header-color;
-  min-width: 300px;
-  min-height: 320px;
+  width: 560px;
+  max-width: 90vw;
   border-radius: 20px;
   @include box-shadow(0 0 10px 1px $shadow-color, 0 0 10px -2px $shadow-color inset);
   border: 2px solid $shadow-color;
@@ -39,8 +37,7 @@
     border-radius: 20px;
     padding: 8px 0px 8px 12px;
     border: 2px solid $border-color;
-    width: 360px;
-    min-width: 280px;
+    min-width: 240px;
   }
   &__btn {
     font: inherit;

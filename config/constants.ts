@@ -36,4 +36,11 @@ export const inputCustomOptions: InputCustomInterface[] = [
     placeHolder: `Confirm Password`,
     hidenValue: `Confirm Password`,
   },
+  {
+    formTypes: [FormType.USER_ROLE],
+    type: `text`,
+    name: `name`,
+    placeHolder: `User Role`,
+    hidenValue: `Add User Role`,
+  },
 ];
