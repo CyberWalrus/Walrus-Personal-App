@@ -9,7 +9,7 @@ import Footer from "../footer/footer";
 import FormCustom from "../form-custom/form-custom";
 import Header from "../header/header";
 
-interface PropsHoc {
+export interface PropsHoc {
   userRoles: UserRole[];
   onSortEnd: () => void;
 }

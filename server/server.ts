@@ -9,7 +9,7 @@ import * as webpack from "webpack";
 import * as webpackDevMiddleware from "webpack-dev-middleware";
 import * as webpackDevServer from "webpack-dev-server";
 import * as webpackHotMiddleware from "webpack-hot-middleware";
-import { userApi } from "./routes/api/user-api";
+import { useApi } from "./routes/routes-api";
 const isDev = true;
 const port: number = 1337;
 
@@ -29,7 +29,7 @@ const app = express();
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
-userApi(app);
+useApi(app);
 
 if (isDev) {
   const compiler = webpack(webpackConfig);

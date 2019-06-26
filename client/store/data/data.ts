@@ -1,5 +1,6 @@
 import { userAdapter, userRoleAdapter } from "@client/api/data-adapter";
 import { StateApp, ThunkAction, ThunkDispatch } from "@client/type/reducer";
+import { ApiRoutes, changeParam } from "@config/api-routes";
 import { AxiosError, AxiosInstance, AxiosResponse } from "axios";
 import { Action as ReduxAction } from "redux";
 import { User, UserRole } from "../../type/data";
@@ -62,7 +63,7 @@ const Operation = {
       api: AxiosInstance,
     ): Promise<void> => {
       return api
-        .get(`/users`)
+        .get(ApiRoutes.GET_USERS)
         .then(
           (
             response: AxiosResponse<Array<Record<string, UserResponse>>>,
@@ -80,7 +81,7 @@ const Operation = {
       api: AxiosInstance,
     ): Promise<void> => {
       return api
-        .get(`/userroles`)
+        .get(ApiRoutes.GET_USER_ROLES)
         .then(
           (
             response: AxiosResponse<Array<Record<string, UserRoleResponse>>>,
@@ -97,13 +98,22 @@ const Operation = {
       _getState: () => StateApp,
       api: AxiosInstance,
     ): Promise<void> => {
+      return api.post(ApiRoutes.ADD_USER_ROLE, {name}).then((): void => {
+        dispatch(Operation.getUserRoles());
+      });
+    };
+  },
+  removeUserRole: (id: string): ThunkAction => {
+    return (
+      dispatch: ThunkDispatch,
+      _getState: () => StateApp,
+      api: AxiosInstance,
+    ): Promise<void> => {
       return api
-        .post(`/userroles/add`, { name })
-        .then(
-          (): void => {
-            dispatch(Operation.getUserRoles());
-          },
-        );
+        .delete(changeParam(id, ApiRoutes.REMUVE_USER_ROLES))
+        .then((): void => {
+          dispatch(Operation.getUserRoles());
+        });
     };
   },
 };
@@ -111,9 +121,9 @@ const Operation = {
 const reducer = (state: State = initialState, action: Action): State => {
   switch (action.type) {
     case ActionType.SET_USERS:
-      return { ...state, users: action.payload };
+      return {...state, users: action.payload};
     case ActionType.SET_USERS_ROLE:
-      return { ...state, userRoles: action.payload };
+      return {...state, userRoles: action.payload};
 
     default:
       return state;

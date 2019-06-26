@@ -3,6 +3,7 @@ import {
   UserResponse,
   UserSessionResponse,
 } from "@client/type/dataResponse";
+import { ApiRoutes } from "@config/api-routes";
 import { UserRole, UserRoleProps } from "@server/models/user-role-schema";
 import { User, UserProps } from "@server/models/user-schema";
 import {
@@ -37,7 +38,7 @@ export interface TokenBody {
 
 export const userApi = (app: Express): void => {
   app.get(
-    `/api/users`,
+    ApiRoutes.GET_USERS,
     (req: Request, res: Response, next: NextFunction): void => {
       User.find()
         .exec()
@@ -45,57 +46,9 @@ export const userApi = (app: Express): void => {
         .catch((error: Errback) => next(error));
     },
   );
-  app.get(
-    `/api/userroles`,
-    (req: Request, res: Response, next: NextFunction): void => {
-      UserRole.find()
-        .exec()
-        .then((userRoles: UserRoleProps) => res.json(userRoles))
-        .catch((error: Errback) => next(error));
-    },
-  );
-  app.post(
-    `/api/userroles/add`,
-    (req: Request, res: Response, next: NextFunction): void => {
-      const userRole = new UserRole();
-      const body: UserRoleBody = req.body;
-      const {name}: UserRoleBody = body;
-      userRole.name = name;
-      userRole
-        .save()
-        .then((userRoleNew: UserRoleProps) =>
-          res.send({
-            success: true,
-            message: `Good`,
-          }),
-        )
-        .catch((error: Errback) => next(error));
-    },
-  );
 
   app.post(
-    `/api/account/add`,
-    (req: Request, res: Response, next: NextFunction): void | Response => {
-      const body: UserAddBody = req.body;
-      const {password, login}: UserAddBody = body;
-      const {email}: UserAddBody = body;
-      const user = new User();
-      user.password = generateHash(password);
-      user.email = email;
-      user.login = login;
-      user
-        .save()
-        .then((userRoleNew: UserRoleProps) =>
-          res.send({
-            success: true,
-            message: `Good`,
-          }),
-        )
-        .catch((error: Errback) => next(error));
-    },
-  );
-  app.post(
-    `/api/account/signup`,
+    ApiRoutes.SIGN_UP,
     (req: Request, res: Response, next: NextFunction): void | Response => {
       const body: UserAddBody = req.body;
       const {login, password}: UserAddBody = body;
@@ -163,7 +116,7 @@ export const userApi = (app: Express): void => {
   );
 
   app.post(
-    `/api/account/signin`,
+    ApiRoutes.SIGN_iN,
     async (req: Request, res: Response, next: NextFunction): Promise<any> => {
       const body: UserSignInBody = req.body;
       const {password}: UserSignInBody = body;
@@ -229,7 +182,7 @@ export const userApi = (app: Express): void => {
   );
 
   app.get(
-    `/api/account/logout`,
+    ApiRoutes.LOGOUT,
     (req: Request, res: Response, next: NextFunction): void => {
       const body: TokenBody = req.body;
       const {token}: TokenBody = body;
@@ -261,7 +214,7 @@ export const userApi = (app: Express): void => {
   );
 
   app.get(
-    `/api/account/verify`,
+    ApiRoutes.VERIFY,
     (req: Request, res: Response, next: NextFunction) => {
       const body: TokenBody = req.body;
       const {token}: TokenBody = body;

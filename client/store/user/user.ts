@@ -1,6 +1,7 @@
 import { userAdapter } from "@client/api/data-adapter";
 import { ReturnResponse, UserResponse } from "@client/type/dataResponse";
 import { StateApp, ThunkAction, ThunkDispatch } from "@client/type/reducer";
+import { ApiRoutes } from "@config/api-routes";
 import { AxiosError, AxiosInstance, AxiosResponse } from "axios";
 import { Action as ReduxAction } from "redux";
 import { User } from "../../type/data";
@@ -113,15 +114,17 @@ const Operation = {
       api: AxiosInstance,
     ): Promise<void> => {
       return api
-        .post(`/account/signin`, {
+        .post(ApiRoutes.SIGN_iN, {
           email,
           password,
         })
-        .then((response: AxiosResponse<Record<string, ReturnResponse>>): void => {
-          const data: ReturnResponse = response.data;
-          dispatch(ActionCreator.requireAuthorization(true));
-          dispatch(ActionCreator.setError(data.message));
-        })
+        .then(
+          (response: AxiosResponse<Record<string, ReturnResponse>>): void => {
+            const data: ReturnResponse = response.data;
+            dispatch(ActionCreator.requireAuthorization(true));
+            dispatch(ActionCreator.setError(data.message));
+          },
+        )
         .catch((error: AxiosError): void => {
           dispatch(ActionCreator.setError(error.toString()));
           dispatch(ActionCreator.requireAuthorization(false));
@@ -135,7 +138,7 @@ const Operation = {
       api: AxiosInstance,
     ): Promise<void> => {
       return api
-        .post(`/account/add`, {
+        .post(ApiRoutes.SIGN_UP, {
           email,
           password,
           login,
