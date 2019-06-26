@@ -118,8 +118,10 @@ const withAuthorizationState = (
     }
 
     public render(): ReactElement {
+      const login = this.state.login;
       const email = this.state.email;
       const password = this.state.password;
+      const passwordConfirm = this.state.passwordConfirm;
       const optionSignIn = {
         values: {email, password},
         formErrors: this.state.formErrors,
@@ -128,16 +130,24 @@ const withAuthorizationState = (
         onClickSubmit: this.handleSendSubmit,
       };
       const optionSignUp = {
-        login: this.state.login,
-        email: this.state.email,
-        password: this.state.password,
-        passwordConfirm: this.state.passwordConfirm,
+        values: {email, password, login, passwordConfirm},
         formErrors: this.state.formErrors,
         formValid: this.state.formValid,
         onChangeUserInput: this.handleUserInput,
-        onClickSubmit: this.handleSendSubmit,
+        onClickSubmit: this.handleSignUp,
       };
-      return <Component {...this.props} options={optionSignIn} />;
+      let options = {};
+      switch (this.props.formType) {
+        case FormType.SIGN_IN:
+          options = optionSignIn;
+          break;
+        case FormType.SIGN_UP:
+          options = optionSignUp;
+          break;
+        default:
+          break;
+      }
+      return <Component {...this.props} options={options} />;
     }
     private _handleValidateField(fieldName: keyof State, value: string): void {
       const fieldValidationErrors = this.state.formErrors;

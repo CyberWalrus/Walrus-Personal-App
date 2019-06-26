@@ -1,4 +1,3 @@
-import withAuthorizationState from "@client/hocs/with-authorization-state/with-authorization-state";
 import { FormType } from "@config/constants";
 import * as React from "react";
 import { FunctionComponent, ReactElement } from "react";
