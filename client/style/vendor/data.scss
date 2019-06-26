@@ -1,0 +1,30 @@
+.data-box {
+  padding: 5px;
+  background: $header-color;
+  width: 560px;
+  max-width: 90vw;
+  border-radius: 20px;
+  @include box-shadow(0 0 10px 1px $shadow-color, 0 0 10px -2px $shadow-color inset);
+  border: 2px solid $shadow-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.data-container {
+  margin: 5px 0;
+  padding: 5px;
+  background: $header-color;
+  max-width: 100%;
+  border-radius: 20px;
+  @include box-shadow(0 0 10px 1px $shadow-color, 0 0 10px -2px $shadow-color inset);
+  border: 2px solid $shadow-color;
+  display: grid;
+  grid-template-columns: minmax(50px, auto) minmax(50px, auto) minmax(50px, auto);
+  > div {
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+}
