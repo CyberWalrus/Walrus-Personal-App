@@ -15,3 +15,9 @@ export interface UserRole {
   name: string;
   isActive: boolean;
 }
+export interface UserSession {
+  id: string;
+  userId: string;
+  timestamp: number;
+  isActive: boolean;
+}

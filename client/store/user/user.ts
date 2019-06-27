@@ -1,32 +1,34 @@
-import { userAdapter } from "@client/api/data-adapter";
-import { ReturnResponse, UserResponse } from "@client/type/dataResponse";
+import { userAdapter, userSessionAdapter } from "@client/api/data-adapter";
+import {
+  ReturnResponse,
+  UserResponse,
+  UserSessionResponse,
+} from "@client/type/dataResponse";
 import { StateApp, ThunkAction, ThunkDispatch } from "@client/type/reducer";
-import { ApiRoutes } from "@config/api-routes";
+import { ApiRoutes, changeParam } from "@config/api-routes";
+import { COOKIE_NAME } from "@config/constants";
 import { AxiosError, AxiosInstance, AxiosResponse } from "axios";
+import * as Cookies from "js-cookie";
 import { Action as ReduxAction } from "redux";
-import { User } from "../../type/data";
+import { User, UserSession } from "../../type/data";
 
 enum ActionType {
-  REQUIRED_AUTHORIZATION = "REQUIRED_AUTHORIZATION",
-  SIGN_IN = "SIGN_IN",
+  SET_AUTHORIZATION = "SET_AUTHORIZATION",
   SET_ERROR = "SET_ERROR",
   SET_SUCCESS = "SET_SUCCESS",
-  SET_TOKEN = "SET_TOKEN",
+  SET_USER = "SET_USER",
+  SET_SESSION = "SET_SESSION",
 }
 export interface State {
   isAuthorizationRequired: boolean;
+  userSession: UserSession;
   user: User;
   success: boolean;
   message: string;
-  token: string;
 }
 interface RequireAuthorization extends ReduxAction {
-  type: typeof ActionType.REQUIRED_AUTHORIZATION;
+  type: typeof ActionType.SET_AUTHORIZATION;
   payload: boolean;
-}
-interface SignIn extends ReduxAction {
-  type: typeof ActionType.SIGN_IN;
-  payload: User;
 }
 interface SetError extends ReduxAction {
   type: typeof ActionType.SET_ERROR;
@@ -36,36 +38,34 @@ interface SetSuccess extends ReduxAction {
   type: typeof ActionType.SET_SUCCESS;
   payload: boolean;
 }
-interface SetToken extends ReduxAction {
-  type: typeof ActionType.SET_TOKEN;
-  payload: string;
+interface SetUser extends ReduxAction {
+  type: typeof ActionType.SET_USER;
+  payload: User;
+}
+interface SetSession extends ReduxAction {
+  type: typeof ActionType.SET_SESSION;
+  payload: UserSession;
 }
 export type Action =
   | RequireAuthorization
-  | SignIn
   | SetError
   | SetSuccess
-  | SetToken;
+  | SetUser
+  | SetSession;
 
 const initialState: State = {
   isAuthorizationRequired: false,
   user: undefined,
+  userSession: undefined,
   message: ``,
   success: false,
-  token: ``,
 };
 
 const ActionCreator = {
   requireAuthorization: (status: boolean): RequireAuthorization => {
     return {
-      type: ActionType.REQUIRED_AUTHORIZATION,
+      type: ActionType.SET_AUTHORIZATION,
       payload: status,
-    };
-  },
-  signIn: (user: UserResponse): SignIn => {
-    return {
-      type: ActionType.SIGN_IN,
-      payload: userAdapter(user),
     };
   },
   setError: (error: string): SetError => {
@@ -92,16 +92,16 @@ const ActionCreator = {
       payload: initialState.success,
     };
   },
-  setToken: (token: string): SetToken => {
+  setUser: (user: UserResponse): SetUser => {
     return {
-      type: ActionType.SET_TOKEN,
-      payload: token,
+      type: ActionType.SET_USER,
+      payload: userAdapter(user),
     };
   },
-  resetToken: (): SetToken => {
+  setSession: (userSession: UserSessionResponse): SetSession => {
     return {
-      type: ActionType.SET_TOKEN,
-      payload: initialState.token,
+      type: ActionType.SET_SESSION,
+      payload: userSessionAdapter(userSession),
     };
   },
 };
@@ -121,8 +121,8 @@ const Operation = {
         .then(
           (response: AxiosResponse<Record<string, ReturnResponse>>): void => {
             const data: ReturnResponse = response.data;
-            dispatch(ActionCreator.requireAuthorization(true));
-            dispatch(ActionCreator.setError(data.message));
+            Cookies.set(COOKIE_NAME, data.token, {expires: 7});
+            dispatch(Operation.loadSession(data.token));
           },
         )
         .catch((error: AxiosError): void => {
@@ -156,14 +156,59 @@ const Operation = {
         });
     };
   },
+  loadUser: (id: string): ThunkAction => {
+    return (
+      dispatch: ThunkDispatch,
+      _getState: () => StateApp,
+      api: AxiosInstance,
+    ): Promise<void> => {
+      return api
+        .get(changeParam(id, ApiRoutes.GET_USER))
+        .then(
+          (
+            response: AxiosResponse<Record<string, UserSessionResponse>>,
+          ): void => {
+            const data: UserSessionResponse = response.data;
+            dispatch(ActionCreator.setUser(data));
+          },
+        )
+        .catch((error: AxiosError): void => {
+          dispatch(ActionCreator.setError(error.message));
+        });
+    };
+  },
+  loadSession: (token: string): ThunkAction => {
+    return (
+      dispatch: ThunkDispatch,
+      _getState: () => StateApp,
+      api: AxiosInstance,
+    ): Promise<void> => {
+      return api
+        .get(changeParam(token, ApiRoutes.GET_USER_SESSION))
+        .then(
+          (
+            response: AxiosResponse<Record<string, UserSessionResponse>>,
+          ): void => {
+            const data: UserSessionResponse = response.data;
+            dispatch(ActionCreator.setSession(data));
+            dispatch(ActionCreator.requireAuthorization(true));
+            dispatch(Operation.loadUser(data.userId.toString()));
+          },
+        )
+        .catch((error: AxiosError): void => {
+          dispatch(ActionCreator.setError(error.toString()));
+          dispatch(ActionCreator.requireAuthorization(false));
+        });
+    };
+  },
 };
 
 const reducer = (state: State = initialState, action: Action): State => {
   switch (action.type) {
-    case ActionType.REQUIRED_AUTHORIZATION:
+    case ActionType.SET_AUTHORIZATION:
       return {...state, isAuthorizationRequired: action.payload};
 
-    case ActionType.SIGN_IN:
+    case ActionType.SET_USER:
       return {...state, user: action.payload};
 
     case ActionType.SET_ERROR:
@@ -172,8 +217,8 @@ const reducer = (state: State = initialState, action: Action): State => {
     case ActionType.SET_SUCCESS:
       return {...state, success: action.payload};
 
-    case ActionType.SET_TOKEN:
-      return {...state, token: action.payload};
+    case ActionType.SET_SESSION:
+      return {...state, userSession: action.payload};
 
     default:
       return state;

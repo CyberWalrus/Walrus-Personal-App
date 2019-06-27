@@ -1,6 +1,9 @@
-import { User, UserRole } from "@client/type/data";
-import { UserResponse, UserRoleResponse } from "@client/type/dataResponse";
-import { string } from "prop-types";
+import { User, UserRole, UserSession } from "@client/type/data";
+import {
+  UserResponse,
+  UserRoleResponse,
+  UserSessionResponse,
+} from "@client/type/dataResponse";
 
 const userAdapter = (data: UserResponse): User => {
   return {
@@ -23,5 +26,13 @@ const userRoleAdapter = (data: UserRoleResponse): UserRole => {
     isActive: data.isActive,
   };
 };
+const userSessionAdapter = (data: UserSessionResponse): UserSession => {
+  return {
+    id: data._id,
+    userId: data.userId.toString(),
+    timestamp: data.timestamp,
+    isActive: data.isActive,
+  };
+};
 
-export { userAdapter, userRoleAdapter };
+export { userAdapter, userRoleAdapter, userSessionAdapter };

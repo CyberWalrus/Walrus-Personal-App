@@ -82,8 +82,6 @@ export const userRoleApi = (app: Express): void => {
       UserRole.find()
         .exec()
         .then((userRoles: UserRoleProps[]) => {
-          console.log(userRoles);
-
           return res.json(userRoles);
         })
         .catch((error: Errback) => next(error));

@@ -44,3 +44,5 @@ export const inputCustomOptions: InputCustomInterface[] = [
     hidenValue: `Add User Role`,
   },
 ];
+
+export const COOKIE_NAME = `user-session-token`;

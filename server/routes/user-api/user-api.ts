@@ -42,7 +42,7 @@ export const userApi = (app: Express): void => {
     (req: Request, res: Response, next: NextFunction): void => {
       User.find()
         .exec()
-        .then((users: UserProps) => res.json(users))
+        .then((users: UserProps[]) => res.json(users))
         .catch((error: Errback) => next(error));
     },
   );
@@ -153,7 +153,7 @@ export const userApi = (app: Express): void => {
             });
           }
           const user = users[0];
-          if (validPassword(password, user.password)) {
+          if (!validPassword(password, user.password)) {
             return res.send({
               success: false,
               message: `Error: Invalid`,
@@ -161,8 +161,6 @@ export const userApi = (app: Express): void => {
           }
           const userSession = new UserSession();
           userSession.userId = user._id;
-          userSession.userRole = user.userRole;
-          userSession.userLogin = user.login;
           userSession.save((errorSave: Errback, doc: UserSessionResponse) => {
             if (errorSave) {
               return res.send({
@@ -214,35 +212,28 @@ export const userApi = (app: Express): void => {
   );
 
   app.get(
-    ApiRoutes.VERIFY,
+    ApiRoutes.GET_USER_SESSION,
     (req: Request, res: Response, next: NextFunction) => {
-      const body: TokenBody = req.body;
-      const {token}: TokenBody = body;
-      UserSession.find(
-        {
-          _id: token,
-          isActive: true,
-        },
-        (error: Errback, sessions: UserSessionProps[]) => {
-          if (error) {
-            return res.send({
-              success: false,
-              message: `Error: Server error`,
-            });
-          }
-          if (sessions.length !== 1) {
-            return res.send({
-              success: false,
-              message: `Error: Invalid`,
-            });
-          } else {
-            return res.send({
-              success: true,
-              message: `Good`,
-            });
-          }
-        },
-      );
+      UserSession.findOne({
+        _id: req.params.id,
+        isActive: true,
+      })
+        .exec()
+        .then((userSession: UserSessionProps) => res.json(userSession))
+        .catch((error: Errback) => next(error));
+    },
+  );
+
+  app.get(
+    ApiRoutes.GET_USER,
+    (req: Request, res: Response, next: NextFunction) => {
+      User.findOne({
+        _id: req.params.id,
+        isActive: true,
+      })
+        .exec()
+        .then((user: UserProps) => res.json(user))
+        .catch((error: Errback) => next(error));
     },
   );
 };
