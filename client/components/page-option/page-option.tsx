@@ -12,16 +12,25 @@ import Header from "../header/header";
 export interface PropsHoc {
   userRoles: UserRole[];
   onSortEnd: () => void;
+  onDelete: (id: string) => void;
 }
 type Props = PropsHoc;
-
+interface Delete {
+  onDelete: () => void;
+}
+interface DeleteId {
+  onDelete: (id: string) => void;
+}
 const SortableItem = SortableElement(
-  ({name, id, isActive}: UserRole): ReactElement => (
+  ({name, id, isActive, onDelete}: UserRole & Delete): ReactElement => (
     <div className={`data-container`}>
       <div>{name}</div>
       <div>{id}</div>
       <div>
         <input type={`checkbox`} defaultChecked={isActive} />
+      </div>
+      <div>
+        <button onClick={onDelete} />
       </div>
     </div>
   ),
@@ -29,25 +38,32 @@ const SortableItem = SortableElement(
 interface PropsSortableList {
   items: UserRole[];
 }
-const SortableList = SortableContainer(({items}: PropsSortableList) => {
-  return (
-    <fieldset className={`data-box`}>
-      {items.map(({name, id, isActive}: UserRole, index: number) => (
-        <SortableItem
-          key={`item-${index.toString()}`}
-          index={index}
-          name={name}
-          id={id}
-          isActive={isActive}
-        />
-      ))}
-    </fieldset>
-  );
-});
+const SortableList = SortableContainer(
+  ({items, onDelete}: PropsSortableList & DeleteId) => {
+    return (
+      <fieldset className={`data-box`}>
+        {items.map(({name, id, isActive}: UserRole, index: number) => {
+          const deleteFunc = (): void => onDelete(id);
+          return (
+            <SortableItem
+              key={`item-${index.toString()}`}
+              index={index}
+              name={name}
+              id={id}
+              isActive={isActive}
+              onDelete={deleteFunc}
+            />
+          );
+        })}
+      </fieldset>
+    );
+  },
+);
 
 const PageOptions: FunctionComponent<Props> = ({
   userRoles,
   onSortEnd,
+  onDelete,
 }: Props): ReactElement => {
   return (
     <div className={`page`}>
@@ -55,7 +71,11 @@ const PageOptions: FunctionComponent<Props> = ({
       <main className={`page-content`}>
         <section>
           <h2>Options</h2>
-          <SortableList items={userRoles} onSortEnd={onSortEnd} />
+          <SortableList
+            items={userRoles}
+            onSortEnd={onSortEnd}
+            onDelete={onDelete}
+          />
         </section>
         <section className={`form-custom-box`}>
           <FormCustom formType={FormType.USER_ROLE} titel={`Add User Role`} />
@@ -68,6 +88,6 @@ const PageOptions: FunctionComponent<Props> = ({
 
 export { PageOptions };
 
-const wrapper = compose(withDataState);
+const wrapper = compose (withDataState);
 
 export default wrapper(PageOptions);

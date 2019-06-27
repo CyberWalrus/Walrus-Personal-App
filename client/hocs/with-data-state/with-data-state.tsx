@@ -17,6 +17,7 @@ interface State {
 interface PropsDispatch {
   onUserRoleLoad: () => void;
   onAddUserRole: (name: string) => void;
+  onDeleteUserRole: (id: string) => void;
 }
 interface HandlSortEnd {
   oldIndex: number;
@@ -58,6 +59,7 @@ const withDataState = (Component: any): ComponentClass<Props> => {
           {...this.props}
           userRoles={this.state.userRoles}
           onSortEnd={this.handlSortEnd}
+          onDelete={this.props.onDeleteUserRole}
         />
       );
     }
@@ -77,6 +79,9 @@ const mapDispatchToProps = (dispatch: ThunkDispatch): PropsDispatch => ({
   },
   onAddUserRole: (name: string): void => {
     dispatch(Operation.addUserRole(name));
+  },
+  onDeleteUserRole: (id: string): void => {
+    dispatch(Operation.removeUserRole(id));
   },
 });
 

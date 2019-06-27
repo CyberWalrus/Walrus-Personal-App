@@ -110,7 +110,7 @@ const Operation = {
       api: AxiosInstance,
     ): Promise<void> => {
       return api
-        .delete(changeParam(id, ApiRoutes.REMUVE_USER_ROLES))
+        .delete(changeParam(id, ApiRoutes.DELETE_USER_ROLE))
         .then((): void => {
           dispatch(Operation.getUserRoles());
         });

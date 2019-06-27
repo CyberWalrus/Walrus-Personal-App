@@ -1,3 +1,4 @@
+import { UserRole as UserRoleClient } from "@client/type/data";
 import {
   ReturnResponse,
   UserResponse,
@@ -29,7 +30,15 @@ export interface UserRolesRemoveBody {
 export interface TokenBody {
   token: number;
 }
-
+export interface SendObject {
+  success?: boolean;
+  message?: string;
+  token?: string;
+}
+const sendSuccess: SendObject = {
+  success: true,
+  message: `Success`,
+};
 export const userRoleApi = (app: Express): void => {
   app.get(
     ApiRoutes.GET_USER_ROLES,
@@ -49,22 +58,44 @@ export const userRoleApi = (app: Express): void => {
       userRole.name = name;
       userRole
         .save()
-        .then(() =>
-          res.send({
-            success: true,
-            message: `Good`,
-          }),
-        )
+        .then(() => res.send(sendSuccess))
+        .catch((error: Errback) => next(error));
+    },
+  );
+
+  app.post(
+    ApiRoutes.CHANGE_USER_ROLE,
+    (req: Request, res: Response, next: NextFunction): void => {
+      const userRole = new UserRole();
+      const body: UserRoleClient = req.body;
+      const {name, isActive}: UserRoleClient = body;
+      UserRole.findByIdAndUpdate(req.params.id, {name, isActive})
+        .exec()
+        .then(() => res.send(sendSuccess))
         .catch((error: Errback) => next(error));
     },
   );
 
   app.get(
-    ApiRoutes.REMUVE_USER_ROLES,
+    ApiRoutes.CHANGE_USER_ROLES,
     (req: Request, res: Response, next: NextFunction): void => {
-      UserRole.findByIdAndRemove(req.params.id)
+      UserRole.find()
         .exec()
-        .then(() => res.json())
+        .then((userRoles: UserRoleProps[]) => {
+          console.log(userRoles);
+
+          return res.json(userRoles);
+        })
+        .catch((error: Errback) => next(error));
+    },
+  );
+
+  app.delete(
+    ApiRoutes.DELETE_USER_ROLE,
+    (req: Request, res: Response, next: NextFunction): void => {
+      UserRole.findByIdAndDelete(req.params.id)
+        .exec()
+        .then(() => res.send(sendSuccess))
         .catch((error: Errback) => next(error));
     },
   );

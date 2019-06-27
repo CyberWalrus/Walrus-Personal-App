@@ -7,8 +7,9 @@ export enum ApiRoutes {
   ADD_USER = "/api/data/users/add",
   GET_USER_ROLES = "/api/data/user-roles",
   ADD_USER_ROLE = "/api/data/user-roles/add",
+  CHANGE_USER_ROLE = "/api/data/user-roles/change/:id",
   CHANGE_USER_ROLES = "/api/data/user-roles/change",
-  REMUVE_USER_ROLES = "/api/data/user-roles/remuve/:id",
+  DELETE_USER_ROLE = "/api/data/user-roles/delete/:id",
 }
 
 export const changeParam = (

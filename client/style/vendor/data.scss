@@ -20,7 +20,7 @@
   @include box-shadow(0 0 10px 1px $shadow-color, 0 0 10px -2px $shadow-color inset);
   border: 2px solid $shadow-color;
   display: grid;
-  grid-template-columns: minmax(50px, auto) minmax(50px, auto) minmax(50px, auto);
+  grid-template-columns: minmax(50px, auto) minmax(50px, auto) minmax(50px, auto) minmax(50px, auto);
   > div {
     padding-left: 10px;
     display: flex;
