@@ -182,11 +182,9 @@ export const userApi = (app: Express): void => {
   app.get(
     ApiRoutes.LOGOUT,
     (req: Request, res: Response, next: NextFunction): void => {
-      const body: TokenBody = req.body;
-      const {token}: TokenBody = body;
       UserSession.findOneAndUpdate(
         {
-          _id: token,
+          _id: req.params.id,
           isActive: true,
         },
         {

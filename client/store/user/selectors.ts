@@ -4,8 +4,8 @@ import NameSpace from "./../name-spaces";
 
 const NAME_SPACE = NameSpace.USER;
 
-const getAuthorizationStatus = (state: StateApp): boolean => {
-  return state[NAME_SPACE].isAuthorizationRequired;
+const getAuthorization = (state: StateApp): boolean => {
+  return state[NAME_SPACE].isAuthorization;
 };
 const getUser = (state: StateApp): User => {
   return state[NAME_SPACE].user;
@@ -17,4 +17,4 @@ const getSuccess = (state: StateApp): boolean => {
   return state[NAME_SPACE].success;
 };
 
-export { getUser, getAuthorizationStatus, getError, getSuccess };
+export { getUser, getAuthorization, getError, getSuccess };

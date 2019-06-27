@@ -2,6 +2,7 @@ import RoutePath from "@client/routes";
 import * as React from "react";
 import { FunctionComponent, ReactElement } from "react";
 import { Link } from "react-router-dom";
+import MenuUser from "../menu-user/menu-user";
 
 const Header: FunctionComponent = (): ReactElement => {
   return (
@@ -31,12 +32,7 @@ const Header: FunctionComponent = (): ReactElement => {
         </ul>
       </nav>
       <div className={`user`}>
-        <Link to={RoutePath.LOGIN} className={`user__link`}>
-          Sign In
-        </Link>
-        <Link to={RoutePath.SIGNUP} className={`user__link`}>
-          Sign Up
-        </Link>
+        <MenuUser />
       </div>
     </header>
   );

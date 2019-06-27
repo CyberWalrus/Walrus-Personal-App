@@ -11,6 +11,7 @@ import { AxiosError, AxiosInstance, AxiosResponse } from "axios";
 import * as Cookies from "js-cookie";
 import { Action as ReduxAction } from "redux";
 import { User, UserSession } from "../../type/data";
+import NameSpace from "../name-spaces";
 
 enum ActionType {
   SET_AUTHORIZATION = "SET_AUTHORIZATION",
@@ -20,13 +21,13 @@ enum ActionType {
   SET_SESSION = "SET_SESSION",
 }
 export interface State {
-  isAuthorizationRequired: boolean;
+  isAuthorization: boolean;
   userSession: UserSession;
   user: User;
   success: boolean;
   message: string;
 }
-interface RequireAuthorization extends ReduxAction {
+interface SetAuthorization extends ReduxAction {
   type: typeof ActionType.SET_AUTHORIZATION;
   payload: boolean;
 }
@@ -47,14 +48,14 @@ interface SetSession extends ReduxAction {
   payload: UserSession;
 }
 export type Action =
-  | RequireAuthorization
+  | SetAuthorization
   | SetError
   | SetSuccess
   | SetUser
   | SetSession;
 
 const initialState: State = {
-  isAuthorizationRequired: false,
+  isAuthorization: false,
   user: undefined,
   userSession: undefined,
   message: ``,
@@ -62,7 +63,7 @@ const initialState: State = {
 };
 
 const ActionCreator = {
-  requireAuthorization: (status: boolean): RequireAuthorization => {
+  setAuthorization: (status: boolean): SetAuthorization => {
     return {
       type: ActionType.SET_AUTHORIZATION,
       payload: status,
@@ -127,7 +128,7 @@ const Operation = {
         )
         .catch((error: AxiosError): void => {
           dispatch(ActionCreator.setError(error.toString()));
-          dispatch(ActionCreator.requireAuthorization(false));
+          dispatch(ActionCreator.setAuthorization(false));
         });
     };
   },
@@ -152,7 +153,7 @@ const Operation = {
         )
         .catch((error: AxiosError): void => {
           dispatch(ActionCreator.setError(error.toString()));
-          dispatch(ActionCreator.requireAuthorization(false));
+          dispatch(ActionCreator.setAuthorization(false));
         });
     };
   },
@@ -191,13 +192,38 @@ const Operation = {
           ): void => {
             const data: UserSessionResponse = response.data;
             dispatch(ActionCreator.setSession(data));
-            dispatch(ActionCreator.requireAuthorization(true));
+            dispatch(ActionCreator.setAuthorization(true));
             dispatch(Operation.loadUser(data.userId.toString()));
           },
         )
         .catch((error: AxiosError): void => {
           dispatch(ActionCreator.setError(error.toString()));
-          dispatch(ActionCreator.requireAuthorization(false));
+          dispatch(ActionCreator.setAuthorization(false));
+        });
+    };
+  },
+  logout: (): ThunkAction => {
+    return (
+      dispatch: ThunkDispatch,
+      _getState: () => StateApp,
+      api: AxiosInstance,
+    ): Promise<void> => {
+      const token = _getState()[NameSpace.USER].userSession.id;
+      return api
+        .get(changeParam(token, ApiRoutes.LOGOUT))
+        .then(
+          (
+            response: AxiosResponse<Record<string, any>>,
+          ): void => {
+            Cookies.remove(COOKIE_NAME);
+            dispatch(ActionCreator.setUser(initialState.user));
+            dispatch(ActionCreator.setSession(initialState.userSession));
+            dispatch(ActionCreator.setAuthorization(false));
+          },
+        )
+        .catch((error: AxiosError): void => {
+          dispatch(ActionCreator.setError(error.toString()));
+          dispatch(ActionCreator.setAuthorization(false));
         });
     };
   },
@@ -206,7 +232,7 @@ const Operation = {
 const reducer = (state: State = initialState, action: Action): State => {
   switch (action.type) {
     case ActionType.SET_AUTHORIZATION:
-      return {...state, isAuthorizationRequired: action.payload};
+      return {...state, isAuthorization: action.payload};
 
     case ActionType.SET_USER:
       return {...state, user: action.payload};
