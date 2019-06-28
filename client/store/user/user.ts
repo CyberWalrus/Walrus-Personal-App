@@ -19,6 +19,8 @@ enum ActionType {
   SET_SUCCESS = "SET_SUCCESS",
   SET_USER = "SET_USER",
   SET_SESSION = "SET_SESSION",
+  RESET_SESSION = "RESET_SESSION",
+  RESET_USER = "RESET_USER",
 }
 export interface State {
   isAuthorization: boolean;
@@ -47,12 +49,22 @@ interface SetSession extends ReduxAction {
   type: typeof ActionType.SET_SESSION;
   payload: UserSession;
 }
+interface ResetSession extends ReduxAction {
+  type: typeof ActionType.RESET_SESSION;
+  payload: UserSession;
+}
+interface ResetUser extends ReduxAction {
+  type: typeof ActionType.RESET_USER;
+  payload: User;
+}
 export type Action =
   | SetAuthorization
   | SetError
   | SetSuccess
   | SetUser
-  | SetSession;
+  | SetSession
+  | ResetUser
+  | ResetSession;
 
 const initialState: State = {
   isAuthorization: false,
@@ -103,6 +115,18 @@ const ActionCreator = {
     return {
       type: ActionType.SET_SESSION,
       payload: userSessionAdapter(userSession),
+    };
+  },
+  resetUser: (): ResetUser => {
+    return {
+      type: ActionType.RESET_USER,
+      payload: initialState.user,
+    };
+  },
+  ResetSession: (): ResetSession => {
+    return {
+      type: ActionType.RESET_SESSION,
+      payload: initialState.userSession,
     };
   },
 };
@@ -209,20 +233,19 @@ const Operation = {
       api: AxiosInstance,
     ): Promise<void> => {
       const token = _getState()[NameSpace.USER].userSession.id;
+      const url = changeParam(token, ApiRoutes.LOGOUT);
       return api
-        .get(changeParam(token, ApiRoutes.LOGOUT))
-        .then(
-          (
-            response: AxiosResponse<Record<string, any>>,
-          ): void => {
-            Cookies.remove(COOKIE_NAME);
-            dispatch(ActionCreator.setUser(initialState.user));
-            dispatch(ActionCreator.setSession(initialState.userSession));
-            dispatch(ActionCreator.setAuthorization(false));
-          },
-        )
+        .get(url)
+        .then((response: AxiosResponse<Record<string, any>>): void => {
+          Cookies.remove(COOKIE_NAME);
+          dispatch(ActionCreator.resetUser());
+          dispatch(ActionCreator.ResetSession());
+          dispatch(ActionCreator.setAuthorization(false));
+        })
         .catch((error: AxiosError): void => {
           dispatch(ActionCreator.setError(error.toString()));
+          dispatch(ActionCreator.resetUser());
+          dispatch(ActionCreator.ResetSession());
           dispatch(ActionCreator.setAuthorization(false));
         });
     };
@@ -244,6 +267,12 @@ const reducer = (state: State = initialState, action: Action): State => {
       return {...state, success: action.payload};
 
     case ActionType.SET_SESSION:
+      return {...state, userSession: action.payload};
+
+    case ActionType.RESET_USER:
+      return {...state, user: action.payload};
+
+    case ActionType.RESET_SESSION:
       return {...state, userSession: action.payload};
 
     default:

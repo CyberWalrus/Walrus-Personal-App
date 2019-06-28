@@ -182,30 +182,25 @@ export const userApi = (app: Express): void => {
   app.get(
     ApiRoutes.LOGOUT,
     (req: Request, res: Response, next: NextFunction): void => {
-      UserSession.findOneAndUpdate(
-        {
-          _id: req.params.id,
-          isActive: true,
-        },
-        {
-          $set: {
-            isActive: false,
-          },
-        },
-        undefined,
-        (error: Errback, sessions: UserSessionProps) => {
-          if (error) {
-            return res.send({
-              success: false,
-              message: `Error: Server error`,
-            });
-          }
-          return res.send({
-            success: true,
-            message: `Good`,
-          });
-        },
-      );
+      try {
+        const token = req.params.id;
+        UserSession.findByIdAndUpdate(token, {
+          isActive: false,
+        })
+          .exec()
+          .then(() =>
+            res.send({
+              success: true,
+              message: `Logout`,
+            }),
+          )
+          .catch((error: Errback) => next(error));
+      } catch (error) {
+        res.send({
+          success: false,
+          message: `Error: server error`,
+        });
+      }
     },
   );
 
