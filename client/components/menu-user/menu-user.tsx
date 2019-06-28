@@ -34,16 +34,29 @@ const MenuUser: FunctionComponent<Props> = ({
       </button>
       <div className={isOpen ? `menu-user` : `menu-user_close`}>
         {isAuthorization ? (
-          <div className={`user`}>
-            <Link to={RoutePath.OPTION} className={`user__link`}>
-              Option
-            </Link>
-            <button onClick={onLogout} className={`menu-user-box__btn`}>
-              Logout
-            </button>
+          <div className={`menu-user__box`}>
+            <nav className={`menu-user__nav`}>
+              <ul className={`menu-user__ul`}>
+                <li className={`menu-user__item`}>
+                  <Link to={RoutePath.OPTION} className={`user__link`}>
+                    Option
+                  </Link>
+                </li>
+                <li className={`menu-user__item`}>
+                  <Link to={RoutePath.INFO} className={`user__link`}>
+                    Info
+                  </Link>
+                </li>
+                <li className={`menu-user__item`}>
+                  <button onClick={onLogout} className={`menu-user-box__btn`}>
+                    Logout
+                  </button>
+                </li>
+              </ul>
+            </nav>
           </div>
         ) : (
-          <div className={`user`}>
+          <div className={`menu-user__box`}>
             <FormCustom formType={FormType.SIGN_IN} titel={`Sign In`} />
             <Link to={RoutePath.SIGNUP} className={`user__link`}>
               Sign Up
