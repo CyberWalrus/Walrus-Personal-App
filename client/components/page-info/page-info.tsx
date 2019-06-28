@@ -1,4 +1,5 @@
 import { User } from "@client/type/data";
+import { iconNames } from "@config/constants";
 import * as React from "react";
 import { PureComponent, ReactElement } from "react";
 import { connect } from "react-redux";
@@ -30,8 +31,20 @@ class PageInfo extends PureComponent<Props> {
             <article>
               {users &&
                 users.map((item: User, index: number) => (
-                  <p key={index}>{item.login} {item.id}</p>
+                  <p key={index}>
+                    {item.login} {item.id}
+                  </p>
                 ))}
+            </article>
+            <article>
+              <dl className={`info-icon`}>
+                {iconNames.map((item: string, index: number) => (
+                  <React.Fragment key={index}>
+                    <dt>{item} :</dt>
+                    <dd className={`icon`}>{item}</dd>
+                  </React.Fragment>
+                ))}
+              </dl>
             </article>
           </section>
         </main>

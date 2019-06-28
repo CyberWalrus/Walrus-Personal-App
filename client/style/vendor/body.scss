@@ -1,8 +1,9 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto:500&display=swap");
 *:focus {
   outline: 0;
-  @include box-shadow(0 0 10px 2px $shadow-color, 0 0 60px 2px $shadow-color inset);
-  border-radius: 10px;
+  @include box-shadow(
+    0 0 10px 2px $shadow-color,
+    0 0 60px 2px $shadow-color inset
+  );
 }
 body {
   margin: 0;
@@ -12,11 +13,16 @@ body {
   font-size: $body-font-size;
   font-family: "Roboto", sans-serif;
 }
-
+.icon {
+  font-family: "walrus", sans-serif;
+}
 .page {
   display: grid;
   min-height: 100vh;
-  grid-template-rows: minmax(30px, max-content) minmax(max-content, 1fr) minmax(60px, max-content);
+  grid-template-rows: minmax(30px, max-content) minmax(max-content, 1fr) minmax(
+      60px,
+      max-content
+    );
 }
 
 .visually-hidden {
@@ -31,4 +37,23 @@ body {
   clip: rect(0 0 0 0);
   -webkit-clip-path: inset(100%);
   clip-path: inset(100%);
+}
+
+.info-icon {
+  padding: 5px 0;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-row-gap: 10px;
+  max-width: 500px;
+  dt {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  dd {
+    margin-inline-start: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
 }

@@ -2,7 +2,10 @@
   background: $header-color;
   color: $text-color-dop;
   display: grid;
-  grid-template-columns: minmax(64px, 192px) minmax(200px, 1fr) minmax(64px, 192px);
+  grid-template-columns: minmax(64px, 192px) minmax(200px, 1fr) minmax(
+      64px,
+      192px
+    );
   grid-template-areas: "logo menu user";
   @media only screen and (max-width: 640px) {
     grid-template-columns: minmax(64px, 192px) minmax(64px, 192px);
@@ -70,34 +73,5 @@
     &:focus {
       color: $text-color;
     }
-  }
-}
-
-.menu-user-box {
-  grid-area: user;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  width: 100%;
-  height: 100%;
-  user-select: none;
-  &__btn {
-    font: inherit;
-    font-size: 110%;
-    border-radius: 20px;
-    min-height: 50px;
-    min-width: 140px;
-    border: 2px solid $border-color;
-    @include background(linear-gradient(180deg, $btn-color 0, $btn-color 100%), $btn-color);
-    color: $text-color;
-  }
-}
-
-.menu-user{
-  position: fixed;
-  right:o;
-  top: 50px;
-  &_close {
-    display: none;
   }
 }

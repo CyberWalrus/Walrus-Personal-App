@@ -32,23 +32,23 @@ const MenuUser: FunctionComponent<Props> = ({
           `SignIn/SignUp`
         )}
       </button>
-      <div className={isOpen ? `menu-user` : `menu-user_close`}>
+      <div className={!isOpen ? `menu-user` : `menu-user menu-user_open`}>
         {isAuthorization ? (
           <div className={`menu-user__box`}>
             <nav className={`menu-user__nav`}>
               <ul className={`menu-user__ul`}>
                 <li className={`menu-user__item`}>
-                  <Link to={RoutePath.OPTION} className={`user__link`}>
+                  <Link to={RoutePath.OPTION} className={`menu-user__link`}>
                     Option
                   </Link>
                 </li>
                 <li className={`menu-user__item`}>
-                  <Link to={RoutePath.INFO} className={`user__link`}>
+                  <Link to={RoutePath.INFO} className={`menu-user__link`}>
                     Info
                   </Link>
                 </li>
                 <li className={`menu-user__item`}>
-                  <button onClick={onLogout} className={`menu-user-box__btn`}>
+                  <button onClick={onLogout} className={`menu-user__btn`}>
                     Logout
                   </button>
                 </li>
