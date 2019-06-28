@@ -1,16 +1,16 @@
 *:focus {
   outline: 0;
   @include box-shadow(
-    0 0 10px 2px $shadow-color,
-    0 0 60px 2px $shadow-color inset
+    0 0 10px 2px var(--shadow-color),
+    0 0 60px 2px var(--shadow-color) inset
   );
 }
 body {
   margin: 0;
   padding: 0;
-  background: $body-color;
-  color: $text-color;
-  font-size: $body-font-size;
+  background: var(--body-color);
+  color: var(--text-color);
+  font-size: var(--body-font-size);
   font-family: "Roboto", sans-serif;
 }
 .icon {

@@ -8,12 +8,15 @@
 
 .form-custom {
   padding: 10px 10px 30px 10px;
-  background: $header-color;
+  background: var(--header-color);
   width: 560px;
   max-width: 90vw;
   border-radius: 20px;
-  @include box-shadow(0 0 10px 1px $shadow-color, 0 0 10px -2px $shadow-color inset);
-  border: 2px solid $shadow-color;
+  @include box-shadow(
+    0 0 10px 1px var(--shadow-color),
+    0 0 10px -2px var(--shadow-color) inset
+  );
+  border: 2px solid var(--shadow-color);
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -36,7 +39,7 @@
     font: inherit;
     border-radius: 20px;
     padding: 8px 0px 8px 12px;
-    border: 2px solid $border-color;
+    border: 2px solid var(--border-color);
     min-width: 240px;
   }
   &__btn {
@@ -45,8 +48,11 @@
     border-radius: 20px;
     min-height: 50px;
     min-width: 140px;
-    border: 2px solid $border-color;
-    @include background(linear-gradient(180deg, $btn-color 0, $btn-color 100%), $btn-color);
-    color: $text-color;
+    border: 2px solid var(--border-color);
+    @include background(
+      linear-gradient(180deg, var(--btn-color) 0, var(--btn-color) 100%),
+      var(--btn-color)
+    );
+    color: var(--text-color);
   }
 }

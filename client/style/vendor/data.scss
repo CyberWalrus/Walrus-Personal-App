@@ -1,11 +1,14 @@
 .data-box {
   padding: 5px;
-  background: $header-color;
+  background: var(--header-color);
   width: 560px;
   max-width: 90vw;
   border-radius: 20px;
-  @include box-shadow(0 0 10px 1px $shadow-color, 0 0 10px -2px $shadow-color inset);
-  border: 2px solid $shadow-color;
+  @include box-shadow(
+    0 0 10px 1px var(--shadow-color),
+    0 0 10px -2px var(--shadow-color) inset
+  );
+  border: 2px solid var(--shadow-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,13 +17,19 @@
 .data-container {
   margin: 5px 0;
   padding: 5px;
-  background: $header-color;
+  background: var(--header-color);
   max-width: 100%;
   border-radius: 20px;
-  @include box-shadow(0 0 10px 1px $shadow-color, 0 0 10px -2px $shadow-color inset);
-  border: 2px solid $shadow-color;
+  @include box-shadow(
+    0 0 10px 1px var(--shadow-color),
+    0 0 10px -2px var(--shadow-color) inset
+  );
+  border: 2px solid var(--shadow-color);
   display: grid;
-  grid-template-columns: minmax(50px, auto) minmax(50px, auto) minmax(50px, auto) minmax(50px, auto);
+  grid-template-columns: minmax(50px, auto) minmax(50px, auto) minmax(
+      50px,
+      auto
+    ) minmax(50px, auto);
   > div {
     padding-left: 10px;
     display: flex;

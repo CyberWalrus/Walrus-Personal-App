@@ -12,12 +12,12 @@
     border-radius: 20px;
     min-height: 50px;
     min-width: 140px;
-    border: 2px solid $border-color;
+    border: 2px solid var(--border-color);
     @include background(
-      linear-gradient(180deg, $btn-color 0, $btn-color 100%),
-      $btn-color
+      linear-gradient(180deg, var(--btn-color) 0, var(--btn-color) 100%),
+      var(--btn-color)
     );
-    color: $text-color;
+    color: var(--text-color);
   }
 }
 
@@ -28,7 +28,7 @@
   right: 0;
   top: 64px;
   width: 300px;
-  border: 2px solid $border-color;
+  border: 2px solid var(--border-color);
   display: inline-block;
   overflow: hidden;
   opacity: 0;
@@ -38,7 +38,7 @@
     opacity: 1;
   }
   &__nav {
-    background: $header-color;
+    background: var(--header-color);
   }
   &__ul {
     display: grid;
@@ -49,36 +49,47 @@
   &__item {
     width: 100%;
     height: 100%;
-    transition: all 0.15s ease-out;
-    &:hover,
-    &:focus {
-      background: $border-color;
-    }
+    border-bottom: 2px solid var(--border-color);
   }
   &__link {
     width: 100%;
+    max-width: 100%;
     height: 100%;
+    max-height: 100%;
     text-decoration: none;
-    color: $text-color-dop;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-bottom: 2px solid $border-color;
-    transition: all 0.25s ease-out;
+    color: var(--text-color-dop);
+    line-height: 2;
+    display: grid;
+    grid-template-columns: 40px 1fr 40px;
+    > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    transition: all 1s ease-out;
     &:hover,
     &:focus {
-      color: $text-color;
+      color: var(--text-color);
+      .menu-user__icon {
+        background: var(--body-color);
+      }
     }
+  }
+  &__icon {
+    font-family: "walrus", sans-serif;
+  }
+  &__text {
+    font-weight: bold;
   }
   &__btn {
     font: inherit;
     width: 100%;
     height: 100%;
-    border: 2px solid $border-color;
+    border: 2px solid var(--border-color);
     @include background(
-      linear-gradient(180deg, $btn-color 0, $btn-color 100%),
-      $btn-color
+      linear-gradient(180deg, var(--btn-color) 0, var(--btn-color) 100%),
+      var(--btn-color)
     );
-    color: $text-color;
+    color: var(--text-color);
   }
 }

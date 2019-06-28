@@ -39,12 +39,14 @@ const MenuUser: FunctionComponent<Props> = ({
               <ul className={`menu-user__ul`}>
                 <li className={`menu-user__item`}>
                   <Link to={RoutePath.OPTION} className={`menu-user__link`}>
-                    Option
+                    <div className={`menu-user__icon`}>{`O`}</div>
+                    <div className={`menu-user__text`}>Option</div>
                   </Link>
                 </li>
                 <li className={`menu-user__item`}>
-                  <Link to={RoutePath.INFO} className={`menu-user__link`}>
-                    Info
+                  <Link to={RoutePath.OPTION} className={`menu-user__link`}>
+                    <div className={`icon`}>{`O`}</div>
+                    <div>Option</div>
                   </Link>
                 </li>
                 <li className={`menu-user__item`}>
