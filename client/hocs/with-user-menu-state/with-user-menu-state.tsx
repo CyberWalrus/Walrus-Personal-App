@@ -24,8 +24,8 @@ interface State {
 
 const withUserMenuState = (Component: any): ComponentClass<Props> => {
   type P = ReturnType<typeof Component>;
-  type PropsAuthorization = Props & P;
-  class WithUserMenuState extends PureComponent<PropsAuthorization, State> {
+  type PropsMenu = Props & P;
+  class WithUserMenuState extends PureComponent<PropsMenu, State> {
     public constructor(props: Props) {
       super(props);
       this.state = {

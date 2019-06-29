@@ -1,4 +1,6 @@
-import { PropsHoc } from "@client/components/form-custom/form-custom";
+import {
+  PropsHoc,
+} from "@client/components/form-custom/form-custom";
 import { Operation as OperationData } from "@client/store/data/data";
 import { getError, getSuccess } from "@client/store/user/selectors";
 import { ActionCreator, Operation } from "@client/store/user/user";
@@ -55,15 +57,10 @@ export interface Option {
   onChangeUserInput: () => void;
   onClickSubmit: () => void;
 }
-const withFormState = (
-  Component: any,
-): ComponentClass<Props, State> => {
+const withFormState = (Component: any): ComponentClass<Props> => {
   type P = ReturnType<typeof Component>;
-  type PropsAuthorization = Props & P;
-  class WithFormState extends PureComponent<
-    PropsAuthorization,
-    State
-  > {
+  type PropsForm = Props & P;
+  class WithFormState extends PureComponent<PropsForm, State> {
     public constructor(props: Props) {
       super(props);
       this.state = {
@@ -106,7 +103,7 @@ const withFormState = (
     public handleUserInput(event: React.ChangeEvent<HTMLInputElement>): void {
       const key = event.target.name as keyof State;
       const value = event.target.value as string;
-      this.setState<never>({[key]: value}, (): void => {
+      this.setState<never>({ [key]: value }, (): void => {
         this._handleValidateField(key, value);
       });
     }
@@ -133,21 +130,21 @@ const withFormState = (
       const password = this.state.password;
       const passwordConfirm = this.state.passwordConfirm;
       const optionSignIn = {
-        values: {email, password},
+        values: { email, password },
         formErrors: this.state.formErrors,
         formValid: this.state.formValid,
         onChangeUserInput: this.handleUserInput,
         onClickSubmit: this.handleSendSubmit,
       };
       const optionSignUp = {
-        values: {email, password, login, passwordConfirm},
+        values: { email, password, login, passwordConfirm },
         formErrors: this.state.formErrors,
         formValid: this.state.formValid,
         onChangeUserInput: this.handleUserInput,
         onClickSubmit: this.handleSignUp,
       };
       const optionUserRole = {
-        values: {email, password, login, passwordConfirm},
+        values: { email, password, login, passwordConfirm },
         formErrors: this.state.formErrors,
         formValid: this.state.formValid,
         onChangeUserInput: this.handleUserInput,
@@ -251,9 +248,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch): PropsDispatch => ({
   },
 });
 
-export { withFormState };
-
-export default compose<any, PropsHoc>(
+export default compose<any, PropsInsert>(
   connect<Props, PropsDispatch, {}, StateApp>(
     mapStateToProps,
     mapDispatchToProps,

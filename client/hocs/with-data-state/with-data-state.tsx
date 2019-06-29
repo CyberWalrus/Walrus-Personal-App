@@ -1,3 +1,4 @@
+import { PropsHoc } from "@client/components/form-custom/form-custom";
 import { UserRole } from "@client/type/data";
 import { FormType } from "@config/constants";
 import arrayMove from "array-move";
@@ -48,7 +49,7 @@ const withDataState = (Component: any): ComponentClass<Props> => {
     public componentDidMount(): void {
       this.props.onUserRoleLoad();
     }
-    public handlSortEnd({oldIndex, newIndex}: HandlSortEnd): void {
+    public handlSortEnd({ oldIndex, newIndex }: HandlSortEnd): void {
       this.setState({
         userRoles: arrayMove(this.state.userRoles, oldIndex, newIndex),
       });
@@ -87,7 +88,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch): PropsDispatch => ({
 
 export { withDataState };
 
-export default compose(
+export default compose<any, PropsHoc>(
   connect<Props, PropsDispatch, {}, StateApp>(
     mapStateToProps,
     mapDispatchToProps,

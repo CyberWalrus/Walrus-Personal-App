@@ -1,14 +1,18 @@
-import withFormState, {
-  Option,
-} from "@client/hocs/with-form-state/with-form-state";
+import withFormState from "@client/hocs/with-form-state/with-form-state";
+import { Option } from "@client/hocs/with-form-state/with-form-state";
 import { InputCustomInterface } from "@client/type/component";
 import { FormType, inputCustomOptions } from "@config/constants";
 import * as React from "react";
-import { ComponentClass, Fragment, FunctionComponent, ReactElement } from "react";
+import {
+  ComponentClass,
+  Fragment,
+  FunctionComponent,
+  ReactElement,
+} from "react";
 import { compose } from "redux";
 import InputCustom from "../input-custom/input-custom";
 
-interface PropsInsert {
+export interface PropsInsert {
   titel: string;
   formType: FormType;
 }
@@ -77,6 +81,6 @@ const FormCustom: FunctionComponent<Props> = ({
 
 export { FormCustom };
 
-const wrapper = compose<PropsHoc, {}>(withFormState);
+const wrapper = compose(withFormState);
 
 export default wrapper(FormCustom) as ComponentClass<PropsInsert>;
