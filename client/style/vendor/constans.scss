@@ -1,17 +1,28 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:500&display=swap");
 @import url("/walrus-font/css/walrus.css?family=walrus");
+@mixin defineColorOpacity($color, $value) {
+  #{$color}: #{$value};
+  #{$color}_75: #{change-color($value, $alpha: 0.75)};
+  #{$color}_50: #{change-color($value, $alpha: 0.5)};
+  #{$color}_25: #{change-color($value, $alpha: 0.25)};
+}
+@mixin defineColorVar($color, $value) {
+  @include defineColorOpacity(#{$color}_darker, scale-color($value, $lightness: -45%, $saturation: -45%));
+  @include defineColorOpacity(#{$color}_dark, scale-color($value, $lightness: -20%, $saturation: -20%));
+  @include defineColorOpacity($color, $value);
+  @include defineColorOpacity(#{$color}_light, scale-color($value, $lightness: 25%, $saturation: 25%));
+  @include defineColorOpacity(#{$color}_lighter, scale-color($value, $lightness: 75%, $saturation: 75%));
+}
 :root {
-  --base-color: rgb(233, 225, 199);
-  --body-color: rgb(0, 0, 0);
-  --text-color: var(--base-color);
-  --text-color_dop: scale-color(
-    var(--base-color),
-    $lightness: -50%,
-    $saturation: -70%
-  );
-  --body-font-size: 20px;
-  --header-color: rgb(29, 29, 29);
-  --shadow-color: scale-color(var(--base-color), $alpha: -70%);
-  --border-color: scale-color(var(--base-color), $lightness: -50%, $saturation: -70%);
-  --btn-color: var(--border-color);
+  //old
+  @include defineColorVar(--color-primary, $color-primary);
+  --base-color: #{$base-color};
+  --body-color: #{$body-color};
+  --text-color: #{$text-color};
+  --text-color_dop: #{$text-color_dop};
+  --body-font-size: #{$body-font-size};
+  --header-color: #{$header-color};
+  --shadow-color: #{$shadow-color};
+  --border-color: #{$border-color};
+  --btn-color: #{$btn-color};
 }

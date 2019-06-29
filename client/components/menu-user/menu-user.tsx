@@ -46,12 +46,13 @@ const MenuUser: FunctionComponent<Props> = ({
                 <li className={`menu-user__item`}>
                   <Link to={RoutePath.OPTION} className={`menu-user__link`}>
                     <div className={`icon`}>{`O`}</div>
-                    <div>Option</div>
+                    <div className={`menu-user__text`}>Option</div>
                   </Link>
                 </li>
                 <li className={`menu-user__item`}>
                   <button onClick={onLogout} className={`menu-user__btn`}>
-                    Logout
+                    <div className={`icon`}>{`O`}</div>
+                    <div className={`menu-user__text`}>Logout</div>
                   </button>
                 </li>
               </ul>
