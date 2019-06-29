@@ -6,17 +6,16 @@
   min-height: 100%;
 }
 
-.form-custom {
+.form-custom-old {
   padding: 1rem 1rem 3rem 1rem;
   background: var(--header-color);
   width: 56rem;
   max-width: 90vw;
   border-radius: 2rem;
-  @include box-shadow(
-    0 0 1rem 0.1rem var(--shadow-color),
-    0 0 1rem  -0.2rem var(--shadow-color) inset
-  );
+  @include box-shadow(0 0 1rem 0.1rem var(--shadow-color), 0 0 1rem -0.2rem var(--shadow-color) inset);
   border: 0.2rem solid var(--shadow-color);
+}
+.form-custom {
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -49,10 +48,7 @@
     min-height: 5rem;
     min-width: 14rem;
     border: 0.2rem solid var(--border-color);
-    @include background(
-      linear-gradient(180deg, var(--btn-color) 0, var(--btn-color) 100%),
-      var(--btn-color)
-    );
+    @include background(linear-gradient(180deg, var(--btn-color) 0, var(--btn-color) 100%), var(--btn-color));
     color: var(--text-color);
   }
 }

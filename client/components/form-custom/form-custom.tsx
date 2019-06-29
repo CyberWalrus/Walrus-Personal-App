@@ -1,6 +1,6 @@
 import withFormState, {
   Option,
-} from "@client/hocs/with-authorization-state/with-authorization-state";
+} from "@client/hocs/with-form-state/with-form-state";
 import { InputCustomInterface } from "@client/type/component";
 import { FormType, inputCustomOptions } from "@config/constants";
 import * as React from "react";
@@ -12,7 +12,7 @@ interface PropsInsert {
   titel: string;
   formType: FormType;
 }
-interface PropsHoc {
+export interface PropsHoc {
   options: Option;
 }
 
@@ -77,6 +77,6 @@ const FormCustom: FunctionComponent<Props> = ({
 
 export { FormCustom };
 
-const wrapper = compose(withFormState);
+const wrapper = compose<PropsHoc, {}>(withFormState);
 
 export default wrapper(FormCustom) as ComponentClass<PropsInsert>;

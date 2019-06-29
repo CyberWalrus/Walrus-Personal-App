@@ -1,12 +1,13 @@
+import { PropsHoc } from "@client/components/form-custom/form-custom";
+import { Operation as OperationData } from "@client/store/data/data";
+import { getError, getSuccess } from "@client/store/user/selectors";
+import { ActionCreator, Operation } from "@client/store/user/user";
+import { StateApp, ThunkDispatch } from "@client/type/reducer";
 import { FormType } from "@config/constants";
 import * as React from "react";
 import { ComponentClass, PureComponent, ReactElement } from "react";
 import { connect } from "react-redux";
 import { compose } from "recompose";
-import { Operation as OperationData } from "../../store/data/data";
-import { getError, getSuccess } from "../../store/user/selectors";
-import { ActionCreator, Operation } from "../../store/user/user";
-import { StateApp, ThunkDispatch } from "../../type/reducer";
 
 interface PropsInsert {
   formType: FormType;
@@ -54,12 +55,12 @@ export interface Option {
   onChangeUserInput: () => void;
   onClickSubmit: () => void;
 }
-const withAuthorizationState = (
+const withFormState = (
   Component: any,
 ): ComponentClass<Props, State> => {
   type P = ReturnType<typeof Component>;
   type PropsAuthorization = Props & P;
-  class WithAuthorizationState extends PureComponent<
+  class WithFormState extends PureComponent<
     PropsAuthorization,
     State
   > {
@@ -226,7 +227,7 @@ const withAuthorizationState = (
     }
   }
 
-  return WithAuthorizationState;
+  return WithFormState;
 };
 
 const mapStateToProps = (state: StateApp, ownProps: Props): Props => ({
@@ -250,12 +251,12 @@ const mapDispatchToProps = (dispatch: ThunkDispatch): PropsDispatch => ({
   },
 });
 
-export { withAuthorizationState };
+export { withFormState };
 
-export default compose(
+export default compose<any, PropsHoc>(
   connect<Props, PropsDispatch, {}, StateApp>(
     mapStateToProps,
     mapDispatchToProps,
   ),
-  withAuthorizationState,
+  withFormState,
 );

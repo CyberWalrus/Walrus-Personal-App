@@ -13,10 +13,7 @@
     min-height: 5rem;
     min-width: 14rem;
     border: 0.2rem solid var(--border-color);
-    @include background(
-      linear-gradient(180deg, var(--btn-color) 0, var(--btn-color) 100%),
-      var(--btn-color)
-    );
+    @include background(linear-gradient(180deg, var(--btn-color) 0, var(--btn-color) 100%), var(--btn-color));
     color: var(--text-color);
   }
 }
@@ -49,7 +46,7 @@
   &__nav {
     border-radius: 3rem;
     background: var(--color-secondary);
-    border: 0.2rem solid var(--color-primary_darker);
+    border: 0.4rem solid var(--color-primary_darker);
     overflow: hidden;
     @include box-shadow(0 0rem 1rem 0.5rem var(--color-primary_dark_50));
   }
@@ -62,24 +59,21 @@
   &__item {
     width: 100%;
     height: 100%;
-    @include box-shadow(
-      0 -0.2rem 1rem 0.05rem var(--color-primary_darker_25),
-      0 0.1rem 0.3rem 0.05rem var(--color-secondary_dark_50),
-      0 0.5rem 1rem 0.4rem var(--color-secondary_dark_50)
-    );
+    max-height: max-content;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0.3rem solid var(--color-secondary_darker);
     transition: all 0.2s ease-out;
+
+    @include box-shadow(
+      0 0rem 0.2rem 0rem var(--color-secondary_light_25) inset,
+      1rem 1rem 0.5rem -0.4rem var(--color-secondary_light_25) inset
+    );
+
     &:nth-of-type(1) {
-      border-radius: 3rem 3rem 0rem 0;
-      @include box-shadow(
-        0 0.1rem 0.3rem 0.05rem var(--color-secondary_dark_50),
-        0 0.5rem 1rem 0.4rem var(--color-secondary_dark_50)
-      );
-    }
-    &:nth-of-type(2) {
-      @include box-shadow(
-        0 0.1rem 0.3rem 0.05rem var(--color-secondary_dark_50),
-        0 0.5rem 1rem 0.4rem var(--color-secondary_dark_50)
-      );
+      margin-bottom: -0.5rem;
+      border-bottom: none;
+      @include box-shadow(none);
     }
     &:last-of-type {
       border-radius: 0rem 0rem 3rem 3rem;
@@ -107,12 +101,7 @@
       color: var(--color-primary_light);
       .menu-user__icon {
         @include background(
-          linear-gradient(
-            90deg,
-            var(--color-primary_dark) 0,
-            var(--color-primary_dark) 10%,
-            var(--color-opacity) 100%
-          )
+          linear-gradient(90deg, var(--color-primary_dark) 0, var(--color-primary_dark) 10%, var(--color-opacity) 100%)
         );
       }
     }
@@ -126,17 +115,15 @@
 }
 
 .container-btn {
-  margin: auto;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
   max-width: 100%;
   height: 6.2rem;
   border-radius: 3rem 3rem 0rem 0;
   background: var(--color-secondary_dark_50);
   border-bottom: 0.2rem solid var(--color-secondary);
-  box-shadow: inset 0 0 0.2rem 0.2rem var(--color-secondary_dark_75);
+  @include box-shadow(
+    0 0rem 0.2rem 0rem var(--color-secondary_light_25) inset,
+    1rem 1rem 0.5rem -0.6rem var(--color-secondary_light_25) inset
+  );
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -155,15 +142,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 5.2rem;
-    width: 7rem;
-    margin: 0rem 0.1em 0.2rem 0.1rem;
+    height: 5rem;
+    width: 6.4rem;
+    margin: 0rem 0.2em 0.7rem 0.2rem;
     max-width: 100%;
     max-height: 100%;
     background: var(--color-secondary);
     border-top: 0.1rem solid var(--color-secondary_dark);
-    box-shadow: 0 0rem 0.2rem 0rem var(--color-secondary_light_25) inset,
-      1rem 1rem 0.5rem -0.6rem var(--color-secondary_light_25) inset;
+
+    @include box-shadow(
+      0 0rem 0.2rem 0rem var(--color-secondary_light_25) inset,
+      1rem 1rem 0.5rem -0.6rem var(--color-secondary_light_25) inset
+    );
     transition: all 0.5s;
     &:nth-of-type(1) {
       border-top-left-radius: 3rem;
@@ -179,8 +169,7 @@
     &_active {
       border-bottom: 0.2rem solid var(--color-secondary);
       background: var(--color-secondary);
-      box-shadow: 0.2rem 0.2rem 1rem 0.4rem var(--color-secondary_darker_75)
-        inset;
+      @include box-shadow(0.2rem 0.2rem 1rem 0.4rem var(--color-secondary_darker_75) inset);
     }
   }
 
