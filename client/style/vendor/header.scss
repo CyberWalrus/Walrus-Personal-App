@@ -1,6 +1,6 @@
 .page-header {
-  background: var(--header-color);
-  color: var(--text-color-dop);
+  background: var(--color-secondary);
+  color: var(--color-primary);
   display: grid;
   grid-template-columns: minmax(6rem, 18rem) minmax(20rem, 1fr) minmax(6rem, 18rem);
   grid-template-areas: "logo menu user";
@@ -66,10 +66,12 @@
   }
   &__link {
     text-decoration: none;
-    color: var(--text-color-dop);
+    font-weight: bold;
+    color: var(--color-primary_dark);
+    transition: all 0.25s;
     &:hover,
     &:focus {
-      color: var(--text-color);
+      color: var(--color-primary_light);
     }
   }
 }

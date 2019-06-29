@@ -1,15 +1,22 @@
 *:focus {
   outline: 0;
-  @include box-shadow(0 0 1rem 0.2rem var(--shadow-color), 0 0 6rem 0.2rem var(--shadow-color) inset);
+  @include box-shadow(
+    0 0 1rem 0.2rem var(--color-primary_light_25),
+    0 0 6rem 0.2rem var(--color-primary_light_25) inset
+  );
 }
 html {
   font-size: var(--html-size, 62.5%);
+
+  @media only screen and (min-width: 125rem) {
+    font-size: 90%;
+  }
 }
 body {
   margin: 0;
   padding: 0;
-  background: var(--body-color);
-  color: var(--text-color);
+  background: var(--color-secondary_darker);
+  color: var(--color-primary);
   font-size: var(--body-font-size);
   font-family: "Roboto", sans-serif;
 }
@@ -19,7 +26,10 @@ body {
 .page {
   display: grid;
   min-height: 100vh;
-  grid-template-rows: minmax(3rem, max-content) minmax(max-content, 1fr) minmax(6rem, max-content);
+  grid-template-rows: minmax(3rem, max-content) minmax(max-content, 1fr) minmax(
+      6rem,
+      max-content
+    );
 }
 
 .visually-hidden {

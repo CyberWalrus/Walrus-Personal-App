@@ -46,7 +46,7 @@ class PageInfo extends PureComponent<Props> {
                 ))}
               </dl>
             </article>
-            <article className={`test`}/>
+            <article className={`test`} />
           </section>
         </main>
         <Footer />

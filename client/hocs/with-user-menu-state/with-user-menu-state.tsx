@@ -33,6 +33,9 @@ const withUserMenuState = (Component: any): ComponentClass<Props> => {
       };
       this.handlOpenChange = this.handlOpenChange.bind(this);
       this.handlLogout = this.handlLogout.bind(this);
+      this.handlClickConteinerButton = this.handlClickConteinerButton.bind(
+        this,
+      );
     }
     public handlOpenChange(): void {
       this.setState({
@@ -43,12 +46,20 @@ const withUserMenuState = (Component: any): ComponentClass<Props> => {
       event.preventDefault();
       this.props.onLogout();
     }
+    public handlClickConteinerButton(
+      event: React.ChangeEvent<HTMLLinkElement>,
+    ): void {
+      event.preventDefault();
+      event.target.classList.toggle(`container-btn__btn_active`);
+      event.target.parentElement.classList.toggle(`container-btn__item_active`);
+    }
     public render(): ReactElement {
       return (
         <Component
           {...this.props}
           onLogout={this.handlLogout}
           onClickMenu={this.handlOpenChange}
+          onButtonCLick={this.handlClickConteinerButton}
           isOpen={this.state.isOpen}
         />
       );

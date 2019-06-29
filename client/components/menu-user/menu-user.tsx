@@ -14,6 +14,7 @@ export interface PropsHoc {
   user: User;
   onLogout: () => void;
   onClickMenu: () => void;
+  onButtonCLick: () => void;
 }
 type Props = PropsHoc;
 const MenuUser: FunctionComponent<Props> = ({
@@ -22,6 +23,7 @@ const MenuUser: FunctionComponent<Props> = ({
   user,
   onClickMenu,
   onLogout,
+  onButtonCLick,
 }: Props): ReactElement => {
   return (
     <div className={`menu-user-box`}>
@@ -33,11 +35,53 @@ const MenuUser: FunctionComponent<Props> = ({
         )}
       </button>
       <div className={!isOpen ? `menu-user` : `menu-user menu-user_open`}>
-        <div className={`menu-user__arrow`}/>
+        <div className={`menu-user__arrow`} />
         {isAuthorization ? (
           <div className={`menu-user__box`}>
             <nav className={`menu-user__nav`}>
               <ul className={`menu-user__ul`}>
+                <li className={`menu-user__item`}>
+                  <div className="container-btn">
+                    <ul className={`container-btn__ul`}>
+                      <li className={`container-btn__item`}>
+                        <a
+                          href="#"
+                          className={`container-btn__btn`}
+                          onClick={onButtonCLick}
+                        >
+                          {`J`}
+                        </a>
+                      </li>
+                      <li className={`container-btn__item`}>
+                        <a
+                          href="#"
+                          className={`container-btn__btn`}
+                          onClick={onButtonCLick}
+                        >
+                          {`k`}
+                        </a>
+                      </li>
+                      <li className={`container-btn__item`}>
+                        <a
+                          href="#"
+                          className={`container-btn__btn`}
+                          onClick={onButtonCLick}
+                        >
+                          {`s`}
+                        </a>
+                      </li>
+                      <li className={`container-btn__item`}>
+                        <a
+                          href="#"
+                          className={`container-btn__btn`}
+                          onClick={onButtonCLick}
+                        >
+                          {`M`}
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
                 <li className={`menu-user__item`}>
                   <Link
                     to={RoutePath.OPTION}
@@ -54,7 +98,7 @@ const MenuUser: FunctionComponent<Props> = ({
                     className={`menu-user__link`}
                     tabIndex={!isOpen ? -1 : 0}
                   >
-                    <div className={`menu-user__icon`}>{`O`}</div>
+                    <div className={`menu-user__icon`}>{`i`}</div>
                     <div className={`menu-user__text`}>Info</div>
                   </Link>
                 </li>
@@ -65,7 +109,7 @@ const MenuUser: FunctionComponent<Props> = ({
                     className={`menu-user__link`}
                     tabIndex={!isOpen ? -1 : 0}
                   >
-                    <div className={`menu-user__icon`}>{`O`}</div>
+                    <div className={`menu-user__icon`}>{`Y`}</div>
                     <div className={`menu-user__text`}>Logout</div>
                   </a>
                 </li>
