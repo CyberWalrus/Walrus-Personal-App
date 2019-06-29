@@ -1,3 +1,4 @@
+import { PropsHoc } from "@client/components/menu-user/menu-user";
 import { getAuthorization, getUser } from "@client/store/user/selectors";
 import { User } from "@client/type/data";
 import { FormType } from "@config/constants";
@@ -31,16 +32,22 @@ const withUserMenuState = (Component: any): ComponentClass<Props> => {
         isOpen: false,
       };
       this.handlOpenChange = this.handlOpenChange.bind(this);
+      this.handlLogout = this.handlLogout.bind(this);
     }
     public handlOpenChange(): void {
       this.setState({
         isOpen: !this.state.isOpen,
       });
     }
+    public handlLogout(event: React.ChangeEvent<HTMLLinkElement>): void {
+      event.preventDefault();
+      this.props.onLogout();
+    }
     public render(): ReactElement {
       return (
         <Component
           {...this.props}
+          onLogout={this.handlLogout}
           onClickMenu={this.handlOpenChange}
           isOpen={this.state.isOpen}
         />
@@ -65,7 +72,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch): PropsDispatch => ({
 
 export { withUserMenuState };
 
-export default compose(
+export default compose<any, PropsHoc>(
   connect<Props, PropsDispatch, {}, StateApp>(
     mapStateToProps,
     mapDispatchToProps,

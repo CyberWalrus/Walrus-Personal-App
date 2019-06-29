@@ -5,6 +5,9 @@
     0 0 60px 2px var(--shadow-color) inset
   );
 }
+html{
+  font-size: var(--html-size, 62.5%);
+}
 body {
   margin: 0;
   padding: 0;
@@ -19,8 +22,8 @@ body {
 .page {
   display: grid;
   min-height: 100vh;
-  grid-template-rows: minmax(30px, max-content) minmax(max-content, 1fr) minmax(
-      60px,
+  grid-template-rows: minmax(3rem, max-content) minmax(max-content, 1fr) minmax(
+      6rem,
       max-content
     );
 }
@@ -40,20 +43,26 @@ body {
 }
 
 .info-icon {
-  padding: 5px 0;
+  padding: 0.5rem 0;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  grid-row-gap: 10px;
-  max-width: 500px;
+  grid-row-gap: 1rem;
+  max-width: 50rem;
   dt {
     display: flex;
     align-items: center;
     justify-content: flex-end;
   }
   dd {
-    margin-inline-start: 20px;
+    margin-inline-start: 2rem;
     display: flex;
     align-items: center;
     justify-content: flex-start;
   }
+}
+
+.test {
+  width: 10rem;
+  height: 10rem;
+  background-color: var(--color-primary)
 }

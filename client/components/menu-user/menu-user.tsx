@@ -38,22 +38,35 @@ const MenuUser: FunctionComponent<Props> = ({
             <nav className={`menu-user__nav`}>
               <ul className={`menu-user__ul`}>
                 <li className={`menu-user__item`}>
-                  <Link to={RoutePath.OPTION} className={`menu-user__link`}>
+                  <Link
+                    to={RoutePath.OPTION}
+                    className={`menu-user__link`}
+                    tabIndex={!isOpen ? -1 : 0}
+                  >
                     <div className={`menu-user__icon`}>{`O`}</div>
                     <div className={`menu-user__text`}>Option</div>
                   </Link>
                 </li>
                 <li className={`menu-user__item`}>
-                  <Link to={RoutePath.OPTION} className={`menu-user__link`}>
-                    <div className={`icon`}>{`O`}</div>
-                    <div className={`menu-user__text`}>Option</div>
+                  <Link
+                    to={RoutePath.INFO}
+                    className={`menu-user__link`}
+                    tabIndex={!isOpen ? -1 : 0}
+                  >
+                    <div className={`menu-user__icon`}>{`O`}</div>
+                    <div className={`menu-user__text`}>Info</div>
                   </Link>
                 </li>
                 <li className={`menu-user__item`}>
-                  <button onClick={onLogout} className={`menu-user__btn`}>
-                    <div className={`icon`}>{`O`}</div>
+                  <a
+                    href={`#`}
+                    onClick={onLogout}
+                    className={`menu-user__btn`}
+                    tabIndex={!isOpen ? -1 : 0}
+                  >
+                    <div className={`menu-user__icon`}>{`O`}</div>
                     <div className={`menu-user__text`}>Logout</div>
-                  </button>
+                  </a>
                 </li>
               </ul>
             </nav>
@@ -73,6 +86,6 @@ const MenuUser: FunctionComponent<Props> = ({
 
 export { MenuUser };
 
-const wrapper = compose(withUserMenuState);
+const wrapper = compose<PropsHoc, {}>(withUserMenuState);
 
 export default wrapper(MenuUser) as ComponentClass;
