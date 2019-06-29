@@ -4,8 +4,9 @@
   display: grid;
   grid-template-columns: minmax(6rem, 18rem) minmax(20rem, 1fr) minmax(6rem, 18rem);
   grid-template-areas: "logo menu user";
-  @media only screen and (max-width: 64rem) {
-    grid-template-columns: minmax(6rem, 18rem) minmax(6rem, 18rem);
+  height: 6rem;
+  @media only screen and (max-width: 50rem) {
+    grid-template-columns: minmax(6rem, 18rem) minmax(6rem, 1fr);
     grid-template-areas: "logo user";
     .menu {
       display: none;
@@ -37,7 +38,7 @@
     min-height: 5rem;
     justify-content: center;
     .logo__link {
-      margin-left: rem;
+      margin-left: 0rem;
       width: 4rem;
       height: 4rem;
     }

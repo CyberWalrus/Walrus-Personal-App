@@ -33,6 +33,7 @@ const MenuUser: FunctionComponent<Props> = ({
         )}
       </button>
       <div className={!isOpen ? `menu-user` : `menu-user menu-user_open`}>
+        <div className={`menu-user__arrow`}/>
         {isAuthorization ? (
           <div className={`menu-user__box`}>
             <nav className={`menu-user__nav`}>
@@ -61,7 +62,7 @@ const MenuUser: FunctionComponent<Props> = ({
                   <a
                     href={`#`}
                     onClick={onLogout}
-                    className={`menu-user__btn`}
+                    className={`menu-user__link`}
                     tabIndex={!isOpen ? -1 : 0}
                   >
                     <div className={`menu-user__icon`}>{`O`}</div>
