@@ -7,16 +7,16 @@
 }
 
 .form-custom {
-  padding: 10px 10px 30px 10px;
+  padding: 1rem 1rem 3rem 1rem;
   background: var(--header-color);
-  width: 560px;
+  width: 56rem;
   max-width: 90vw;
-  border-radius: 20px;
+  border-radius: 2rem;
   @include box-shadow(
-    0 0 10px 1px var(--shadow-color),
-    0 0 10px -2px var(--shadow-color) inset
+    0 0 1rem 0.1rem var(--shadow-color),
+    0 0 1rem  -0.2rem var(--shadow-color) inset
   );
-  border: 2px solid var(--shadow-color);
+  border: 0.2rem solid var(--shadow-color);
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -28,27 +28,27 @@
     margin: 0;
   }
   > * {
-    margin-top: 20px;
+    margin-top: 2rem;
   }
   &__message {
-    min-height: 30px;
+    min-height: 3rem;
   }
   &__fields {
   }
   &__input {
     font: inherit;
-    border-radius: 20px;
-    padding: 8px 0px 8px 12px;
-    border: 2px solid var(--border-color);
-    min-width: 240px;
+    border-radius: 2rem;
+    padding: 0.8rem rem 0.8rem 1.2rem;
+    border: 0.2rem solid var(--border-color);
+    min-width: 24rem;
   }
   &__btn {
     font: inherit;
     font-size: 110%;
-    border-radius: 20px;
-    min-height: 50px;
-    min-width: 140px;
-    border: 2px solid var(--border-color);
+    border-radius: 2rem;
+    min-height: 5rem;
+    min-width: 14rem;
+    border: 0.2rem solid var(--border-color);
     @include background(
       linear-gradient(180deg, var(--btn-color) 0, var(--btn-color) 100%),
       var(--btn-color)

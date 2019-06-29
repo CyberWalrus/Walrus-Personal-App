@@ -1,11 +1,8 @@
 *:focus {
   outline: 0;
-  @include box-shadow(
-    0 0 10px 2px var(--shadow-color),
-    0 0 60px 2px var(--shadow-color) inset
-  );
+  @include box-shadow(0 0 1rem 0.2rem var(--shadow-color), 0 0 6rem 0.2rem var(--shadow-color) inset);
 }
-html{
+html {
   font-size: var(--html-size, 62.5%);
 }
 body {
@@ -22,17 +19,14 @@ body {
 .page {
   display: grid;
   min-height: 100vh;
-  grid-template-rows: minmax(3rem, max-content) minmax(max-content, 1fr) minmax(
-      6rem,
-      max-content
-    );
+  grid-template-rows: minmax(3rem, max-content) minmax(max-content, 1fr) minmax(6rem, max-content);
 }
 
 .visually-hidden {
   position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
+  width: 0.1rem;
+  height: 0.1rem;
+  margin: -0.1rem;
   padding: 0;
   overflow: hidden;
   white-space: nowrap;
@@ -64,5 +58,5 @@ body {
 .test {
   width: 10rem;
   height: 10rem;
-  background-color: var(--color-primary)
+  background-color: var(--color-primary);
 }
