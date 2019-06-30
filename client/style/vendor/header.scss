@@ -2,9 +2,13 @@
   background: var(--color-secondary);
   color: var(--color-primary);
   display: grid;
-  grid-template-columns: minmax(6rem, 18rem) minmax(20rem, 1fr) minmax(6rem, 18rem);
+  grid-template-columns: minmax(6rem, 18rem) minmax(20rem, 1fr) minmax(
+      6rem,
+      18rem
+    );
   grid-template-areas: "logo menu user";
   height: 6rem;
+  @include box-shadow(0 0rem 1rem 0.5rem var(--color-primary_dark_50));
   @media only screen and (max-width: 50rem) {
     grid-template-columns: minmax(6rem, 18rem) minmax(6rem, 1fr);
     grid-template-areas: "logo user";
@@ -53,21 +57,39 @@
   width: 100%;
   height: 100%;
   user-select: none;
-  ul {
+  &__ul {
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
     display: grid;
-    grid-template-columns: repeat(3, minmax(10rem, max-content));
+    grid-template-columns: repeat(auto-fill, minmax(8rem, max-content));
   }
   &__item {
+    margin: 0;
+    padding: 0 0.5rem;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    height: 100%;
   }
   &__link {
+    margin: 0;
+    padding: 0rem;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
     text-decoration: none;
     font-weight: bold;
     color: var(--color-primary_dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: all 0.25s;
     &:hover,
     &:focus {

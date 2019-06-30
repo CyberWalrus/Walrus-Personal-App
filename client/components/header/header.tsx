@@ -13,7 +13,7 @@ const Header: FunctionComponent = (): ReactElement => {
         </Link>
       </div>
       <nav className={`menu`}>
-        <ul>
+        <ul className={`menu__ul`}>
           <li className={`menu__item`}>
             <Link to={RoutePath.INDEX} className={`menu__link`}>
               Main
