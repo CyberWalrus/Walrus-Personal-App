@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MenuUser correctly render with data 1`] = `
+<div
+  className="menu-user-box"
+>
+  <button
+    className="menu-user-box__btn"
+    onClick={[MockFunction]}
+  >
+    SignIn/SignUp
+  </button>
+  <div
+    className="menu-user menu-user_open"
+  >
+    <div
+      className="menu-user__arrow"
+    />
+    <div
+      className="menu-user__box"
+    >
+      <Connect(WithFormState)
+        formType="SIGN_IN"
+        titel="Sign In"
+      />
+      <Link
+        className="user__link"
+        to="/signup"
+      >
+        Sign Up
+      </Link>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`MenuUser correctly render without data 1`] = `
+<div
+  className="menu-user-box"
+>
+  <button
+    className="menu-user-box__btn"
+    onClick={[MockFunction]}
+  >
+    SignIn/SignUp
+  </button>
+  <div
+    className="menu-user menu-user_open"
+  >
+    <div
+      className="menu-user__arrow"
+    />
+    <div
+      className="menu-user__box"
+    >
+      <Connect(WithFormState)
+        formType="SIGN_IN"
+        titel="Sign In"
+      />
+      <Link
+        className="user__link"
+        to="/signup"
+      >
+        Sign Up
+      </Link>
+    </div>
+  </div>
+</div>
+`;

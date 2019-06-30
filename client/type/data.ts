@@ -6,7 +6,7 @@ export interface User {
   login: string;
   firstName: string;
   lastName: string;
-  userRoleId: string;
+  userRoleId: string[];
   signUpDate: number;
   created: number;
 }

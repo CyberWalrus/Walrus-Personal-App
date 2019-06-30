@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormCustom correctly render 1`] = `
+<form
+  className="form-custom"
+  onSubmit={[Function]}
+>
+  <div
+    className="form-custom__titel"
+  >
+    <h2>
+      test
+    </h2>
+  </div>
+  <div
+    className="form-custom__message"
+  />
+  <InputCustom
+    key="1"
+    onChangeInput={[Function]}
+    option={
+      Object {
+        "formTypes": Array [
+          "SIGN_UP",
+          "SIGN_IN",
+        ],
+        "hidenValue": "Email address",
+        "name": "email",
+        "placeHolder": "Email address",
+        "type": "email",
+      }
+    }
+  />
+  <InputCustom
+    key="2"
+    onChangeInput={[Function]}
+    option={
+      Object {
+        "formTypes": Array [
+          "SIGN_UP",
+          "SIGN_IN",
+        ],
+        "hidenValue": "Password",
+        "name": "password",
+        "placeHolder": "Password",
+        "type": "password",
+      }
+    }
+  />
+  <div
+    className="form-custom__submit"
+  >
+    <button
+      className="form-custom__btn"
+      disabled={false}
+      type="submit"
+    >
+      test
+    </button>
+  </div>
+</form>
+`;

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PageLogIn correctly render 1`] = `
+exports[`PageSignUp correctly render 1`] = `
 <div
   className="page"
 >
@@ -12,8 +12,8 @@ exports[`PageLogIn correctly render 1`] = `
       className="form-custom-box"
     >
       <Connect(WithFormState)
-        formType="SIGN_IN"
-        titel="Sign In"
+        formType="SIGN_UP"
+        titel="Sign Up"
       />
     </section>
   </main>

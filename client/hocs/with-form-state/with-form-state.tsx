@@ -1,6 +1,4 @@
-import {
-  PropsHoc,
-} from "@client/components/form-custom/form-custom";
+import { PropsHoc } from "@client/components/form-custom/form-custom";
 import { Operation as OperationData } from "@client/store/data/data";
 import { getError, getSuccess } from "@client/store/user/selectors";
 import { ActionCreator, Operation } from "@client/store/user/user";
@@ -247,6 +245,8 @@ const mapDispatchToProps = (dispatch: ThunkDispatch): PropsDispatch => ({
     dispatch(ActionCreator.resetError());
   },
 });
+
+export { withFormState };
 
 export default compose<any, PropsInsert>(
   connect<Props, PropsDispatch, {}, StateApp>(
