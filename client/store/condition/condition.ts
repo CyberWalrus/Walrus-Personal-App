@@ -17,7 +17,7 @@ const initialState: State = {
 };
 
 const ActionCreator = {
-  changeGenre: (value: number): ChangeID => {
+  changeId: (value: number): ChangeID => {
     return {
       payload: value,
       type: ActionType.SET_ID,
