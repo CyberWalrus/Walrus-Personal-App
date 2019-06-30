@@ -14,6 +14,7 @@ import InputCustom from "../input-custom/input-custom";
 
 export interface PropsInsert {
   titel: string;
+  isTitel?: boolean;
   formType: FormType;
 }
 export interface PropsHoc {
@@ -26,6 +27,7 @@ const FormCustom: FunctionComponent<Props> = ({
   titel,
   options,
   formType,
+  isTitel = true,
 }: Props): ReactElement => {
   const {
     values,
@@ -50,21 +52,27 @@ const FormCustom: FunctionComponent<Props> = ({
   });
   return (
     <form onSubmit={onClickSubmit} className={`form-custom`}>
-      <div className={`form-custom__titel`}>
-        <h2>{titel}</h2>
-      </div>
-      <div className={`form-custom__message`}>
-        {formErrors &&
-          Object.keys(formErrors).map(
-            (fieldName: string, i: number): ReactElement => {
-              if (formErrors[fieldName].length > 0) {
-                return <p key={i}>{formErrors[fieldName]}</p>;
-              } else {
-                return <Fragment key={i} />;
-              }
-            },
-          )}
-      </div>
+      {isTitel ? (
+        <Fragment>
+          <div className={`form-custom__titel`}>
+            <h2>{titel}</h2>
+          </div>
+          <div className={`form-custom__message`}>
+            {formErrors &&
+              Object.keys(formErrors).map(
+                (fieldName: string, i: number): ReactElement => {
+                  if (formErrors[fieldName].length > 0) {
+                    return <p key={i}>{formErrors[fieldName]}</p>;
+                  } else {
+                    return <Fragment key={i} />;
+                  }
+                },
+              )}
+          </div>
+        </Fragment>
+      ) : (
+        <Fragment />
+      )}
       {inputs.map((item: ReactElement): ReactElement => item)}
       <div className={`form-custom__submit`}>
         <button

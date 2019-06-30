@@ -6,6 +6,7 @@ import * as React from "react";
 import { ComponentClass, FunctionComponent, ReactElement } from "react";
 import { Link } from "react-router-dom";
 import { compose } from "recompose";
+import ContainerButton from "../container-button/container-button";
 import FormCustom from "../form-custom/form-custom";
 
 export interface PropsHoc {
@@ -41,46 +42,7 @@ const MenuUser: FunctionComponent<Props> = ({
             <nav className={`menu-user__nav`}>
               <ul className={`menu-user__ul`}>
                 <li className={`menu-user__item`}>
-                  <div className="container-btn">
-                    <ul className={`container-btn__ul`}>
-                      <li className={`container-btn__item`}>
-                        <a
-                          href="#"
-                          className={`container-btn__btn`}
-                          onClick={onButtonCLick}
-                        >
-                          {`J`}
-                        </a>
-                      </li>
-                      <li className={`container-btn__item`}>
-                        <a
-                          href="#"
-                          className={`container-btn__btn`}
-                          onClick={onButtonCLick}
-                        >
-                          {`k`}
-                        </a>
-                      </li>
-                      <li className={`container-btn__item`}>
-                        <a
-                          href="#"
-                          className={`container-btn__btn`}
-                          onClick={onButtonCLick}
-                        >
-                          {`s`}
-                        </a>
-                      </li>
-                      <li className={`container-btn__item`}>
-                        <a
-                          href="#"
-                          className={`container-btn__btn`}
-                          onClick={onButtonCLick}
-                        >
-                          {`M`}
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
+                  <ContainerButton onButtonCLick={onButtonCLick} />
                 </li>
                 <li className={`menu-user__item`}>
                   <Link
@@ -118,10 +80,26 @@ const MenuUser: FunctionComponent<Props> = ({
           </div>
         ) : (
           <div className={`menu-user__box`}>
-            <FormCustom formType={FormType.SIGN_IN} titel={`Sign In`} />
-            <Link to={RoutePath.SIGNUP} className={`user__link`}>
-              Sign Up
-            </Link>
+            <nav className={`menu-user__nav`}>
+              <ul className={`menu-user__ul`}>
+                <li className={`menu-user__item`}>
+                  <ContainerButton onButtonCLick={onButtonCLick} />
+                </li>
+                <li className={`menu-user__item`}>
+                  <FormCustom
+                    formType={FormType.SIGN_IN}
+                    titel={`Sign In`}
+                    isTitel={false}
+                  />
+                </li>
+                <li className={`menu-user__item`}>
+                  <Link to={RoutePath.SIGNUP} className={`menu-user__link`}>
+                    <div className={`menu-user__icon`}>{`N`}</div>
+                    <div className={`menu-user__text`}>SignUp</div>
+                  </Link>
+                </li>
+              </ul>
+            </nav>
           </div>
         )}
       </div>
