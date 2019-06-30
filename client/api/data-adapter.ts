@@ -6,6 +6,8 @@ import {
 } from "@client/type/dataResponse";
 
 const userAdapter = (data: UserResponse): User => {
+  const userRoleId: string[] = [];
+  userRoleId.push(data.userRole.toString());
   return {
     id: data._id,
     email: data.email,
@@ -14,7 +16,7 @@ const userAdapter = (data: UserResponse): User => {
     login: data.login,
     firstName: data.firstName,
     lastName: data.lastName,
-    userRoleId: data.userRole.toString(),
+    userRoleId,
     signUpDate: data.signUpDate,
     created: data.created,
   };

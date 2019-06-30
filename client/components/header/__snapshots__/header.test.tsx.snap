@@ -20,7 +20,9 @@ exports[`Header correctly render 1`] = `
   <nav
     className="menu"
   >
-    <ul>
+    <ul
+      className="menu__ul"
+    >
       <li
         className="menu__item"
       >
@@ -30,6 +32,9 @@ exports[`Header correctly render 1`] = `
         >
           Main
         </Link>
+        <span
+          className="menu__line"
+        />
       </li>
       <li
         className="menu__item"
@@ -41,17 +46,22 @@ exports[`Header correctly render 1`] = `
           Info
         </Link>
       </li>
+      <li
+        className="menu__item"
+      >
+        <Link
+          className="menu__link"
+          to="/option"
+        >
+          Option
+        </Link>
+      </li>
     </ul>
   </nav>
   <div
     className="user"
   >
-    <Link
-      className="user__link"
-      to="/login"
-    >
-      Sign In
-    </Link>
+    <Connect(WithUserMenuState) />
   </div>
 </header>
 `;

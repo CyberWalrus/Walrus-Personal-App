@@ -9,7 +9,15 @@ exports[`App correctly render 1`] = `
       path="/"
     />
     <Route
-      component={[Function]}
+      component={
+        Object {
+          "$$typeof": Symbol(react.memo),
+          "WrappedComponent": [Function],
+          "compare": null,
+          "displayName": "Connect(PageInfo)",
+          "type": [Function],
+        }
+      }
       exact={true}
       path="/info"
     />
@@ -17,6 +25,24 @@ exports[`App correctly render 1`] = `
       component={[Function]}
       exact={true}
       path="/login"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/signup"
+    />
+    <Route
+      component={
+        Object {
+          "$$typeof": Symbol(react.memo),
+          "WrappedComponent": [Function],
+          "compare": null,
+          "displayName": "Connect(WithDataState)",
+          "type": [Function],
+        }
+      }
+      exact={true}
+      path="/option"
     />
     <Redirect
       to="/"

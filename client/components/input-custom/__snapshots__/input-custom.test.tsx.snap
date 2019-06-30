@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InputCustom correctly render 1`] = `
+<div
+  className="form-custom__field"
+>
+  <input
+    className="form-custom__input"
+    id="custom-login"
+    name="login"
+    onChange={[Function]}
+    placeholder="Login"
+    type="text"
+    value=""
+  />
+  <label
+    className="form-custom__label visually-hidden"
+    htmlFor="custom-nodejs"
+  >
+    Login
+  </label>
+</div>
+`;

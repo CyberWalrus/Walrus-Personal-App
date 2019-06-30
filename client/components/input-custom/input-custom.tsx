@@ -1,13 +1,9 @@
+import { InputCustomInterface } from "@client/type/component";
 import * as React from "react";
 import { Fragment, FunctionComponent, ReactElement } from "react";
 
 interface PropsInsert {
-  option: {
-    name: string;
-    type: string;
-    placeHolder: string;
-    hidenValue: string;
-  };
+  option: InputCustomInterface;
 }
 interface PropsHoc {
   value: string;

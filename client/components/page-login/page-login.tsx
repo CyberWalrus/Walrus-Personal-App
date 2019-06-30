@@ -5,7 +5,7 @@ import Footer from "../footer/footer";
 import FormCustom from "../form-custom/form-custom";
 import Header from "../header/header";
 
-const PageLogin: FunctionComponent = (): ReactElement => {
+const PageLogIn: FunctionComponent = (): ReactElement => {
   return (
     <div className={`page`}>
       <Header />
@@ -19,4 +19,4 @@ const PageLogin: FunctionComponent = (): ReactElement => {
   );
 };
 
-export default PageLogin;
+export default PageLogIn;

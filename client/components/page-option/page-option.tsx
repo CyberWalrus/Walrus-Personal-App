@@ -22,7 +22,7 @@ interface DeleteId {
   onDelete: (id: string) => void;
 }
 const SortableItem = SortableElement(
-  ({name, id, isActive, onDelete}: UserRole & Delete): ReactElement => (
+  ({ name, id, isActive, onDelete }: UserRole & Delete): ReactElement => (
     <div className={`data-container`}>
       <div>{name}</div>
       <div>{id}</div>
@@ -39,10 +39,10 @@ interface PropsSortableList {
   items: UserRole[];
 }
 const SortableList = SortableContainer(
-  ({items, onDelete}: PropsSortableList & DeleteId) => {
+  ({ items, onDelete }: PropsSortableList & DeleteId) => {
     return (
       <fieldset className={`data-box`}>
-        {items.map(({name, id, isActive}: UserRole, index: number) => {
+        {items.map(({ name, id, isActive }: UserRole, index: number) => {
           const deleteFunc = (): void => onDelete(id);
           return (
             <SortableItem
@@ -88,6 +88,6 @@ const PageOptions: FunctionComponent<Props> = ({
 
 export { PageOptions };
 
-const wrapper = compose (withDataState);
+const wrapper = compose<any, Props>(withDataState);
 
 export default wrapper(PageOptions);
