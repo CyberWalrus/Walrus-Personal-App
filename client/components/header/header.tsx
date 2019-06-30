@@ -18,6 +18,7 @@ const Header: FunctionComponent = (): ReactElement => {
             <Link to={RoutePath.INDEX} className={`menu__link`}>
               Main
             </Link>
+            <span className={`menu__line`} />
           </li>
           <li className={`menu__item`}>
             <Link to={RoutePath.INFO} className={`menu__link`}>
