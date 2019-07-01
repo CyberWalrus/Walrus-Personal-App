@@ -6,7 +6,7 @@
       6rem,
       18rem
     );
-  grid-template-areas: "logo menu user";
+  grid-template-areas: "logo user";
   height: 6rem;
   @include box-shadow(0 0rem 1rem 0.5rem var(--color-primary_dark_50));
   @media only screen and (max-width: 50rem) {
@@ -50,6 +50,7 @@
 }
 
 .menu {
+  display: none;
   grid-area: menu;
   display: flex;
   align-items: center;

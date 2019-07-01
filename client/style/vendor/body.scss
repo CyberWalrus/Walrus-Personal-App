@@ -27,7 +27,7 @@ body {
   display: grid;
   min-height: 100vh;
   grid-template-rows: minmax(3rem, max-content) minmax(max-content, 1fr) minmax(
-      6rem,
+      min-content,
       max-content
     );
 }
