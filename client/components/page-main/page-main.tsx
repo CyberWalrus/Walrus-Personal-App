@@ -7,6 +7,15 @@ const PageMain: FunctionComponent = (): ReactElement => {
       <section>
         <h2>Main</h2>
         <article>input</article>
+        <div>
+          <div>
+            <div>test</div>
+            <div>test</div>
+            <div>test</div>
+            <div>test</div>
+            <div>test</div>
+          </div>
+        </div>
       </section>
     </main>
   );

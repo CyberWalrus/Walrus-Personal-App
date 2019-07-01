@@ -7,11 +7,11 @@
   #{$color}_25: #{change-color($value, $alpha: 0.25)};
 }
 @mixin defineColorVar($color, $value) {
-  @include defineColorOpacity(#{$color}_darker, scale-color($value, $lightness: -80%, $saturation: -80%));
-  @include defineColorOpacity(#{$color}_dark, scale-color($value, $lightness: -35%, $saturation: -35%));
+  @include defineColorOpacity(#{$color}_darker, scale-color($value, $lightness: -80%, $saturation: -40%));
+  @include defineColorOpacity(#{$color}_dark, scale-color($value, $lightness: -35%, $saturation: -20%));
   @include defineColorOpacity($color, $value);
-  @include defineColorOpacity(#{$color}_light, scale-color($value, $lightness: 40%, $saturation: 40%));
-  @include defineColorOpacity(#{$color}_lighter, scale-color($value, $lightness: 80%, $saturation: 80%));
+  @include defineColorOpacity(#{$color}_light, scale-color($value, $lightness: 40%, $saturation: 20%));
+  @include defineColorOpacity(#{$color}_lighter, scale-color($value, $lightness: 80%, $saturation: 40%));
 }
 :root {
   @include defineColorVar(--color-primary, $color-primary);

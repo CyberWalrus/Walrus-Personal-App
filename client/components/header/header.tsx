@@ -14,7 +14,7 @@ const Header: FunctionComponent = (): ReactElement => {
       </div>
       <nav className={`menu`}>
         <ul className={`menu__ul`}>
-          <li className={`menu__item`}>
+          <li className={`menu__item menu__item_active`}>
             <Link to={RoutePath.INDEX} className={`menu__link`}>
               Main
             </Link>
