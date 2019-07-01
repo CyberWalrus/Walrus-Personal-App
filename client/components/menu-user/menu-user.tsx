@@ -28,9 +28,14 @@ const MenuUser: FunctionComponent<Props> = ({
 }: Props): ReactElement => {
   return (
     <div className={`menu-user-box`}>
-      <button onClick={onClickMenu} className={`menu-user-box__btn`}>
+      <button
+        onClick={onClickMenu}
+        className={
+          isAuthorization ? `menu-user-box__btn menu-user-box__btn_icon` : `menu-user-box__btn`
+        }
+      >
         {isAuthorization ? (
-          <React.Fragment>{user ? user.login : ``}</React.Fragment>
+          <React.Fragment>{`L`}</React.Fragment>
         ) : (
           `SignIn/SignUp`
         )}
