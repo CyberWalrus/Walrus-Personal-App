@@ -6,8 +6,6 @@ import { connect } from "react-redux";
 import { Operation } from "../../store/data/data";
 import { getUsers } from "../../store/data/selectors";
 import { StateApp, ThunkDispatch } from "../../type/reducer";
-import Footer from "../footer/footer";
-import Header from "../header/header";
 
 interface PropsState {
   users: User[];
@@ -23,34 +21,30 @@ class PageInfo extends PureComponent<Props> {
   public render(): ReactElement {
     const users = this.props.users;
     return (
-      <div className={`page`}>
-        <Header />
-        <main className={`page-content`}>
-          <section>
-            <h2>Info</h2>
-            <article>
-              {users &&
-                users.map((item: User, index: number) => (
-                  <p key={index}>
-                    {item.login} {item.id}
-                  </p>
-                ))}
-            </article>
-            <article>
-              <dl className={`info-icon`}>
-                {iconNames.map((item: string, index: number) => (
-                  <React.Fragment key={index}>
-                    <dt>{item} :</dt>
-                    <dd className={`icon`}>{item}</dd>
-                  </React.Fragment>
-                ))}
-              </dl>
-            </article>
-            <article className={`test`} />
-          </section>
-        </main>
-        <Footer />
-      </div>
+      <main className={`page-content`}>
+        <section>
+          <h2>Info</h2>
+          <article>
+            {users &&
+              users.map((item: User, index: number) => (
+                <p key={index}>
+                  {item.login} {item.id}
+                </p>
+              ))}
+          </article>
+          <article>
+            <dl className={`info-icon`}>
+              {iconNames.map((item: string, index: number) => (
+                <React.Fragment key={index}>
+                  <dt>{item} :</dt>
+                  <dd className={`icon`}>{item}</dd>
+                </React.Fragment>
+              ))}
+            </dl>
+          </article>
+          <article className={`test`} />
+        </section>
+      </main>
     );
   }
 }

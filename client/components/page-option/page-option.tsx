@@ -5,9 +5,7 @@ import { FunctionComponent, ReactElement } from "react";
 import * as React from "react";
 import { SortableContainer, SortableElement } from "react-sortable-hoc";
 import { compose } from "recompose";
-import Footer from "../footer/footer";
 import FormCustom from "../form-custom/form-custom";
-import Header from "../header/header";
 
 export interface PropsHoc {
   userRoles: UserRole[];
@@ -66,23 +64,19 @@ const PageOptions: FunctionComponent<Props> = ({
   onDelete,
 }: Props): ReactElement => {
   return (
-    <div className={`page`}>
-      <Header />
-      <main className={`page-content`}>
-        <section>
-          <h2>Options</h2>
-          <SortableList
-            items={userRoles}
-            onSortEnd={onSortEnd}
-            onDelete={onDelete}
-          />
-        </section>
-        <section className={`form-custom-box`}>
-          <FormCustom formType={FormType.USER_ROLE} titel={`Add User Role`} />
-        </section>
-      </main>
-      <Footer />
-    </div>
+    <main className={`page-content`}>
+      <section>
+        <h2>Options</h2>
+        <SortableList
+          items={userRoles}
+          onSortEnd={onSortEnd}
+          onDelete={onDelete}
+        />
+      </section>
+      <section className={`form-custom-box`}>
+        <FormCustom formType={FormType.USER_ROLE} titel={`Add User Role`} />
+      </section>
+    </main>
   );
 };
 
