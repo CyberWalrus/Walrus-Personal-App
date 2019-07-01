@@ -1,4 +1,4 @@
-.menu-user-box {
+.menu-box {
   grid-area: user;
   display: flex;
   align-items: center;
@@ -7,7 +7,6 @@
   height: 100%;
   user-select: none;
   &__btn {
-    padding-right: 2rem;
     background: none;
     border: 0;
     margin: 0;
@@ -18,16 +17,16 @@
     text-decoration: none;
     font-weight: bold;
     color: var(--color-primary);
+    font-family: "walrus", sans-serif;
     font-size: 120%;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     transition: all 0.25s;
-    &_icon {
-      font-family: "walrus", sans-serif;
-    }
     &_active {
       color: var(--color-primary_lighter);
+      text-shadow: 0 0 1.5rem var(--color-primary_lighter_75);
+      background: var(--color-secondary_darker_50);
     }
     &:hover,
     &:focus {
@@ -41,8 +40,8 @@
   padding: 0rem;
   position: fixed;
   z-index: 999;
-  right: 0.5rem;
-  top: 6rem;
+  right: 0rem;
+  bottom: 4rem;
   max-width: 30rem;
   display: inline-block;
   visibility: hidden;
@@ -54,19 +53,18 @@
     opacity: 1;
   }
   &__arrow {
-    margin-top: -1rem;
-    margin-left: 20rem;
+    margin-top: 0rem;
+    margin-left: 23rem;
     width: 0rem;
     height: 0rem;
     border: 1.5rem solid var(--color-opacity);
-    border-bottom: 1.5rem solid var(--color-primary_dark_75);
+    border-top: 1.5rem solid var(--color-primary_darker);
   }
   &__nav {
     border-radius: 3rem;
     background: var(--color-secondary);
     border: 0.4rem solid var(--color-primary_darker);
     overflow: hidden;
-    @include box-shadow(0 0rem 1rem 0.5rem var(--color-primary_dark_50));
   }
   &__ul {
     display: grid;

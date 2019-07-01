@@ -30,9 +30,7 @@ const MenuBottom: FunctionComponent = (): ReactElement => {
             </Link>
           </li>
           <li className={`menu-bottom__item`}>
-            <Link to={RoutePath.USER} className={`menu-bottom__link`}>
-              {`s`}
-            </Link>
+            <MenuUser />
           </li>
         </ul>
       </nav>

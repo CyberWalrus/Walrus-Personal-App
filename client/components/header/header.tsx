@@ -8,8 +8,7 @@ import {
   RefObject,
 } from "react";
 import { Link } from "react-router-dom";
-import { compose } from "redux";
-import MenuUser from "../menu-user/menu-user";
+import MenuLink from "../menu-link/menu-link";
 
 const Header = React.forwardRef(
   ({  }: {}, ref: RefObject<HTMLDivElement>): ReactElement => {
@@ -32,7 +31,7 @@ const Header = React.forwardRef(
           </Link>
         </div>
         <div className={`page-header__menu`}>
-          <MenuUser />
+          <MenuLink />
         </div>
       </header>
     );

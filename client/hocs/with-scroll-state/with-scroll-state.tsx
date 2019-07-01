@@ -32,7 +32,7 @@ const withScrollState = (Component: any): ComponentClass => {
     private _handleScroll(): void {
       const header = this.ref.current;
       const isScrollTop = this.state.scrollValue >= window.pageYOffset;
-      if (window.pageYOffset > header.clientHeight && !isScrollTop) {
+      if (window.pageYOffset > header.clientHeight / 2 && !isScrollTop) {
         header.classList.add(`page-header_position_fixed`);
       }
       if (isScrollTop) {
