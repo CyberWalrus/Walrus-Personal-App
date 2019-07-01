@@ -63,6 +63,7 @@
   }
   &__btn {
     margin-bottom: 1rem;
+    padding: 0.2rem 1rem;
     font: inherit;
     font-size: 110%;
     border-radius: 2rem;
@@ -70,7 +71,7 @@
     min-width: 14rem;
     border: 0.1rem solid var(--color-primary_dark);
     background: var(--color-primary_dark);
-    color: var(--color-primary_light);
+    color: var(--color-primary_lighter);
     @include box-shadow(
       0 0rem 0.3rem 0.2rem var(--color-primary_50),
       0 0rem 0.2rem 0rem var(--color-secondary_dark_50) inset,

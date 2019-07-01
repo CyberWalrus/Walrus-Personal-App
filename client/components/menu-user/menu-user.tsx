@@ -45,21 +45,13 @@ const MenuUser: FunctionComponent<Props> = ({
                   <ContainerButton onButtonCLick={onButtonCLick} />
                 </li>
                 <li className={`menu-user__item`}>
-                  <Link
-                    to={RoutePath.OPTION}
-                    className={`menu-user__link`}
-                    tabIndex={!isOpen ? -1 : 0}
-                  >
+                  <Link to={RoutePath.OPTION} className={`menu-user__link`}>
                     <div className={`menu-user__icon`}>{`O`}</div>
                     <div className={`menu-user__text`}>Option</div>
                   </Link>
                 </li>
                 <li className={`menu-user__item`}>
-                  <Link
-                    to={RoutePath.INFO}
-                    className={`menu-user__link`}
-                    tabIndex={!isOpen ? -1 : 0}
-                  >
+                  <Link to={RoutePath.INFO} className={`menu-user__link`}>
                     <div className={`menu-user__icon`}>{`i`}</div>
                     <div className={`menu-user__text`}>Info</div>
                   </Link>
@@ -69,7 +61,6 @@ const MenuUser: FunctionComponent<Props> = ({
                     href={`#`}
                     onClick={onLogout}
                     className={`menu-user__link`}
-                    tabIndex={!isOpen ? -1 : 0}
                   >
                     <div className={`menu-user__icon`}>{`Y`}</div>
                     <div className={`menu-user__text`}>Logout</div>

@@ -73,7 +73,7 @@ const PageOptions: FunctionComponent<Props> = ({
           onDelete={onDelete}
         />
       </section>
-      <section className={`form-custom-box`}>
+      <section className={``}>
         <FormCustom formType={FormType.USER_ROLE} titel={`Add User Role`} />
       </section>
     </main>

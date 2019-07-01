@@ -67,7 +67,8 @@
 
     @include box-shadow(
       0 0rem 0.2rem 0rem var(--color-secondary_light_25) inset,
-      1rem 1rem 0.5rem -0.4rem var(--color-secondary_light_25) inset
+      1rem 1rem 0.5rem -0.4rem var(--color-secondary_light_25) inset,
+      -1rem -1rem 0.5rem -0.6rem var(--color-secondary_dark_50) inset
     );
 
     &:nth-of-type(1) {
@@ -88,7 +89,7 @@
     line-height: 2.5;
     display: grid;
     grid-template-columns: 4rem 1fr 4rem;
-    color: var(--color-primary_dark);
+    color: var(--color-primary);
     transition: all 0.2s ease-out;
     > div {
       background: var(--color-opacity);
@@ -98,7 +99,7 @@
     }
     &:hover,
     &:focus {
-      color: var(--color-primary_light);
+      color: var(--color-primary_lighter);
       .menu-user__icon {
         @include background(
           linear-gradient(90deg, var(--color-primary_dark) 0, var(--color-primary_dark) 10%, var(--color-opacity) 100%)
@@ -187,10 +188,10 @@
     align-items: center;
     justify-content: center;
     font-family: "walrus", sans-serif;
-    color: var(--color-primary_dark);
+    color: var(--color-primary);
     &_active {
-      color: var(--color-primary_light);
-      text-shadow: 0 0 1.5rem var(--color-primary_light_75);
+      color: var(--color-primary_lighter);
+      text-shadow: 0 0 1.5rem var(--color-primary_lighter_75);
     }
   }
 }
