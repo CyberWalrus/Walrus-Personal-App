@@ -91,6 +91,9 @@
     align-items: center;
     justify-content: center;
     transition: all 0.25s;
+    &_active {
+      color: var(--color-primary_lighter);
+    }
     &:hover,
     &:focus {
       color: var(--color-primary_light);

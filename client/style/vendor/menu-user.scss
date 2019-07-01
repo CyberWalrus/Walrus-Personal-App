@@ -152,7 +152,8 @@
 
     @include box-shadow(
       0 0rem 0.2rem 0rem var(--color-secondary_light_25) inset,
-      1rem 1rem 0.5rem -0.6rem var(--color-secondary_light_25) inset
+      1rem 1rem 0.5rem -0.6rem var(--color-secondary_light_25) inset,
+      -1rem -1rem 0.5rem -0.6rem var(--color-secondary_dark_50) inset
     );
     transition: all 0.5s;
     &:nth-of-type(1) {
