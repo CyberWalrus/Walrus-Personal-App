@@ -9,6 +9,7 @@ import PageLogin from "../page-login/page-login";
 import PageMain from "../page-main/page-main";
 import PageOption from "../page-option/page-option";
 import PageSignUp from "../page-sign-up/page-sign-up";
+import PageUser from "../page-user/page-user";
 
 const App: FunctionComponent = (): ReactElement => {
   return (
@@ -16,10 +17,11 @@ const App: FunctionComponent = (): ReactElement => {
       <Header />
       <Switch>
         <Route path={RoutePath.INDEX} exact={true} component={PageMain} />
-        <Route path={RoutePath.INFO} exact={true} component={PageInfo} />
-        <Route path={RoutePath.LOGIN} exact={true} component={PageLogin} />
-        <Route path={RoutePath.SIGNUP} exact={true} component={PageSignUp} />
-        <Route path={RoutePath.OPTION} exact={true} component={PageOption} />
+        <Route path={RoutePath.INFO} component={PageInfo} />
+        <Route path={RoutePath.LOGIN} component={PageLogin} />
+        <Route path={RoutePath.SIGNUP} component={PageSignUp} />
+        <Route path={RoutePath.OPTION} component={PageOption} />
+        <Route path={RoutePath.USER} component={PageUser} />
         <Redirect to={RoutePath.INDEX} />
       </Switch>
       <Footer />

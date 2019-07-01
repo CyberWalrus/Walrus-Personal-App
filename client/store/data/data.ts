@@ -12,10 +12,12 @@ import {
 import NameSpace from "../name-spaces";
 
 enum ActionType {
+  SET_USER = "SET_USER",
   SET_USERS = "SET_USERS",
   SET_USERS_ROLE = "SET_USERS_ROLE",
 }
 export interface State {
+  user: User;
   users: User[];
   userRoles: UserRole[];
 }
@@ -23,13 +25,18 @@ interface SetUsers extends ReduxAction {
   type: typeof ActionType.SET_USERS;
   payload: User[];
 }
+interface SetUser extends ReduxAction {
+  type: typeof ActionType.SET_USER;
+  payload: User;
+}
 interface SetUserRoles extends ReduxAction {
   type: typeof ActionType.SET_USERS_ROLE;
   payload: UserRole[];
 }
-export type Action = SetUsers | SetUserRoles;
+export type Action = SetUsers | SetUser | SetUserRoles;
 
 const initialState: State = {
+  user: undefined,
   users: [],
   userRoles: [],
 };
@@ -39,6 +46,12 @@ const ActionCreator = {
     return {
       type: ActionType.SET_USERS,
       payload: users.map(userAdapter),
+    };
+  },
+  setUser: (user: UserResponse): SetUser => {
+    return {
+      type: ActionType.SET_USER,
+      payload: userAdapter(user),
     };
   },
   setUserRoles: (userRoles: UserRoleResponse[]): SetUserRoles => {
@@ -74,6 +87,20 @@ const Operation = {
         );
     };
   },
+  getUser: (id: string): ThunkAction => {
+    return (
+      dispatch: ThunkDispatch,
+      _getState: () => StateApp,
+      api: AxiosInstance,
+    ): Promise<void> => {
+      return api
+        .get(changeParam(id, ApiRoutes.GET_USER))
+        .then((response: AxiosResponse<Record<string, UserResponse>>): void => {
+          const data: UserResponse = response.data;
+          dispatch(ActionCreator.setUser(data));
+        });
+    };
+  },
   getUserRoles: (): ThunkAction => {
     return (
       dispatch: ThunkDispatch,
@@ -98,7 +125,7 @@ const Operation = {
       _getState: () => StateApp,
       api: AxiosInstance,
     ): Promise<void> => {
-      return api.post(ApiRoutes.ADD_USER_ROLE, {name}).then((): void => {
+      return api.post(ApiRoutes.ADD_USER_ROLE, { name }).then((): void => {
         dispatch(Operation.getUserRoles());
       });
     };
@@ -121,9 +148,11 @@ const Operation = {
 const reducer = (state: State = initialState, action: Action): State => {
   switch (action.type) {
     case ActionType.SET_USERS:
-      return {...state, users: action.payload};
+      return { ...state, users: action.payload };
+    case ActionType.SET_USER:
+      return { ...state, user: action.payload };
     case ActionType.SET_USERS_ROLE:
-      return {...state, userRoles: action.payload};
+      return { ...state, userRoles: action.payload };
 
     default:
       return state;

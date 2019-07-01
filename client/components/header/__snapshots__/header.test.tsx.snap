@@ -24,7 +24,7 @@ exports[`Header correctly render 1`] = `
       className="menu__ul"
     >
       <li
-        className="menu__item"
+        className="menu__item menu__item_active"
       >
         <Link
           className="menu__link"
@@ -54,6 +54,16 @@ exports[`Header correctly render 1`] = `
           to="/option"
         >
           Option
+        </Link>
+      </li>
+      <li
+        className="menu__item"
+      >
+        <Link
+          className="menu__link"
+          to="/user"
+        >
+          Users
         </Link>
       </li>
     </ul>

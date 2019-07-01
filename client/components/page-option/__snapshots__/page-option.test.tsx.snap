@@ -1,100 +1,88 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PageOptions correctly render with data 1`] = `
-<div
-  className="page"
+<main
+  className="page-content"
 >
-  <Header />
-  <main
-    className="page-content"
+  <section>
+    <h2>
+      Options
+    </h2>
+    <sortableList
+      axis="y"
+      disableAutoscroll={false}
+      distance={0}
+      getHelperDimensions={[Function]}
+      hideSortableGhost={true}
+      items={
+        Array [
+          Object {
+            "id": "test",
+            "isActive": true,
+            "name": "test",
+          },
+          Object {
+            "id": "test",
+            "isActive": true,
+            "name": "test",
+          },
+        ]
+      }
+      lockOffset="50%"
+      lockToContainerEdges={false}
+      onDelete={[MockFunction]}
+      onSortEnd={[MockFunction]}
+      pressDelay={0}
+      pressThreshold={5}
+      shouldCancelStart={[Function]}
+      transitionDuration={300}
+      useWindowAsScrollContainer={false}
+    />
+  </section>
+  <section
+    className=""
   >
-    <section>
-      <h2>
-        Options
-      </h2>
-      <sortableList
-        axis="y"
-        disableAutoscroll={false}
-        distance={0}
-        getHelperDimensions={[Function]}
-        hideSortableGhost={true}
-        items={
-          Array [
-            Object {
-              "id": "test",
-              "isActive": true,
-              "name": "test",
-            },
-            Object {
-              "id": "test",
-              "isActive": true,
-              "name": "test",
-            },
-          ]
-        }
-        lockOffset="50%"
-        lockToContainerEdges={false}
-        onDelete={[MockFunction]}
-        onSortEnd={[MockFunction]}
-        pressDelay={0}
-        pressThreshold={5}
-        shouldCancelStart={[Function]}
-        transitionDuration={300}
-        useWindowAsScrollContainer={false}
-      />
-    </section>
-    <section
-      className="form-custom-box"
-    >
-      <Connect(WithFormState)
-        formType="USER_ROLE"
-        titel="Add User Role"
-      />
-    </section>
-  </main>
-  <Footer />
-</div>
+    <Connect(WithFormState)
+      formType="USER_ROLE"
+      titel="Add User Role"
+    />
+  </section>
+</main>
 `;
 
 exports[`PageOptions correctly render without data 1`] = `
-<div
-  className="page"
+<main
+  className="page-content"
 >
-  <Header />
-  <main
-    className="page-content"
+  <section>
+    <h2>
+      Options
+    </h2>
+    <sortableList
+      axis="y"
+      disableAutoscroll={false}
+      distance={0}
+      getHelperDimensions={[Function]}
+      hideSortableGhost={true}
+      items={Array []}
+      lockOffset="50%"
+      lockToContainerEdges={false}
+      onDelete={[MockFunction]}
+      onSortEnd={[MockFunction]}
+      pressDelay={0}
+      pressThreshold={5}
+      shouldCancelStart={[Function]}
+      transitionDuration={300}
+      useWindowAsScrollContainer={false}
+    />
+  </section>
+  <section
+    className=""
   >
-    <section>
-      <h2>
-        Options
-      </h2>
-      <sortableList
-        axis="y"
-        disableAutoscroll={false}
-        distance={0}
-        getHelperDimensions={[Function]}
-        hideSortableGhost={true}
-        items={Array []}
-        lockOffset="50%"
-        lockToContainerEdges={false}
-        onDelete={[MockFunction]}
-        onSortEnd={[MockFunction]}
-        pressDelay={0}
-        pressThreshold={5}
-        shouldCancelStart={[Function]}
-        transitionDuration={300}
-        useWindowAsScrollContainer={false}
-      />
-    </section>
-    <section
-      className="form-custom-box"
-    >
-      <Connect(WithFormState)
-        formType="USER_ROLE"
-        titel="Add User Role"
-      />
-    </section>
-  </main>
-  <Footer />
-</div>
+    <Connect(WithFormState)
+      formType="USER_ROLE"
+      titel="Add User Role"
+    />
+  </section>
+</main>
 `;

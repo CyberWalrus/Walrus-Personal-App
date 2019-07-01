@@ -1,22 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PageSignUp correctly render 1`] = `
-<div
-  className="page"
+<main
+  className="page-content"
 >
-  <Header />
-  <main
-    className="page-content"
+  <section
+    className="form-custom-box"
   >
-    <section
-      className="form-custom-box"
-    >
-      <Connect(WithFormState)
-        formType="SIGN_UP"
-        titel="Sign Up"
-      />
-    </section>
-  </main>
-  <Footer />
-</div>
+    <Connect(WithFormState)
+      formType="SIGN_UP"
+      titel="Sign Up"
+    />
+  </section>
+</main>
 `;

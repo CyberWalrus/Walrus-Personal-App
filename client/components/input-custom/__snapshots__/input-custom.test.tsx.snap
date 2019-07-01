@@ -6,7 +6,6 @@ exports[`InputCustom correctly render 1`] = `
 >
   <input
     className="form-custom__input"
-    id="custom-login"
     name="login"
     onChange={[Function]}
     placeholder="Login"
@@ -15,7 +14,6 @@ exports[`InputCustom correctly render 1`] = `
   />
   <label
     className="form-custom__label visually-hidden"
-    htmlFor="custom-nodejs"
   >
     Login
   </label>

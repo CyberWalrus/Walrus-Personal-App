@@ -1,7 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`App correctly render 1`] = `
-<BrowserRouter>
+<div
+  className="page"
+>
+  <Header />
   <Switch>
     <Route
       component={[Function]}
@@ -18,17 +21,14 @@ exports[`App correctly render 1`] = `
           "type": [Function],
         }
       }
-      exact={true}
       path="/info"
     />
     <Route
       component={[Function]}
-      exact={true}
       path="/login"
     />
     <Route
       component={[Function]}
-      exact={true}
       path="/signup"
     />
     <Route
@@ -41,12 +41,16 @@ exports[`App correctly render 1`] = `
           "type": [Function],
         }
       }
-      exact={true}
       path="/option"
+    />
+    <Route
+      component={[Function]}
+      path="/user"
     />
     <Redirect
       to="/"
     />
   </Switch>
-</BrowserRouter>
+  <Footer />
+</div>
 `;

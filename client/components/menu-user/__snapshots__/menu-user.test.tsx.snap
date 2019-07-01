@@ -19,16 +19,49 @@ exports[`MenuUser correctly render with data 1`] = `
     <div
       className="menu-user__box"
     >
-      <Connect(WithFormState)
-        formType="SIGN_IN"
-        titel="Sign In"
-      />
-      <Link
-        className="user__link"
-        to="/signup"
+      <nav
+        className="menu-user__nav"
       >
-        Sign Up
-      </Link>
+        <ul
+          className="menu-user__ul"
+        >
+          <li
+            className="menu-user__item"
+          >
+            <ContainerButton
+              onButtonCLick={[MockFunction]}
+            />
+          </li>
+          <li
+            className="menu-user__item"
+          >
+            <Connect(WithFormState)
+              formType="SIGN_IN"
+              isTitel={false}
+              titel="Sign In"
+            />
+          </li>
+          <li
+            className="menu-user__item"
+          >
+            <Link
+              className="menu-user__link"
+              to="/signup"
+            >
+              <div
+                className="menu-user__icon"
+              >
+                N
+              </div>
+              <div
+                className="menu-user__text"
+              >
+                SignUp
+              </div>
+            </Link>
+          </li>
+        </ul>
+      </nav>
     </div>
   </div>
 </div>
@@ -53,16 +86,49 @@ exports[`MenuUser correctly render without data 1`] = `
     <div
       className="menu-user__box"
     >
-      <Connect(WithFormState)
-        formType="SIGN_IN"
-        titel="Sign In"
-      />
-      <Link
-        className="user__link"
-        to="/signup"
+      <nav
+        className="menu-user__nav"
       >
-        Sign Up
-      </Link>
+        <ul
+          className="menu-user__ul"
+        >
+          <li
+            className="menu-user__item"
+          >
+            <ContainerButton
+              onButtonCLick={[MockFunction]}
+            />
+          </li>
+          <li
+            className="menu-user__item"
+          >
+            <Connect(WithFormState)
+              formType="SIGN_IN"
+              isTitel={false}
+              titel="Sign In"
+            />
+          </li>
+          <li
+            className="menu-user__item"
+          >
+            <Link
+              className="menu-user__link"
+              to="/signup"
+            >
+              <div
+                className="menu-user__icon"
+              >
+                N
+              </div>
+              <div
+                className="menu-user__text"
+              >
+                SignUp
+              </div>
+            </Link>
+          </li>
+        </ul>
+      </nav>
     </div>
   </div>
 </div>

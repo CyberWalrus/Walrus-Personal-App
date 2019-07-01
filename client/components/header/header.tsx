@@ -30,6 +30,11 @@ const Header: FunctionComponent = (): ReactElement => {
               Option
             </Link>
           </li>
+          <li className={`menu__item`}>
+            <Link to={RoutePath.USER} className={`menu__link`}>
+              Users
+            </Link>
+          </li>
         </ul>
       </nav>
       <div className={`user`}>

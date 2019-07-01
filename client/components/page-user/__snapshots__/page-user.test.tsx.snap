@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageUser correctly render 1`] = `
+<Switch>
+  <Route
+    component={
+      Object {
+        "$$typeof": Symbol(react.memo),
+        "WrappedComponent": [Function],
+        "compare": null,
+        "displayName": "Connect(ScreenUsers)",
+        "type": [Function],
+      }
+    }
+    exact={true}
+    path="/user"
+  />
+  <Route
+    path="/user/:id"
+    render={[Function]}
+  />
+</Switch>
+`;

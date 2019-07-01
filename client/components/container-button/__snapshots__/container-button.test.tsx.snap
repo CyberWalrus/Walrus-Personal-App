@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ContainerButton correctly render 1`] = `
+<div
+  className="container-btn"
+>
+  <ul
+    className="container-btn__ul"
+  >
+    <li
+      className="container-btn__item"
+    >
+      <a
+        className="container-btn__btn"
+        href="#"
+        onClick={[MockFunction]}
+      >
+        J
+      </a>
+    </li>
+    <li
+      className="container-btn__item"
+    >
+      <a
+        className="container-btn__btn"
+        href="#"
+        onClick={[MockFunction]}
+      >
+        k
+      </a>
+    </li>
+    <li
+      className="container-btn__item"
+    >
+      <a
+        className="container-btn__btn"
+        href="#"
+        onClick={[MockFunction]}
+      >
+        s
+      </a>
+    </li>
+    <li
+      className="container-btn__item"
+    >
+      <a
+        className="container-btn__btn"
+        href="#"
+        onClick={[MockFunction]}
+      >
+        M
+      </a>
+    </li>
+  </ul>
+</div>
+`;

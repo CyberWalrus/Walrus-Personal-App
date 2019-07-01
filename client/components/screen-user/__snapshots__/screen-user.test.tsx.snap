@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ScreenUser correctly render without data 1`] = `
+<main
+  className="page-content"
+>
+  <section
+    className="form-custom-box"
+  />
+</main>
+`;
+
+exports[`ScreenUser correctly render without data 2`] = `
+<main
+  className="page-content"
+>
+  <section
+    className="form-custom-box"
+  >
+    <div>
+      <div>
+        test
+      </div>
+      <div>
+        test
+      </div>
+    </div>
+  </section>
+</main>
+`;
