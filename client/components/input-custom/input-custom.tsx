@@ -22,13 +22,11 @@ const InputCustom: FunctionComponent<Props> = ({
         type={option.type}
         placeholder={option.placeHolder}
         name={option.name}
-        id={`custom-${option.name}`}
         value={value}
         onChange={onChangeInput}
       />
       <label
         className={`form-custom__label visually-hidden`}
-        htmlFor={`custom-${name}`}
       >
         {option.hidenValue}
       </label>
