@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "clean": "rimraf ./dist/bundel* && rimraf ./dist/bundel.js.map && rimraf dist/css/*",
+    "clean": "rimraf ./dist/css/* ./dist/js/*",
     "dev-client": "webpack-dev-server",
     "tslint": "tslint -c tslint.json 'client/**/*.{ts,tsx} & tslint -c tslint.json 'server/**/*.{ts,tsx}",
     "test": "npm run tslint && jest",

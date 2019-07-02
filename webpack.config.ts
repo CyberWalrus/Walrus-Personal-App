@@ -12,7 +12,7 @@ const webpackConfig: webpack.Configuration = {
     bundle: [root(`client/index.tsx`), root(`client/style/style.scss`), root(`client/style/normalize.scss`)],
   },
   output: {
-    filename: `bundle.js`,
+    filename: `js/bundle.js`,
     path: root(`dist/`),
   },
   devServer: {
