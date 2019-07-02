@@ -1,7 +1,7 @@
-front/build
 node_modules
 .idea/*
 *.iml
+config/db/db.ts
 dist/css
 dist/js
 server_compiled
