@@ -4,10 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "clean": "rimraf ./dist/css/* ./dist/js/* ./server_compiled/*",
     "dev-client": "webpack-dev-server",
     "tslint": "tslint -c tslint.json 'client/**/*.{ts,tsx} & tslint -c tslint.json 'server/**/*.{ts,tsx}",
     "test": "npm run tslint && jest",
-    "start": "ts-node-dev --respawn --transpileOnly -r tsconfig-paths/register ./server/server.ts"
+    "start": "ts-node-dev --respawn --transpileOnly -r tsconfig-paths/register ./server/server.ts",
+    "build:client": "webpack --mode production",
+    "build:server": "tsc -b tsconfig.json",
+    "start:prod": "npm run build:client && set NODE_ENV=production&& ts-node -r tsconfig-paths/register ./server/server.ts"
   },
   "repository": {
     "type": "git",
@@ -62,6 +66,7 @@
     "jest": "24.8.0",
     "mongoose": "5.6.0",
     "node-sass": "4.12.0",
+    "nodemon": "1.19.1",
     "normalize-scss": "7.0.1",
     "postcss-loader": "3.0.0",
     "redux-devtools-extension": "2.13.8",

@@ -17,8 +17,8 @@ const webpackConfig: webpack.Configuration = merge(commonConfig, {
   },
 
   output: {
-    filename: `[name].js`,
-    chunkFilename: `[id].chunk.js`,
+    filename: `js/[name].js`,
+    chunkFilename: `js/[id].chunk.js`,
   },
 
   devServer: {

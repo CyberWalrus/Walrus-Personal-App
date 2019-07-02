@@ -1,4 +1,4 @@
-.menu-user-box {
+.menu-box {
   grid-area: user;
   display: flex;
   align-items: center;
@@ -7,14 +7,31 @@
   height: 100%;
   user-select: none;
   &__btn {
-    font: inherit;
-    font-size: 110%;
-    border-radius: 2rem;
-    min-height: 5rem;
-    min-width: 14rem;
-    border: 0.2rem solid var(--border-color);
-    @include background(linear-gradient(180deg, var(--btn-color) 0, var(--btn-color) 100%), var(--btn-color));
-    color: var(--text-color);
+    background: none;
+    border: 0;
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--color-primary);
+    font-family: "walrus", sans-serif;
+    font-size: 120%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s;
+    &_active {
+      color: var(--color-primary_lighter);
+      text-shadow: 0 0 1.5rem var(--color-primary_lighter_75);
+      background: var(--color-secondary_darker_50);
+    }
+    &:hover,
+    &:focus {
+      color: var(--color-primary_lighter);
+    }
   }
 }
 
@@ -23,8 +40,8 @@
   padding: 0rem;
   position: fixed;
   z-index: 999;
-  right: 0.5rem;
-  top: 6rem;
+  right: 0rem;
+  bottom: 4rem;
   max-width: 30rem;
   display: inline-block;
   visibility: hidden;
@@ -36,19 +53,18 @@
     opacity: 1;
   }
   &__arrow {
-    margin-top: -1rem;
-    margin-left: 20rem;
+    margin-top: 0rem;
+    margin-left: 23rem;
     width: 0rem;
     height: 0rem;
     border: 1.5rem solid var(--color-opacity);
-    border-bottom: 1.5rem solid var(--color-primary_dark_75);
+    border-top: 1.5rem solid var(--color-primary_darker);
   }
   &__nav {
     border-radius: 3rem;
     background: var(--color-secondary);
     border: 0.4rem solid var(--color-primary_darker);
     overflow: hidden;
-    @include box-shadow(0 0rem 1rem 0.5rem var(--color-primary_dark_50));
   }
   &__ul {
     display: grid;
@@ -102,7 +118,12 @@
       color: var(--color-primary_lighter);
       .menu-user__icon {
         @include background(
-          linear-gradient(90deg, var(--color-primary_dark) 0, var(--color-primary_dark) 10%, var(--color-opacity) 100%)
+          linear-gradient(
+            90deg,
+            var(--color-primary_dark) 0,
+            var(--color-primary_dark) 10%,
+            var(--color-opacity) 100%
+          )
         );
       }
     }
@@ -171,7 +192,9 @@
     &_active {
       border-bottom: 0.2rem solid var(--color-secondary);
       background: var(--color-secondary);
-      @include box-shadow(0.2rem 0.2rem 1rem 0.4rem var(--color-secondary_darker_75) inset);
+      @include box-shadow(
+        0.2rem 0.2rem 1rem 0.4rem var(--color-secondary_darker_75) inset
+      );
     }
   }
 

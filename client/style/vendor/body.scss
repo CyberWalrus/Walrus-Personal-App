@@ -15,7 +15,6 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background: var(--color-secondary_darker);
   color: var(--color-primary);
   font-size: var(--body-font-size);
   font-family: "Roboto", sans-serif;
@@ -24,10 +23,11 @@ body {
   font-family: "walrus", sans-serif;
 }
 .page {
+  background: var(--color-secondary_darker);
   display: grid;
   min-height: 100vh;
   grid-template-rows: minmax(3rem, max-content) minmax(max-content, 1fr) minmax(
-      6rem,
+      min-content,
       max-content
     );
 }

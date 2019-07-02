@@ -2,3 +2,6 @@ front/build
 node_modules
 .idea/*
 *.iml
+dist/css
+dist/js
+server_compiled

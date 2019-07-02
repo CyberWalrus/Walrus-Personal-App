@@ -27,16 +27,22 @@ const MenuUser: FunctionComponent<Props> = ({
   onButtonCLick,
 }: Props): ReactElement => {
   return (
-    <div className={`menu-user-box`}>
-      <button onClick={onClickMenu} className={`menu-user-box__btn`}>
+    <div className={`menu-box`}>
+      <button
+        onClick={onClickMenu}
+        className={
+          isOpen
+            ? `menu-box__btn menu-box__btn_active`
+            : `menu-box__btn`
+        }
+      >
         {isAuthorization ? (
-          <React.Fragment>{user ? user.login : ``}</React.Fragment>
+          <React.Fragment>{`L`}</React.Fragment>
         ) : (
-          `SignIn/SignUp`
+          <React.Fragment>{`t`}</React.Fragment>
         )}
       </button>
       <div className={!isOpen ? `menu-user` : `menu-user menu-user_open`}>
-        <div className={`menu-user__arrow`} />
         {isAuthorization ? (
           <div className={`menu-user__box`}>
             <nav className={`menu-user__nav`}>
@@ -93,6 +99,7 @@ const MenuUser: FunctionComponent<Props> = ({
             </nav>
           </div>
         )}
+        <div className={`menu-user__arrow`} />
       </div>
     </div>
   );
