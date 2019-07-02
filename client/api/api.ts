@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from "axios";
 
-export const SERVER_URL = `http://localhost:1337`;
+export const SERVER_URL = `http://192.168.88.254:80`;
 export const ERROR_STATUSES = [404, 500, 503, 504];
 
 const configureAPI = (onServerError: () => void): AxiosInstance => {

@@ -11,7 +11,9 @@ import * as webpackDevServer from "webpack-dev-server";
 import * as webpackHotMiddleware from "webpack-hot-middleware";
 import { useApi } from "./routes/routes-api";
 const isDev: boolean = process.env.NODE_ENV !== `production`;
-const port: number = 1337;
+const port: number = 80;
+const url: string = `192.168.88.254`;
+
 mongoose.connect(
   `mongodb+srv://walrus:ZCVL6pZjdw7q1Rbr@walrus-api-f849m.mongodb.net/walrus-app?retryWrites=true`,
   { useNewUrlParser: true },
@@ -56,11 +58,11 @@ if (isDev) {
   });
 }
 
-app.listen(port, `localhost`, (err: Errback) => {
+app.listen(port, url, (err: Errback) => {
   if (err) {
     console.log(err);
   }
-  console.info(`>>> 🌎 Open http://localhost:%s/ in your browser.`, port);
+  console.info(`>>> 🌎 Open http://url:%s/ in your browser.`, port);
 });
 
 export default app;
