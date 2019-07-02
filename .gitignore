@@ -3,6 +3,5 @@ node_modules
 .idea/*
 *.iml
 dist/css
-dist/bundle.js
-dist/bundle.js.map
+dist/js
 server_compiled

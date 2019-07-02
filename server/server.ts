@@ -10,12 +10,11 @@ import * as webpackDevMiddleware from "webpack-dev-middleware";
 import * as webpackDevServer from "webpack-dev-server";
 import * as webpackHotMiddleware from "webpack-hot-middleware";
 import { useApi } from "./routes/routes-api";
-const isDev = true;
+const isDev: boolean = process.env.NODE_ENV !== `production`;
 const port: number = 1337;
-
 mongoose.connect(
   `mongodb+srv://walrus:ZCVL6pZjdw7q1Rbr@walrus-api-f849m.mongodb.net/walrus-app?retryWrites=true`,
-  {useNewUrlParser: true},
+  { useNewUrlParser: true },
   (error: mongoose.Error) => {
     if (error) {
       throw error;
@@ -27,7 +26,7 @@ mongoose.connect(
 
 const app = express();
 
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 useApi(app);
