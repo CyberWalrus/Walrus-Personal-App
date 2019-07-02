@@ -4,10 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "clean": "rimraf ./dist/bundel* && rimraf ./dist/bundel.js.map && rimraf dist/css/*",
     "dev-client": "webpack-dev-server",
     "tslint": "tslint -c tslint.json 'client/**/*.{ts,tsx} & tslint -c tslint.json 'server/**/*.{ts,tsx}",
     "test": "npm run tslint && jest",
-    "start": "ts-node-dev --respawn --transpileOnly -r tsconfig-paths/register ./server/server.ts"
+    "start": "ts-node-dev --respawn --transpileOnly -r tsconfig-paths/register ./server/server.ts",    
+    "build:client": "webpack --mode production",
+    "build:server": "tsc",
+    "start:prod": "node ./dist"
   },
   "repository": {
     "type": "git",
