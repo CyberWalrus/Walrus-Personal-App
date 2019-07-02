@@ -16,17 +16,22 @@
 :root {
   @include defineColorVar(--color-primary, $color-primary);
   @include defineColorVar(--color-secondary, $color-secondary);
+  @include defineColorOpacity(--color-dop1, $color1);
+  @include defineColorOpacity(--color-dop2, $color2);
+  @include defineColorOpacity(--color-dop3, $color3);
+  @include defineColorOpacity(--color-dop4, $color4);
+  @include defineColorOpacity(--color-dop5, $color5);
+  --color-opacity: rgba(0, 0, 0, 0);
+  --html-size: 62.5%;
+  --body-font-size: #{$body-font-size};
   //old
   --base-color: #{$base-color};
   --body-color: #{$body-color};
   --text-color: #{$text-color};
   --text-color_dop: #{$text-color_dop};
-  --body-font-size: #{$body-font-size};
   --header-color: #{$header-color};
   --shadow-color: #{$shadow-color};
   --border-color: #{$border-color};
   --btn-color: #{$btn-color};
-  --color-opacity: rgba(0, 0, 0, 0);
-  --html-size: 62.5%;
   //filter: invert(100%);
 }

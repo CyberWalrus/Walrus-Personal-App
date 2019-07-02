@@ -32,7 +32,7 @@ const PageTime: FunctionComponent = (): ReactElement => {
           {times &&
             times.map(({ minute, text }: Time, index: number) => (
               <React.Fragment key={index}>
-                <div className={`time-table__text`}>{text}</div>
+                <div className={`time-table__time`}>{text}</div>
                 <div className={`time-table__task`}>{minute}</div>
               </React.Fragment>
             ))}
