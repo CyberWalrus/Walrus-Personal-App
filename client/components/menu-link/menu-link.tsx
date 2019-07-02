@@ -77,6 +77,16 @@ const MenuUser: FunctionComponent<Props> = ({
                   <div className={`menu-link__text`}>Option</div>
                 </Link>
               </li>
+              <li className={`menu-link__item`}>
+                <Link
+                  to={RoutePath.TIME}
+                  className={`menu-link__link`}
+                  onClick={onClickMenu}
+                >
+                  <div className={`menu-link__icon`}>{`N`}</div>
+                  <div className={`menu-link__text`}>Time</div>
+                </Link>
+              </li>
             </ul>
           </nav>
         </div>

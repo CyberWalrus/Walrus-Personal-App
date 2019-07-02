@@ -4,6 +4,7 @@ enum RoutePath {
   SIGNUP = "/signup",
   OPTION = "/option",
   INFO = "/info",
+  TIME = "/time",
   USER = "/user",
   USER_LOGIN = "/user/:id",
   ERROR = "/error",
