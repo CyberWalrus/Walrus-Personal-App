@@ -19,6 +19,10 @@ interface Delete {
 interface DeleteId {
   onDelete: (id: string) => void;
 }
+interface PropsSortableList {
+  items: UserRole[];
+}
+
 const SortableItem = SortableElement(
   ({ name, id, isActive, onDelete }: UserRole & Delete): ReactElement => (
     <div className={`data-container`}>
@@ -33,9 +37,6 @@ const SortableItem = SortableElement(
     </div>
   ),
 );
-interface PropsSortableList {
-  items: UserRole[];
-}
 const SortableList = SortableContainer(
   ({ items, onDelete }: PropsSortableList & DeleteId) => {
     return (
