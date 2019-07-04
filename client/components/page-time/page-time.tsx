@@ -31,11 +31,11 @@ const SortableItem = SortableElement(
   ),
 );
 const SortableList = SortableContainer(
-  ({ times, tasks, onAddTask }: PropsHoc) => {
+  ({times, tasks, onAddTask}: PropsHoc) => {
     return (
       <div className={`time-table`}>
         {times &&
-          times.map(({ text, taskId }: Time, index: number) => (
+          times.map(({text, taskId}: Time, index: number) => (
             <React.Fragment key={index}>
               <div className={`time-table__time`}>{text}</div>
               <SortableItem
@@ -56,13 +56,19 @@ const PageTime: FunctionComponent<PropsHoc> = ({
   times,
   onAddTask,
   onChangeTask,
+  onTaskSortEnd,
 }: Props): ReactElement => {
   return (
     <main className={`page-content`}>
       <section>
         <h2>Time</h2>
       </section>
-      <SortableList times={times} tasks={tasks} onAddTask={onAddTask} />
+      <SortableList
+        times={times}
+        tasks={tasks}
+        onAddTask={onAddTask}
+        onSortEnd={onTaskSortEnd}
+      />
       <section />
     </main>
   );

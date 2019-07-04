@@ -7,3 +7,8 @@ export interface InputCustomInterface {
   placeHolder: string;
   hidenValue: string;
 }
+
+export interface HandlSortEnd {
+  oldIndex: number;
+  newIndex: number;
+}

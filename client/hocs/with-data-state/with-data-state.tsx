@@ -1,4 +1,5 @@
 import { PropsHoc } from "@client/components/form-custom/form-custom";
+import { HandlSortEnd } from "@client/type/component";
 import { UserRole } from "@client/type/data";
 import { FormType } from "@config/constants";
 import arrayMove from "array-move";
@@ -19,10 +20,6 @@ interface PropsDispatch {
   onUserRoleLoad: () => void;
   onAddUserRole: (name: string) => void;
   onDeleteUserRole: (id: string) => void;
-}
-interface HandlSortEnd {
-  oldIndex: number;
-  newIndex: number;
 }
 type Props = PropsState & PropsDispatch;
 
@@ -49,7 +46,7 @@ const withDataState = (Component: any): ComponentClass<Props> => {
     public componentDidMount(): void {
       this.props.onUserRoleLoad();
     }
-    public handlSortEnd({ oldIndex, newIndex }: HandlSortEnd): void {
+    public handlSortEnd({oldIndex, newIndex}: HandlSortEnd): void {
       this.setState({
         userRoles: arrayMove(this.state.userRoles, oldIndex, newIndex),
       });

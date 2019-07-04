@@ -1,3 +1,5 @@
+import { HandlSortEnd } from "@client/type/component";
+import arrayMove from "array-move";
 import * as React from "react";
 import { ComponentClass, PureComponent, ReactElement, RefObject } from "react";
 
@@ -17,7 +19,7 @@ const getTimes = (
     const timeString = `${hour.toString().length < 2 ? `0${hour}` : hour}:${
       minute.toString().length < 2 ? `0${minute}` : minute
     }`;
-    times.push({ minute: i, text: timeString });
+    times.push({minute: i, text: timeString});
   }
   return times;
 };
@@ -29,6 +31,7 @@ export interface State {
 export interface PublicFunction {
   onAddTask?: (key: number) => void;
   onChangeTask?: (key: number) => void;
+  onTaskSortEnd?: () => void;
 }
 const withTaskState = (Component: any): ComponentClass => {
   type P = ReturnType<typeof Component>;
@@ -42,6 +45,7 @@ const withTaskState = (Component: any): ComponentClass => {
       };
       this.handlAddTask = this.handlAddTask.bind(this);
       this.handlChangeTask = this.handlChangeTask.bind(this);
+      this.handlSortEnd = this.handlSortEnd.bind(this);
       this._handlChangeTimes = this._handlChangeTimes.bind(this);
     }
     public handlAddTask(key: number): void {
@@ -60,6 +64,12 @@ const withTaskState = (Component: any): ComponentClass => {
       const tasks = this.state.tasks;
     }
 
+    public handlSortEnd({oldIndex, newIndex}: HandlSortEnd): void {
+      this.setState({
+        tasks: arrayMove(this.state.tasks, oldIndex, newIndex),
+      });
+    }
+
     public render(): ReactElement {
       return (
         <Component
@@ -68,6 +78,7 @@ const withTaskState = (Component: any): ComponentClass => {
           times={this.state.times}
           onAddTask={this.handlAddTask}
           onChangeTask={this.handlChangeTask}
+          onTaskSortEnd={this.handlSortEnd}
         />
       );
     }
