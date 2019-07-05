@@ -4,7 +4,7 @@
     "outDir": "server_compiled",
     "sourceMap": true,
     "module": "commonjs",
-    "target": "es2017",
+    "target": "es2018",
     "jsx": "react",
     "allowSyntheticDefaultImports": false,
     "alwaysStrict": true,

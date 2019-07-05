@@ -2,20 +2,17 @@
 
 exports[`MenuUser correctly render with data 1`] = `
 <div
-  className="menu-user-box"
+  className="menu-box"
 >
   <button
-    className="menu-user-box__btn"
+    className="menu-box__btn menu-box__btn_active"
     onClick={[MockFunction]}
   >
-    SignIn/SignUp
+    t
   </button>
   <div
     className="menu-user menu-user_open"
   >
-    <div
-      className="menu-user__arrow"
-    />
     <div
       className="menu-user__box"
     >
@@ -63,26 +60,26 @@ exports[`MenuUser correctly render with data 1`] = `
         </ul>
       </nav>
     </div>
+    <div
+      className="menu-user__arrow"
+    />
   </div>
 </div>
 `;
 
 exports[`MenuUser correctly render without data 1`] = `
 <div
-  className="menu-user-box"
+  className="menu-box"
 >
   <button
-    className="menu-user-box__btn"
+    className="menu-box__btn menu-box__btn_active"
     onClick={[MockFunction]}
   >
-    SignIn/SignUp
+    t
   </button>
   <div
     className="menu-user menu-user_open"
   >
-    <div
-      className="menu-user__arrow"
-    />
     <div
       className="menu-user__box"
     >
@@ -130,6 +127,9 @@ exports[`MenuUser correctly render without data 1`] = `
         </ul>
       </nav>
     </div>
+    <div
+      className="menu-user__arrow"
+    />
   </div>
 </div>
 `;

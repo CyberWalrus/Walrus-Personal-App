@@ -1,4 +1,6 @@
 import { HandlSortEnd } from "@client/type/component";
+import { arrayMoveKeyValue } from "@client/utils/array";
+import { getRandomInt } from "@client/utils/math";
 import arrayMove from "array-move";
 import * as React from "react";
 import { ComponentClass, PureComponent, ReactElement, RefObject } from "react";
@@ -30,8 +32,9 @@ export interface State {
 }
 export interface PublicFunction {
   onAddTask?: (key: number) => void;
-  onChangeTask?: (key: number) => void;
-  onTaskSortEnd?: () => void;
+  onChangeTask?: (key: number, length: number) => void;
+  onTaskSortEnd?: ({oldIndex, newIndex}: HandlSortEnd) => void;
+  onChangeSizeTask?: (key: number) => void;
 }
 const withTaskState = (Component: any): ComponentClass => {
   type P = ReturnType<typeof Component>;
@@ -40,17 +43,18 @@ const withTaskState = (Component: any): ComponentClass => {
     public constructor(props: P) {
       super(props);
       this.state = {
-        tasks: [`test1`],
-        times: getTimes(60),
+        tasks: [],
+        times: getTimes(240),
       };
       this.handlAddTask = this.handlAddTask.bind(this);
       this.handlChangeTask = this.handlChangeTask.bind(this);
       this.handlSortEnd = this.handlSortEnd.bind(this);
+      this.handlChangeSizeTask = this.handlChangeSizeTask.bind(this);
       this._handlChangeTimes = this._handlChangeTimes.bind(this);
     }
     public handlAddTask(key: number): void {
       const tasksNew = this.state.tasks.slice();
-      tasksNew.push(`test`);
+      tasksNew.push(getRandomInt(1, 10).toString());
       this.setState(
         {
           tasks: tasksNew,
@@ -61,12 +65,20 @@ const withTaskState = (Component: any): ComponentClass => {
       );
     }
     public handlChangeTask(key: number): void {
-      const tasks = this.state.tasks;
+      console.log(`test`);
+    }
+
+    public handlChangeSizeTask(key: number): void {
+      const timesNew = this.state.times.slice();
+      timesNew[key + 1].taskId = timesNew[key].taskId;
+      this.setState({
+        times: timesNew,
+      });
     }
 
     public handlSortEnd({oldIndex, newIndex}: HandlSortEnd): void {
       this.setState({
-        tasks: arrayMove(this.state.tasks, oldIndex, newIndex),
+        times: arrayMoveKeyValue(this.state.times, `taskId`, oldIndex, newIndex),
       });
     }
 
@@ -79,6 +91,7 @@ const withTaskState = (Component: any): ComponentClass => {
           onAddTask={this.handlAddTask}
           onChangeTask={this.handlChangeTask}
           onTaskSortEnd={this.handlSortEnd}
+          onChangeSizeTask={this.handlChangeSizeTask}
         />
       );
     }
