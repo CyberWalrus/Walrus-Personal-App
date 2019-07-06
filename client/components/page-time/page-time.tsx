@@ -3,7 +3,7 @@ import withTaskState, {
   State,
   Time,
 } from "@client/hocs/with-task-state/with-task-state";
-import { getLengthSame } from "@client/utils/array";
+import { getLengthSame } from "@client/utils/array/array";
 import * as React from "react";
 import { ComponentClass, Fragment, FunctionComponent, ReactElement } from "react";
 import { SortableContainer, SortableElement } from "react-sortable-hoc";

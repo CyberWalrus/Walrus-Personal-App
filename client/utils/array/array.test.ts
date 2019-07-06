@@ -56,24 +56,7 @@ describe(`Test arrayMoveKeyValue`, (): void => {
     ]);
   });
 
-  it(`Change position solo 1 3`, (): void => {
-    expect(
-      arrayMoveKeyValue(
-        [{taskId: 1}, {taskId: 0}, {taskId: 0}, {taskId: 4}, {taskId: 5}],
-        key,
-        0,
-        1,
-      ),
-    ).toEqual([
-      {taskId: 1},
-      {taskId: 4},
-      {taskId: 0},
-      {taskId: 0},
-      {taskId: 5},
-    ]);
-  });
-
-  it(`Change position double 0 `, (): void => {
+  it(`Change position double 0 2`, (): void => {
     expect(arrayMoveKeyValue(arrayTestsTherty, key, 0, 1)).toEqual([
       {taskId: 0},
       {taskId: 0},

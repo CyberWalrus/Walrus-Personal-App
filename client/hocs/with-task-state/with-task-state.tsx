@@ -1,6 +1,6 @@
 import { HandlSortEnd } from "@client/type/component";
-import { arrayMoveKeyValue } from "@client/utils/array";
-import { getRandomInt } from "@client/utils/math";
+import { arrayMoveKeyValue } from "@client/utils/array/array";
+import { getRandomInt } from "@client/utils/math/math";
 import arrayMove from "array-move";
 import * as React from "react";
 import { ComponentClass, PureComponent, ReactElement, RefObject } from "react";
