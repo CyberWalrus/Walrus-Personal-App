@@ -8,7 +8,7 @@
     "dev-client": "webpack-dev-server",
     "tslint": "tslint -c tslint.json 'client/**/*.{ts,tsx} & tslint -c tslint.json 'server/**/*.{ts,tsx}",
     "test": "npm run tslint && jest",
-    "test:solo": "jest ./client/utils/array.test.ts",
+    "test:solo": "jest ./client/utils/array-solo.test.ts",
     "start": "ts-node-dev --respawn --transpileOnly -r tsconfig-paths/register ./server/server.ts",
     "build:client": "webpack --mode production",
     "build:server": "tsc -b tsconfig.json",
