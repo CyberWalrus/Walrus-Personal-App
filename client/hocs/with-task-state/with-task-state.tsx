@@ -65,7 +65,7 @@ const withTaskState = (Component: any): ComponentClass => {
       );
     }
     public handlChangeTask(key: number): void {
-      console.log(`test`);
+      key = key;
     }
 
     public handlChangeSizeTask(key: number): void {
