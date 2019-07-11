@@ -30,6 +30,12 @@ const initialState: State = {
 };
 
 const ActionCreator = {
+  setType: (value: TypeNotification): SetTypeNotification => {
+    return {
+      payload: value,
+      type: ActionType.SET_TYPE,
+    };
+  },
   setMessage: (value: string): SetMessage => {
     return {
       payload: value,
