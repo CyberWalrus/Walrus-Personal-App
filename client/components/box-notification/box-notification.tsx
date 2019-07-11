@@ -6,7 +6,7 @@ interface Props {
   message: string;
   type: string;
 }
-const Notification: FunctionComponent<Props> = ({message, type}: Props): ReactElement => {
+const BoxNotification: FunctionComponent<Props> = ({message, type}: Props): ReactElement => {
   return (
     <section>
       <article>
@@ -16,4 +16,4 @@ const Notification: FunctionComponent<Props> = ({message, type}: Props): ReactEl
   );
 };
 
-export default Notification;
+export default BoxNotification;

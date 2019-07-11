@@ -9,6 +9,7 @@ import {
 } from "react";
 import { Link } from "react-router-dom";
 import MenuLink from "../menu-link/menu-link";
+import BoxNotification from "../box-notification/box-notification";
 
 const Header = React.forwardRef(
   ({  }: {}, ref: RefObject<HTMLDivElement>): ReactElement => {
@@ -32,6 +33,9 @@ const Header = React.forwardRef(
         </div>
         <div className={`page-header__menu`}>
           <MenuLink />
+        </div>
+        <div>
+          <BoxNotification />
         </div>
       </header>
     );

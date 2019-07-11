@@ -1,34 +1,47 @@
 import { Action as ReduxAction } from "redux";
 
+export enum TypeNotification {
+  NONE = "",
+  SUCCESS = "SUCCESS",
+  FAIL = "FAIL",
+}
+
 enum ActionType {
-  SET_ID = "SET_ID",
+  SET_MESSAGE = "SET_MESSAGE",
+  SET_TYPE = "SET_TYPE",
 }
 export interface State {
-  id: number;
+  typeNotification: TypeNotification;
+  message: string;
 }
-interface ChangeID extends ReduxAction {
-  payload: number;
-  type: ActionType;
+interface SetTypeNotification extends ReduxAction {
+  payload: TypeNotification;
+  type: ActionType.SET_TYPE;
 }
-export type Action = ChangeID;
+interface SetMessage extends ReduxAction {
+  payload: string;
+  type: ActionType.SET_MESSAGE;
+}
+export type Action = SetTypeNotification & SetMessage;
 
 const initialState: State = {
-  id: 0,
+  typeNotification: TypeNotification.NONE,
+  message: ``,
 };
 
 const ActionCreator = {
-  changeId: (value: number): ChangeID => {
+  setMessage: (value: string): SetMessage => {
     return {
       payload: value,
-      type: ActionType.SET_ID,
+      type: ActionType.SET_MESSAGE,
     };
   },
 };
 
 const reducer = (state: State = initialState, action: Action): State => {
   switch (action.type) {
-    case ActionType.SET_ID:
-      return {...state, id: action.payload};
+    case ActionType.SET_MESSAGE:
+      return { ...state, message: action.payload };
   }
   return state;
 };
