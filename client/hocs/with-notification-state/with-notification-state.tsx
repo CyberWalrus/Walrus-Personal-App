@@ -3,9 +3,9 @@ import * as React from "react";
 import { ComponentClass, PureComponent, ReactElement } from "react";
 import { connect } from "react-redux";
 import { compose } from "recompose";
-import { getUserRoles } from "../../store/data/selectors";
+import { getMessage, getTypeNotification } from "../../store/condition/selector";
 import { StateApp, ThunkDispatch } from "../../type/reducer";
-interface PropsState {
+export interface PropsState {
     message: string;
     type: string;
 }
@@ -29,7 +29,8 @@ const withNotificationState = (Component: any): ComponentClass<Props> => {
 
 const mapStateToProps = (state: StateApp, ownProps: Props): Props => ({
   ...ownProps,
-  userRoles: getUserRoles(state),
+  message: getMessage(state),
+  type: getTypeNotification(state),
 });
 
 export { withNotificationState };

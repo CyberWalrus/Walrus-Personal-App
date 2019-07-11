@@ -1,9 +1,13 @@
 import { StateApp } from "../../type/reducer";
 import NameSpace from "./../name-spaces";
+import { TypeNotification } from "./condition";
 
 const NAME_SPACE = NameSpace.CONDITION;
 
-const getID = (state: StateApp): number => {
-  return state[NAME_SPACE].id;
+const getMessage = (state: StateApp): string => {
+  return state[NAME_SPACE].message;
 };
-export { getID };
+const getTypeNotification = (state: StateApp): TypeNotification => {
+  return state[NAME_SPACE].typeNotification;
+};
+export { getMessage, getTypeNotification };

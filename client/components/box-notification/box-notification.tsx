@@ -1,19 +1,22 @@
-import RoutePath from "@client/routes";
+import withNotificationState from "@client/hocs/with-notification-state/with-notification-state";
+import { PropsNotification } from "@client/type/hocs";
 import * as React from "react";
-import { FunctionComponent, ReactElement } from "react";
+import { ComponentClass, FunctionComponent, ReactElement } from "react";
+import { compose } from "recompose";
 
-interface Props {
-  message: string;
-  type: string;
-}
-const BoxNotification: FunctionComponent<Props> = ({message, type}: Props): ReactElement => {
+type Props = PropsNotification;
+const BoxNotification: FunctionComponent<Props> = ({
+  message,
+  type,
+}: Props): ReactElement => {
   return (
-    <section>
-      <article>
-        {message}
-      </article>
+    <section className={`notification`}>
+      <article>{message}</article>
     </section>
   );
 };
 
-export default BoxNotification;
+export { BoxNotification };
+
+const wrapper = compose<any, Props>(withNotificationState);
+export default wrapper(BoxNotification) as ComponentClass<{}>;

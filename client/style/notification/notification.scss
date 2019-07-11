@@ -1,0 +1,13 @@
+.box-notification {
+  position: absolute;
+  margin-block-start: 5rem;
+  margin-inline-start: calc( 50% - 5rem);
+}
+.notification {
+  background-color: var(--color-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 10rem;
+  block-size: 5rem;
+}

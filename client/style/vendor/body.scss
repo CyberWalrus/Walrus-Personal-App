@@ -6,11 +6,6 @@
   );
 }
 html {
-  font-size: var(--html-size, 62.5%);
-
-  @media only screen and (min-width: 125rem) {
-    font-size: 90%;
-  }
 }
 body {
   margin: 0;
