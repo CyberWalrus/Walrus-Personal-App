@@ -9,7 +9,7 @@ const root = (args: string): string => {
 
 const webpackConfig: webpack.Configuration = {
   entry: {
-    bundle: [root(`client/index.tsx`), root(`client/style/style.scss`), root(`client/style/normalize.scss`)],
+    bundle: [root(`client/index.tsx`), root(`style/style.scss`), root(`style/normalize.scss`)],
   },
   output: {
     filename: `js/bundle.js`,
