@@ -9,25 +9,25 @@ const ContainerButton: FunctionComponent<Props> = ({
   onButtonCLick,
 }: Props): ReactElement => {
   return (
-    <div className="container-btn">
-      <ul className={`container-btn__ul`}>
-        <li className={`container-btn__item`}>
-          <a href="#" className={`container-btn__btn`} onClick={onButtonCLick}>
+    <div className="toolbar">
+      <ul className={`toolbar__list`}>
+        <li className={`toolbar__item`}>
+          <a href="#" className={`toolbar__btn`} onClick={onButtonCLick}>
             {`J`}
           </a>
         </li>
-        <li className={`container-btn__item`}>
-          <a href="#" className={`container-btn__btn`} onClick={onButtonCLick}>
+        <li className={`toolbar__item`}>
+          <a href="#" className={`toolbar__btn`} onClick={onButtonCLick}>
             {`k`}
           </a>
         </li>
-        <li className={`container-btn__item`}>
-          <a href="#" className={`container-btn__btn`} onClick={onButtonCLick}>
+        <li className={`toolbar__item`}>
+          <a href="#" className={`toolbar__btn`} onClick={onButtonCLick}>
             {`s`}
           </a>
         </li>
-        <li className={`container-btn__item`}>
-          <a href="#" className={`container-btn__btn`} onClick={onButtonCLick}>
+        <li className={`toolbar__item`}>
+          <a href="#" className={`toolbar__btn`} onClick={onButtonCLick}>
             {`M`}
           </a>
         </li>

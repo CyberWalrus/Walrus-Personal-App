@@ -28,7 +28,6 @@ const App: FunctionComponent = (): ReactElement => {
         <Route path={RoutePath.TIME} component={PageTime} />
         <Redirect to={RoutePath.INDEX} />
       </Switch>
-      <Footer />
     </div>
   );
 };

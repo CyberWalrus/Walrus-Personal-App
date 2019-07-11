@@ -20,11 +20,11 @@ const MenuUser: FunctionComponent<Props> = ({
   onClickMenu,
 }: Props): ReactElement => {
   return (
-    <div className={`menu-box`}>
+    <div className={`button-box`}>
       <button
         onClick={onClickMenu}
         className={
-          isOpen ? `menu-box__btn menu-box__btn_active` : `menu-box__btn`
+          isOpen ? `button-box__btn button-box__btn_active` : `button-box__btn`
         }
       >
         {`L`}
@@ -36,15 +36,15 @@ const MenuUser: FunctionComponent<Props> = ({
       <div className={!isOpen ? `menu-link` : `menu-link menu-link_open`}>
         <div className={`menu-link__box`}>
           <nav className={`menu-link__nav`}>
-            <ul className={`menu-link__ul`}>
+            <ul className={`menu-link__list`}>
               <li className={`menu-link__item`}>
                 <Link
                   to={RoutePath.INDEX}
                   className={`menu-link__link`}
                   onClick={onClickMenu}
                 >
-                  <div className={`menu-link__icon`}>{`N`}</div>
-                  <div className={`menu-link__text`}>Home</div>
+                  <div className={`icon`}>{`N`}</div>
+                  <div className={`bold-text`}>Home</div>
                 </Link>
               </li>
               <li className={`menu-link__item`}>
@@ -53,8 +53,8 @@ const MenuUser: FunctionComponent<Props> = ({
                   className={`menu-link__link`}
                   onClick={onClickMenu}
                 >
-                  <div className={`menu-link__icon`}>{`N`}</div>
-                  <div className={`menu-link__text`}>Info</div>
+                  <div className={`icon`}>{`N`}</div>
+                  <div className={`bold-text`}>Info</div>
                 </Link>
               </li>
               <li className={`menu-link__item`}>
@@ -63,8 +63,8 @@ const MenuUser: FunctionComponent<Props> = ({
                   className={`menu-link__link`}
                   onClick={onClickMenu}
                 >
-                  <div className={`menu-link__icon`}>{`N`}</div>
-                  <div className={`menu-link__text`}>Users</div>
+                  <div className={`icon`}>{`N`}</div>
+                  <div className={`bold-text`}>Users</div>
                 </Link>
               </li>
               <li className={`menu-link__item`}>
@@ -73,8 +73,8 @@ const MenuUser: FunctionComponent<Props> = ({
                   className={`menu-link__link`}
                   onClick={onClickMenu}
                 >
-                  <div className={`menu-link__icon`}>{`N`}</div>
-                  <div className={`menu-link__text`}>Option</div>
+                  <div className={`icon`}>{`N`}</div>
+                  <div className={`bold-text`}>Option</div>
                 </Link>
               </li>
               <li className={`menu-link__item`}>
@@ -83,8 +83,8 @@ const MenuUser: FunctionComponent<Props> = ({
                   className={`menu-link__link`}
                   onClick={onClickMenu}
                 >
-                  <div className={`menu-link__icon`}>{`N`}</div>
-                  <div className={`menu-link__text`}>Time</div>
+                  <div className={`icon`}>{`N`}</div>
+                  <div className={`bold-text`}>Time</div>
                 </Link>
               </li>
             </ul>

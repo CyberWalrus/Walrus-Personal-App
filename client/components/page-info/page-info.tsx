@@ -36,8 +36,8 @@ class PageInfo extends PureComponent<Props> {
             <dl className={`info-icon`}>
               {iconNames.map((item: string, index: number) => (
                 <React.Fragment key={index}>
-                  <dt>{item} :</dt>
-                  <dd className={`icon`}>{item}</dd>
+                  <dt className={`info-icon__titel`}>{item} :</dt>
+                  <dd className={`info-icon__item icon`}>{item}</dd>
                 </React.Fragment>
               ))}
             </dl>

@@ -1,9 +1,9 @@
 .menu-link__nav {
-  inline-size: 25rem;
-  max-inline-size: 25rem;
-  block-size: calc(100vh - 4rem);
-  max-block-size: calc(100vh - 4rem);
+  inline-size: 15rem;
+  max-inline-size: 15rem;
+  block-size: calc(100vh - 2.5rem);
+  max-block-size: calc(100vh - 2.5rem);
   background: var(--color-secondary);
-  border: 0.4rem solid var(--color-primary_darker);
+  border: 0.2rem solid var(--color-primary_darker);
   overflow: hidden;
 }

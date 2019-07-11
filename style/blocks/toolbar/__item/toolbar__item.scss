@@ -2,8 +2,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    block-size: 4.8rem;
-    inline-size: 6.4rem;
+    block-size: 3rem;
+    inline-size: 3.9rem;
     margin: 0.2rem 0.2em 0.7rem 0.2rem;
     max-inline-size: 100%;
     max-block-size: 100%;
@@ -17,12 +17,12 @@
     );
     transition: all 0.5s;
     &:nth-of-type(1) {
-      border-top-left-radius: 3rem;
-      margin-left: 0.4rem;
+      border-top-left-radius: 2rem;
+      margin-left: 0.2rem;
     }
     &:last-of-type {
-      border-top-right-radius: 3rem;
-      margin-right: 0.4rem;
+      border-top-right-radius: 2rem;
+      margin-right: 0.2rem;
     }
     &:hover {
       cursor: pointer;

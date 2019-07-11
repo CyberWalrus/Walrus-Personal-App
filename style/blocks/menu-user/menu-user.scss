@@ -10,12 +10,12 @@
   position: fixed;
   z-index: 999;
   right: 0rem;
-  bottom: 4rem;
-  max-inline-size: 30rem;
+  bottom: 2rem;
+  max-inline-size: 18rem;
   display: inline-block;
   visibility: hidden;
   opacity: 0;
-  border-radius: 3rem;
+  border-radius: 2rem;
   @include transition(all 0.15s);
   &_open {
     visibility: visible;

@@ -50,8 +50,8 @@ const withUserMenuState = (Component: any): ComponentClass<Props> => {
       event: React.ChangeEvent<HTMLLinkElement>,
     ): void {
       event.preventDefault();
-      event.target.classList.toggle(`container-btn__btn_active`);
-      event.target.parentElement.classList.toggle(`container-btn__item_active`);
+      event.target.classList.toggle(`toolbar__btn_active`);
+      event.target.parentElement.classList.toggle(`toolbar__item_active`);
     }
     public render(): ReactElement {
       return (

@@ -33,10 +33,10 @@ const withScrollState = (Component: any): ComponentClass => {
       const header = this.ref.current;
       const isScrollTop = this.state.scrollValue >= window.pageYOffset;
       if (window.pageYOffset > header.clientHeight / 2 && !isScrollTop) {
-        header.classList.add(`page-header_position_fixed`);
+        header.classList.add(`header-box_position_fixed`);
       }
       if (isScrollTop) {
-        header.classList.remove(`page-header_position_fixed`);
+        header.classList.remove(`header-box_position_fixed`);
       }
       this.setState({ scrollValue: window.pageYOffset });
     }

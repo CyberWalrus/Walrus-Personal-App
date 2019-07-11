@@ -1,0 +1,11 @@
+@import "./__btn/button-box__btn.scss";
+
+.button-box {
+  grid-area: user;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  inline-size: 100%;
+  block-size: 100%;
+  user-select: none;
+}
