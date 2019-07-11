@@ -1,9 +1,6 @@
 @import "./body/body.scss";
-@import "./main-page/main-page.scss";
+@import "./page/page.scss";
 @import "./page-content/page-content.scss";
-@import "./form-custom-container.scss";
-@import "./menu-bottom-container.scss";
-@import "./menu-user-container.scss";
 
 *:focus {
   outline: 0;
@@ -30,6 +27,7 @@ p {
   margin: 0;
   padding: 0;
 }
+
 .icon {
   font-family: "walrus", sans-serif;
 }
