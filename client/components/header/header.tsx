@@ -34,7 +34,7 @@ const Header = React.forwardRef(
         <div className={`page-header__menu`}>
           <MenuLink />
         </div>
-        <div className={`box-notification`}>
+        <div className={`notification-container`}>
           <BoxNotification />
         </div>
       </header>
