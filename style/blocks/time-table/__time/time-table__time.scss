@@ -1,0 +1,12 @@
+.time-table__time {
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  block-size: 4rem;
+  max-inline-size: 100%;
+  max-block-size: 100%;
+  background: var(--color-dop1_50);
+  grid-column-start: 1;
+  grid-row-start: auto;
+}

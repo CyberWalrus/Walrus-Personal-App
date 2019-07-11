@@ -1,0 +1,12 @@
+@import "./__img/";
+@import "./__link/";
+
+.logo {
+  grid-area: logo;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 100%;
+  block-size: 100%;
+  user-select: none;
+}

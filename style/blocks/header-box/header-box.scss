@@ -1,0 +1,21 @@
+@import "./__back/";
+@import "./__link/";
+
+.header-box {
+  z-index: 101;
+  position: fixed;
+  background: var(--color-secondary);
+  color: var(--color-primary);
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr;
+  grid-template-areas: "back logo user";
+  block-size: 4rem;
+  inline-size: 100vw;
+  max-inline-size: 100vw;
+  transition: all 0.25s;
+  left: 0;
+  top: 0rem;
+  &_position_fixed {
+    top: -4rem;
+  }
+}
