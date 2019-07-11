@@ -1,5 +1,12 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto:500&display=swap");
-@import url("/walrus-font/css/walrus.css?family=walrus");
+
+$color-primary: hsl(45, 16%, 75%);
+$color-secondary: hsl(20, 2%, 27%);
+
+$color1: rgba(59, 190, 247, 1);
+$color2: rgba(255, 229, 38, 1);
+$color3: rgba(153, 209, 33, 1);
+$color4: rgba(242, 67, 19, 1);
+$color5: rgba(255, 102, 0, 1);
 @mixin defineColorOpacity($color, $value) {
   #{$color}: #{$value};
   #{$color}_75: #{change-color($value, $alpha: 0.75)};
