@@ -1,0 +1,37 @@
+.toolbar__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    block-size: 4.8rem;
+    inline-size: 6.4rem;
+    margin: 0.2rem 0.2em 0.7rem 0.2rem;
+    max-inline-size: 100%;
+    max-block-size: 100%;
+    background: var(--color-secondary);
+    border-top: 0.1rem solid var(--color-secondary_dark);
+
+    @include box-shadow(
+      0 0rem 0.2rem 0rem var(--color-secondary_light_25) inset,
+      1rem 1rem 0.5rem -0.6rem var(--color-secondary_light_25) inset,
+      -1rem -1rem 0.5rem -0.6rem var(--color-secondary_dark_50) inset
+    );
+    transition: all 0.5s;
+    &:nth-of-type(1) {
+      border-top-left-radius: 3rem;
+      margin-left: 0.4rem;
+    }
+    &:last-of-type {
+      border-top-right-radius: 3rem;
+      margin-right: 0.4rem;
+    }
+    &:hover {
+      cursor: pointer;
+    }
+    &_active {
+      border-bottom: 0.2rem solid var(--color-secondary);
+      background: var(--color-secondary);
+      @include box-shadow(
+        0.2rem 0.2rem 1rem 0.4rem var(--color-secondary_darker_75) inset
+      );
+    }
+  }

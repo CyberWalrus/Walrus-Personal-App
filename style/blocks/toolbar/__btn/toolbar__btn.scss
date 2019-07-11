@@ -1,0 +1,19 @@
+.toolbar__btn {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 150%;
+  transition: all 0.5s;
+  inline-size: 100%;
+  max-inline-size: 100%;
+  block-size: 100%;
+  max-block-size: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "walrus", sans-serif;
+  color: var(--color-primary);
+  &_active {
+    color: var(--color-primary_lighter);
+    text-shadow: 0 0 1.5rem var(--color-primary_lighter_75);
+  }
+}

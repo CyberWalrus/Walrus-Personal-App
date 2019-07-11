@@ -1,0 +1,32 @@
+.menu-link__link {
+  inline-size: 100%;
+  max-inline-size: 100%;
+  block-size: 100%;
+  max-block-size: 100%;
+  text-decoration: none;
+  line-height: 2.5;
+  display: grid;
+  grid-template-columns: 4rem 1fr 4rem;
+  color: var(--color-primary);
+  transition: all 0.2s ease-out;
+  > div {
+    background: var(--color-opacity);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &:hover,
+  &:focus {
+    color: var(--color-primary_lighter);
+    .menu-user__icon {
+      @include background(
+        linear-gradient(
+          90deg,
+          var(--color-primary_dark) 0,
+          var(--color-primary_dark) 10%,
+          var(--color-opacity) 100%
+        )
+      );
+    }
+  }
+}

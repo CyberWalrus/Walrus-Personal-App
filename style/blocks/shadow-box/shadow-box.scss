@@ -1,0 +1,18 @@
+.shadow-box {
+  z-index: 102;
+  position: fixed;
+  top: 0rem;
+  right: 0rem;
+  block-size: 100vh;
+  max-block-size: 100vh;
+  inline-size: 100vw;
+  max-inline-size: 100vw;
+  visibility: hidden;
+  background: var(--color-secondary_dark_75);
+  opacity: 0;
+  transition: all 0.125s;
+  &_visible {
+    visibility: visible;
+    opacity: 1;
+  }
+}

@@ -1,0 +1,25 @@
+@import "./__icon/menu-link_icon.scss";
+@import "./__item/menu-link__item.scss";
+@import "./__link/menu-link__link.scss";
+@import "./__list/menu-link__list.scss";
+@import "./__nav/menu-link__nav.scss";
+@import "./__text/menu-link__text.scss";
+
+.menu-link {
+  z-index: 102;
+  margin: 0rem;
+  padding: 0rem;
+  position: fixed;
+  z-index: 999;
+  right: -25rem;
+  top: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  visibility: hidden;
+  @include transition(all 0.15s);
+  &_open {
+    visibility: visible;
+    right: 0rem;
+  }
+}

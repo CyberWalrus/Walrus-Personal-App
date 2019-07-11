@@ -1,0 +1,24 @@
+@import "./__arrow/menu-user__arrow.scss";
+@import "./__item/menu-user__item.scss";
+@import "./__link/menu-user__link.scss";
+@import "./__list/menu-user__list.scss";
+@import "./__nav/menu-user__nav.scss";
+
+.menu-user {
+  margin: 0rem;
+  padding: 0rem;
+  position: fixed;
+  z-index: 999;
+  right: 0rem;
+  bottom: 4rem;
+  max-inline-size: 30rem;
+  display: inline-block;
+  visibility: hidden;
+  opacity: 0;
+  border-radius: 3rem;
+  @include transition(all 0.15s);
+  &_open {
+    visibility: visible;
+    opacity: 1;
+  }
+}

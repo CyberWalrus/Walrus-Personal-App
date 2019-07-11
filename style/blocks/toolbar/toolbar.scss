@@ -1,0 +1,18 @@
+@import "./__btn/toolbar__btn.scss";
+@import "./__item/toolbar__item.scss";
+@import "./__list/toolbar__list.scss";
+
+.toolbar {
+  max-inline-size: 100%;
+  block-size: 6.2rem;
+  border-radius: 3rem 3rem 0rem 0;
+  background: var(--color-secondary_dark_50);
+  border-bottom: 0.2rem solid var(--color-secondary);
+  @include box-shadow(
+    0 0rem 0.2rem 0rem var(--color-secondary_light_25) inset,
+    1rem 1rem 0.5rem -0.6rem var(--color-secondary_light_25) inset
+  );
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}

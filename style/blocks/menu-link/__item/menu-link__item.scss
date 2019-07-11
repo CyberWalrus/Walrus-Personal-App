@@ -1,0 +1,15 @@
+.menu-link__item {
+  inline-size: 100%;
+  block-size: 100%;
+  max-block-size: max-content;
+  margin: 0;
+  padding: 0;
+  border-bottom: 0.3rem solid var(--color-secondary_darker);
+  transition: all 0.2s ease-out;
+
+  @include box-shadow(
+    0 0rem 0.2rem 0rem var(--color-secondary_light_25) inset,
+    1rem 1rem 0.5rem -0.4rem var(--color-secondary_light_25) inset,
+    -1rem -1rem 0.5rem -0.6rem var(--color-secondary_dark_50) inset
+  );
+}
