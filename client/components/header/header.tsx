@@ -14,9 +14,9 @@ import MenuLink from "../menu-link/menu-link";
 const Header = React.forwardRef(
   ({  }: {}, ref: RefObject<HTMLDivElement>): ReactElement => {
     return (
-      <header className={`page-header`} ref={ref}>
-        <div className={`back`}>
-          <Link to={RoutePath.INDEX} className={`back__link`}>
+      <header className={`header-box`} ref={ref}>
+        <div className={`header-box__back`}>
+          <Link to={RoutePath.INDEX} className={`header-box__link`}>
             {`l`}
           </Link>
         </div>
