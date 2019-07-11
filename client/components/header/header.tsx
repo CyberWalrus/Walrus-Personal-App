@@ -23,8 +23,8 @@ const Header = React.forwardRef(
         <div className={`logo`}>
           <Link to={RoutePath.INDEX} className={`logo__link`}>
             <img
-              width={`5rem`}
-              height={`5rem`}
+              inline-size={`5rem`}
+              block-size={`5rem`}
               className={`logo__img`}
               src={`img/walrus-icon-white.png`}
               alt={`walrus logo`}

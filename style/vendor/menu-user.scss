@@ -3,17 +3,17 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  width: 100%;
-  height: 100%;
+  inline-size: 100%;
+  block-size: 100%;
   user-select: none;
   &__btn {
     background: none;
     border: 0;
     margin: 0;
-    width: 100%;
-    max-width: 100%;
-    height: 100%;
-    max-height: 100%;
+    inline-size: 100%;
+    max-inline-size: 100%;
+    block-size: 100%;
+    max-block-size: 100%;
     text-decoration: none;
     font-weight: bold;
     color: var(--color-primary);
@@ -42,7 +42,7 @@
   z-index: 999;
   right: 0rem;
   bottom: 4rem;
-  max-width: 30rem;
+  max-inline-size: 30rem;
   display: inline-block;
   visibility: hidden;
   opacity: 0;
@@ -55,8 +55,8 @@
   &__arrow {
     margin-top: 0rem;
     margin-left: 23rem;
-    width: 0rem;
-    height: 0rem;
+    inline-size: 0rem;
+    block-size: 0rem;
     border: 1.5rem solid var(--color-opacity);
     border-top: 1.5rem solid var(--color-primary_darker);
   }
@@ -73,9 +73,9 @@
     padding: 0;
   }
   &__item {
-    width: 100%;
-    height: 100%;
-    max-height: max-content;
+    inline-size: 100%;
+    block-size: 100%;
+    max-block-size: max-content;
     margin: 0;
     padding: 0;
     border-bottom: 0.3rem solid var(--color-secondary_darker);
@@ -97,10 +97,10 @@
     }
   }
   &__link {
-    width: 100%;
-    max-width: 100%;
-    height: 100%;
-    max-height: 100%;
+    inline-size: 100%;
+    max-inline-size: 100%;
+    block-size: 100%;
+    max-block-size: 100%;
     text-decoration: none;
     line-height: 2.5;
     display: grid;
@@ -137,8 +137,8 @@
 }
 
 .container-btn {
-  max-width: 100%;
-  height: 6.2rem;
+  max-inline-size: 100%;
+  block-size: 6.2rem;
   border-radius: 3rem 3rem 0rem 0;
   background: var(--color-secondary_dark_50);
   border-bottom: 0.2rem solid var(--color-secondary);
@@ -153,8 +153,8 @@
     margin: 0rem;
     padding: 0;
     list-style: none;
-    width: inherit;
-    height: inherit;
+    inline-size: inherit;
+    block-size: inherit;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -164,11 +164,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 4.8rem;
-    width: 6.4rem;
+    block-size: 4.8rem;
+    inline-size: 6.4rem;
     margin: 0.2rem 0.2em 0.7rem 0.2rem;
-    max-width: 100%;
-    max-height: 100%;
+    max-inline-size: 100%;
+    max-block-size: 100%;
     background: var(--color-secondary);
     border-top: 0.1rem solid var(--color-secondary_dark);
 
@@ -203,10 +203,10 @@
     text-decoration: none;
     font-size: 150%;
     transition: all 0.5s;
-    width: 100%;
-    max-width: 100%;
-    height: 100%;
-    max-height: 100%;
+    inline-size: 100%;
+    max-inline-size: 100%;
+    block-size: 100%;
+    max-block-size: 100%;
     display: flex;
     align-items: center;
     justify-content: center;

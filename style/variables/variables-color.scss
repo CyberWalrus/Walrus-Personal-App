@@ -22,16 +22,4 @@
   @include defineColorOpacity(--color-dop4, $color4);
   @include defineColorOpacity(--color-dop5, $color5);
   --color-opacity: rgba(0, 0, 0, 0);
-  --html-size: 62.5%;
-  --body-font-size: #{$body-font-size};
-  //old
-  --base-color: #{$base-color};
-  --body-color: #{$body-color};
-  --text-color: #{$text-color};
-  --text-color_dop: #{$text-color_dop};
-  --header-color: #{$header-color};
-  --shadow-color: #{$shadow-color};
-  --border-color: #{$border-color};
-  --btn-color: #{$btn-color};
-  //filter: invert(100%);
 }

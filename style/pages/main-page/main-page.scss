@@ -1,0 +1,10 @@
+
+.page {
+    background: var(--color-secondary_darker);
+    display: grid;
+    min-block-size: 100vh;
+    grid-template-rows: minmax(3rem, max-content) minmax(max-content, 1fr) minmax(
+        min-content,
+        max-content
+      );
+  }

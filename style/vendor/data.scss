@@ -1,8 +1,8 @@
 .data-box {
   padding:0.5rem;
   background: var(--header-color);
-  width: 56rem;
-  max-width: 90vw;
+  inline-size: 56rem;
+  max-inline-size: 90vw;
   border-radius: 2rem;
   @include box-shadow(
     0 0 1rem 0.1rem var(--shadow-color),
@@ -18,7 +18,7 @@
   margin:0.5rem 0;
   padding:0.5rem;
   background: var(--header-color);
-  max-width: 100%;
+  max-inline-size: 100%;
   border-radius: 2rem;
   @include box-shadow(
     0 0 1rem 0.1rem var(--shadow-color),
