@@ -23,6 +23,6 @@ export const changeParam = (
 
 export const port: number = process.env.NODE_PORT
   ? parseInt(process.env.NODE_PORT, 10)
-  : 80;
+  : 8080;
 export const url: string =
   process.env.NODE_ENV === `production` ? `localhost` : `localhost`;
