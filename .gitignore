@@ -1,7 +1,6 @@
 node_modules
 .idea/*
 *.iml
-config/db/db.ts
 config/key/
 dist/css
 dist/js
