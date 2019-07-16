@@ -25,4 +25,4 @@ export const port: number = process.env.NODE_PORT
   ? parseInt(process.env.NODE_PORT, 10)
   : 80;
 export const url: string =
-  process.env.NODE_ENV === `production` ? `192.168.88.254` : `localhost`;
+  process.env.NODE_ENV === `production` ? `localhost` : `localhost`;
