@@ -116,7 +116,7 @@ export const userApi = (app: Express): void => {
   );
 
   app.post(
-    ApiRoutes.SIGN_iN,
+    ApiRoutes.SIGN_IN,
     async (req: Request, res: Response, next: NextFunction): Promise<any> => {
       const body: UserSignInBody = req.body;
       const {password}: UserSignInBody = body;

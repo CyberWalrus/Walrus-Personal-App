@@ -139,7 +139,7 @@ const Operation = {
       api: AxiosInstance,
     ): Promise<void> => {
       return api
-        .post(ApiRoutes.SIGN_iN, {
+        .post(ApiRoutes.SIGN_IN, {
           email,
           password,
         })

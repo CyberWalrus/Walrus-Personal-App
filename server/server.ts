@@ -13,7 +13,7 @@ import * as webpackDevServer from "webpack-dev-server";
 import * as webpackHotMiddleware from "webpack-hot-middleware";
 import { useApi } from "./routes/routes-api";
 
-const isDev: boolean = false; //process.env.NODE_ENV !== `production`;
+const isDev: boolean = process.env.NODE_ENV !== `production`;
 const port = process.env.PORT || 5000;
 
 mongoose.connect(

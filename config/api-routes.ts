@@ -1,7 +1,7 @@
 export enum ApiRoutes {
-  SIGN_iN = "/api/account/signin",
+  SIGN_IN = "/api/account/signin",
   SIGN_UP = "/api/account/signup",
-  LOGOUT = "/api/accaunt/logout/:id",
+  LOGOUT = "/api/account/logout/:id",
   GET_USERS = "/api/data/users",
   GET_USER = "/api/data/users/:id",
   ADD_USER = "/api/data/users/add",
@@ -25,4 +25,6 @@ export const port: number = process.env.NODE_PORT
   ? parseInt(process.env.NODE_PORT, 10)
   : 5000;
 export const url: string =
-  process.env.NODE_ENV === `production` ? `https://walrus-app.herokuapp.com` : `localhost`;
+  process.env.NODE_ENV === `production`
+    ? `https://walrus-app.herokuapp.com`
+    : `http://localhost:${port}`;
