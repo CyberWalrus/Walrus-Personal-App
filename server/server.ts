@@ -61,6 +61,6 @@ if (isDev) {
 }
 
 app.listen(port, () => {
-  console.info(`>>> 🌎 Open https://${url}:%s/ in your browser.`, port);
+  console.info(`>>> 🌎 Open ${url} in your browser.`);
 });
 export default app;

@@ -10,7 +10,7 @@
     "test": "npm run tslint && jest",
     "test:solo": "jest ./client/utils/array/array.test.ts",
     "start:dev": "ts-node-dev --respawn --transpileOnly -r tsconfig-paths/register ./server/server.ts",
-    "build:client": "webpack --mode production",
+    "build:client": "set NODE_ENV=production && webpack --mode production",
     "build:server": "tsc -b tsconfig.json",
     "start": "ts-node -r tsconfig-paths/register ./server/server.ts"
   },
