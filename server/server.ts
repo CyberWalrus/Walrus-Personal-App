@@ -1,5 +1,5 @@
 /* tslint:disable:no-console */
-import { url } from "@config/api-routes";
+import { port, url } from "@config/api-routes";
 import { MONGO_URL } from "@config/db/db";
 import webpackConfig from "@config/webpack.dev";
 import * as historyApiFallback from "connect-history-api-fallback";
@@ -13,8 +13,7 @@ import * as webpackDevServer from "webpack-dev-server";
 import * as webpackHotMiddleware from "webpack-hot-middleware";
 import { useApi } from "./routes/routes-api";
 
-const isDev: boolean = false; //process.env.NODE_ENV !== `production`;
-const port = process.env.PORT || 5000;
+const isDev: boolean = process.env.NODE_ENV !== `production`;
 
 mongoose.connect(
   MONGO_URL,

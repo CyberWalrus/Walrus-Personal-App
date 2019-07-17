@@ -25,4 +25,4 @@ export const port: number = process.env.NODE_PORT
   ? parseInt(process.env.NODE_PORT, 10)
   : 8080;
 export const url: string =
-  process.env.NODE_ENV === `production` ? `localhost` : `localhost`;
+  process.env.NODE_ENV === `production` ? `https://walrus-app.herokuapp.com` : `localhost`;

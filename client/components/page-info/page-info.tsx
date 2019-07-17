@@ -20,6 +20,7 @@ class PageInfo extends PureComponent<Props> {
   }
   public render(): ReactElement {
     const users = this.props.users;
+    console.log(users);
     return (
       <main className={`page-content`}>
         <section>
