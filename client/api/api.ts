@@ -1,7 +1,7 @@
 import { port, url } from "@config/api-routes";
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from "axios";
 
-export const SERVER_URL = `http://${url}:${port}`;
+export const SERVER_URL = `${url}`;
 export const ERROR_STATUSES = [404, 500, 503, 504];
 
 const configureAPI = (onServerError: () => void): AxiosInstance => {
