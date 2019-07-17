@@ -12,7 +12,7 @@
     "start:dev": "ts-node-dev --respawn --transpileOnly -r tsconfig-paths/register ./server/server.ts",
     "build:client": "webpack --mode production",
     "build:server": "tsc -b tsconfig.json",
-    "start": "npm run build:client && set NODE_ENV=production&& ts-node -r tsconfig-paths/register ./server/server.ts"
+    "start": "ts-node -r tsconfig-paths/register ./server/server.ts"
   },
   "repository": {
     "type": "git",
