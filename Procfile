@@ -1,1 +1,1 @@
-web: ts-node -r tsconfig-paths/register ./server/server.ts
+web: npm run build:client && set NODE_ENV=production&& ts-node -r tsconfig-paths/register ./server/server.ts
