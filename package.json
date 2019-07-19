@@ -19,7 +19,7 @@
     "url": "git+https://github.com/CyberWalrus/walrus-personal-app.git"
   },
   "author": "Cyber Walrus (Andrey Pakhomov)",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/CyberWalrus/walrus-personal-app/issues"
   },
