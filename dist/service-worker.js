@@ -43,7 +43,12 @@ self.addEventListener("install", function(event) {
               "./css/style.css",
               "./manifest.json",
               "./service-worker.js",
-              "./walrus-font/css/walrus.css"
+              "./walrus-font/css/walrus.css",
+              "./walrus-font/fonts/walrus.eot",
+              "./walrus-font/fonts/walrus.svg",
+              "./walrus-font/fonts/walrus.ttf",
+              "./walrus-font/fonts/walrus.wolf",
+              "./img/walrus-icon-white.png"
             ];
             cache.addAll(urlsToCache);
             console.log("cached");
