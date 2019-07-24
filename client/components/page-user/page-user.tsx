@@ -10,9 +10,8 @@ const PageUser: FunctionComponent = (): ReactElement => {
       <Route path={RoutePath.USER} exact={true} component={ScreenUsers} />
       <Route
         path={RoutePath.USER_LOGIN}
-        exact={true}
         // tslint:disable-next-line:jsx-no-lambda
-        render={(props: RouteComponentProps<{id: string}>): any => (
+        render={(props: RouteComponentProps<{ id: string }>): any => (
           <ScreenUser id={props.match.params.id} />
         )}
       />
