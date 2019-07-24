@@ -8,7 +8,6 @@ import { StateApp, ThunkAction, ThunkDispatch } from "@client/type/reducer";
 import { ApiRoutes, changeParam } from "@config/api-routes";
 import { COOKIE_NAME } from "@config/constants";
 import { AxiosError, AxiosInstance, AxiosResponse } from "axios";
-import * as Cookies from "js-cookie";
 import { Action as ReduxAction } from "redux";
 import { User, UserSession } from "../../type/data";
 import NameSpace from "../name-spaces";
@@ -146,7 +145,6 @@ const Operation = {
         .then(
           (response: AxiosResponse<Record<string, ReturnResponse>>): void => {
             const data: ReturnResponse = response.data;
-            Cookies.set(COOKIE_NAME, data.token, {expires: 7});
             dispatch(Operation.loadSession(data.token));
           },
         )
@@ -237,7 +235,6 @@ const Operation = {
       return api
         .get(url)
         .then((response: AxiosResponse<Record<string, any>>): void => {
-          Cookies.remove(COOKIE_NAME);
           dispatch(ActionCreator.resetUser());
           dispatch(ActionCreator.ResetSession());
           dispatch(ActionCreator.setAuthorization(false));
