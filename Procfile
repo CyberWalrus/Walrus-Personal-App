@@ -1,1 +1,1 @@
-web: ts-node -r tsconfig-paths/register ./server/server.ts
+web: webpack --mode production && ts-node -r tsconfig-paths/register ./server/server.ts
