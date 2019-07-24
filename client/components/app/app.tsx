@@ -20,13 +20,12 @@ const App: FunctionComponent = (): ReactElement => {
       <MenuBottom />
       <Switch>
         <Route path={RoutePath.INDEX} exact={true} component={PageMain} />
-        <Route path={RoutePath.INFO} component={PageInfo} />
-        <Route path={RoutePath.LOGIN} component={PageLogin} />
-        <Route path={RoutePath.SIGNUP} component={PageSignUp} />
-        <Route path={RoutePath.OPTION} component={PageOption} />
-        <Route path={RoutePath.USER} component={PageUser} />
-        <Route path={RoutePath.TIME} component={PageTime} />
-        <Redirect to={RoutePath.INDEX} />
+        <Route path={RoutePath.INFO} exact={true} component={PageInfo} />
+        <Route path={RoutePath.LOGIN} exact={true} component={PageLogin} />
+        <Route path={RoutePath.SIGNUP} exact={true} component={PageSignUp} />
+        <Route path={RoutePath.OPTION} exact={true} component={PageOption} />
+        <Route path={RoutePath.USER} exact={true} component={PageUser} />
+        <Route path={RoutePath.TIME} exact={true} component={PageTime} />
       </Switch>
     </div>
   );
